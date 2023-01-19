@@ -2,6 +2,8 @@ import curses
 import os
 import time
 import random
+from osztalyok import *
+
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -14,7 +16,7 @@ class bcolors:
     UNDERLINE = '\033[4m'
 
 jrng = 0
-
+# opponents = []
 
 def menu(stdscr,commands):
     curses.curs_set(0)
@@ -44,6 +46,15 @@ def menu(stdscr,commands):
             selected_index = min(selected_index + 1, len(commands) - 1)
         elif c == ord('\n'):
             return commands[selected_index]
+
+# def oppOlvas():
+#     f = open("oppok.txt", "r", encoding="utf-8")
+#     f.readline()
+#     for sor in f:
+#         opponents.append(Opp(sor))
+#     f.close()
+# oppOlvas()
+
 def gamestart():
     os.system("cls")
     commands = ["Üdvözlünk a 'lorem ipsum'","Új játék", "Folytatás"]
@@ -92,14 +103,18 @@ def startRoom():
         room3()
     else:
         return
+
 def room1():
     print("1")
+
 def room2():
-    commands = ["Egy sikátorba érkeztél, fura hangokat hallasz", "Körbenézek", "Visszafutok"]
+    commands = ["Egy sikátorba érkeztél, ahonnét fura hangokat hallasz.", "Körbenézek", "Visszafutok"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         print(f"{bcolors.FAIL}Booo...{bcolors.ENDC}")
         print(f"Megijedsz és visszaszaladsz a városkapuhoz")
+        time.sleep(3)
+        os.system("cls")
         commands = ["Merre haladsz tovább?","Bal ", "Előre", "Ki a városból"]
         userinput = curses.wrapper(menu, commands)
         if userinput == "Bal":
@@ -108,8 +123,43 @@ def room2():
             room3()
         else:
             return
+    elif choice == commands[2]:
+        commands = ["Merre haladsz tovább?","Bal ", "Előre", "Ki a városból"]
+        userinput = curses.wrapper(menu, commands)
+        if userinput == "Bal":
+            room1()
+        elif userinput == "Előre":
+            room3()
+        else:
+            return
+
 def room3():
-    print("3")
+    commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        room4()
+    elif choice == commands[2]:
+        room5()
+    elif choice == commands[3]:
+        startRoom()
+    else:
+        return
+
+def room4():
+    commands = ["Az épületek között barangolva végül egy sikátorban kötöttél ki. Sajnos az út innen csak visszafelé vezet.", "Elindulok vissza"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        commands = ["Merre haladsz tovább?","Elmegyek a bolt felé", "Visszamegyek"]
+        userinput = curses.wrapper(menu, commands)
+        if userinput == commands[1]:
+            room5()
+        elif userinput == commands[2]:
+            startRoom()
+        else:
+            return
+
+def room5():
+    print("5")
+
 def gameend():
     print("Game over")
-
