@@ -1,0 +1,5 @@
+fegyverneve;hasznalhatosag;dmg
+Feszítővas;5;3
+9mm pisztoly;3;5
+Vadászpuska;3;10
+Sörétes puska;3;20
