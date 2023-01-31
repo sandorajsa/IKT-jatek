@@ -18,13 +18,22 @@ class bcolors:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
 
-jrng = 0
 opponents = []
 fegyverek =  []
 elerhetoFegyverek = []
 elerhetoHealek = 0
 width = os.get_terminal_size().columns
 szobaid = "startRoom"
+
+# def inventory():
+#     if keyboard.is_pressed('i'):
+#         os.system("cls")
+#         commands = ["Hátizsákod"]
+#         choice = curses.wrapper(menu, commands)
+#         if choice == commands[1]:
+#             pass
+#         else:
+#             pass
 def var(ido):
     startido = time.time()
     elteltido = 0
@@ -33,11 +42,12 @@ def var(ido):
         if keyboard.is_pressed('space'):
             time.sleep(0.5)
             break
+
+
 def menu(stdscr,commands):
     curses.curs_set(0)
     curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_RED)
     selected_index = 1
-
     while True:
         stdscr.clear()
         height, width = stdscr.getmaxyx()
@@ -51,9 +61,7 @@ def menu(stdscr,commands):
                 stdscr.attroff(curses.color_pair(1))
             else:
                 stdscr.addstr(y, x, command)
-
         stdscr.refresh()
-
         c = stdscr.getch()
         if c == curses.KEY_UP:
             selected_index = max(selected_index - 1, 1)
@@ -61,7 +69,27 @@ def menu(stdscr,commands):
             selected_index = min(selected_index + 1, len(commands) - 1)
         elif c == ord('\n'):
             return commands[selected_index]
+# nem mukodik
+# def  escmenu():
+#     os.system("cls")
+#     commands = ["Menü", "Folytatás", "Mentés", "Új játék", "Kilépés", "Segitség"]
+#     choice = curses.wrapper(menu, commands)
+#     if choice == commands[1]:
+#         # stop all curses wrappers
 
+#         pass
+#     elif choice == commands[2]:
+#         save()
+#     elif choice == commands[3]:
+#         newgame()
+#     elif choice == commands[4]:
+#         os.exit()
+#     elif choice == commands[5]:
+#         print("Segitség").center(width)
+#     else:
+#         os.exit()
+
+# keyboard.add_hotkey('esc', escmenu)
 
 def oppOlvas():
     f = open("oppok.txt", "r", encoding="utf-8")
@@ -100,7 +128,7 @@ def gamestart():
         newgame()
     else:
         try:
-            f = open("savegame.txt", "r", encoding= "UTF-8")
+            load()
         except:
             commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
             choice = curses.wrapper(menu, commands)
@@ -130,6 +158,7 @@ def newgame():
     startRoom()
 
 def startRoom():
+    szobaid = startRoom
     commands = ["A város zárt kapuja előtt állsz. Merre haladsz tovább?","Bal ", "Előre" , "Jobb"]
     userinput = curses.wrapper(menu, commands)
     if userinput == commands[1]:
@@ -140,7 +169,9 @@ def startRoom():
         room3()
 
 def room1():
-    szobaid = "room"
+    global szobaid
+    szobaid = room1
+    save()
     global elerhetoHealek
     commands = ["Nagy szemeteskukák között vagy.", "Körülnézek", "Visszasétálok"]
     choice = curses.wrapper(menu, commands)
@@ -170,7 +201,8 @@ def room1():
             startRoom()
 
 def room2():
-    szobaid = "room2"
+    global szobaid
+    szobaid = room2
     commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -183,7 +215,8 @@ def room2():
         return
         
 def room3():
-    szobaid = "room3"
+    global szobaid
+    szobaid = room3
     commands = ["Egy sikátorba érkezel, ahol furcsa hangokat hallasz.", "Körbenézek", "Visszafutok"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -195,9 +228,12 @@ def room3():
         var(4)
         os.system("cls")
         startRoom()
+    elif choice == commands[2]:
+        startRoom()
 
 def room4(): #lehetne itt kutya (fegyverként működne)
-    szobaid = "room4"
+    global szobaid
+    szobaid = room4
     print("Az épületek között barangolva végül egy sikátorban kötöttél ki.".center(width))
     print("Sajnos az út innen csak visszafelé vezet.".center(width))
     var(6)
@@ -205,7 +241,8 @@ def room4(): #lehetne itt kutya (fegyverként működne)
     room2()
 
 def room5():
-    szobaid = "room5"
+    global szobaid
+    szobaid = room5
     print("Amint belépsz a boltba, egy hullával találod szemben magad.".center(width))
     print("Épphogy magadhoz térsz, egy sötét alakot veszel észre a sarokban.".center(width))
     var(6)
@@ -218,7 +255,8 @@ def room5():
 
 
 def room6():
-    szobaid = "room6"
+    global szobaid
+    szobaid = room6
     print("Szerencsére sikerül elmenekülnöd a lyukon keresztül,".center(width)) 
     print("ám a befelé vezető utat már egy eldőlt szekrény torlaszolja el.".center(width))
     var(6)
@@ -255,11 +293,29 @@ def gameend():
 def save(gamertag,jhp, szobaid, elerhetoFegyverek):
     try: 
         f= open("save.txt", "x")
+        f.close()
     except:
         pass
     f = open("save.txt", "w", encoding = "UTF-8")
     f.write(gamertag,"\n", jhp, "\n", szobaid, "\n", elerhetoFegyverek)
-    f.close
+    f.close()
+    os.system("cls")
+    commands = ["Menü", "Folytatás", "Kilépés"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        szobaid()
+    elif choice == commands[2]:
+        os.exit()
+
 def load():
     f = open("save.txt", "r", encoding = "UTF-8")
-    
+    global gamertag
+    gamertag = f.readline().strip()
+    global jhp
+    jhp = f.readline().strip()
+    global szobaid
+    szobaid = f.readline().strip()
+    global elerhetoFegyverek
+    elerhetoFegyverek = f.readline().strip()
+    f.close()
+    szobaid()
