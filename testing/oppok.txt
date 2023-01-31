@@ -1,4 +1,4 @@
-oppneve;hp;dmg;type
-Kobold;50;10;opp
-Küklopsz;100;25;miniboss
-Bébi sárkány;120;10;boss
+oppneve;hp;dmg;type;points
+Kobold;50;10;opp;500
+Küklopsz;100;25;miniboss;1000
+Bébi sárkány;120;10;boss;5000

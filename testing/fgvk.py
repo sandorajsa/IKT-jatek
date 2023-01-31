@@ -70,16 +70,6 @@ def fegyverOlvas():
 oppOlvas()
 fegyverOlvas()
 
-def fightSystem():
-    commands = ["Válassz egy fegyvert a támadáshoz", "Jo"]
-    choice = curses.wrapper(menu, commands)
-    if choice == commands[1]:
-        print("jó")
-        time.sleep(5)
-
-def healthSystem():
-    pass
-
 #Game
 
 def gamestart():
@@ -100,10 +90,10 @@ def gamestart():
                 newgame()
 
 def newgame():
+    global gamertag, jhp, jdmg, jrng, jatekos
     gamertag = input("Elsőként add meg miként szólítsunk:\n".center(width))
     os.system("cls")
     commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
-    jrng = 0
     szam = curses.wrapper(menu, commands)
     if szam == "1":
         jhp = 100
@@ -117,6 +107,7 @@ def newgame():
         jhp = 50
         jdmg = 5
         jrng = 2
+    jatekos = karakter(gamertag, jhp, jdmg, jrng)
     startRoom()
 
 def startRoom():
@@ -128,6 +119,43 @@ def startRoom():
         room2()
     elif userinput == commands[3]:
         room3()
+
+# def fightSystem(enemy): #végén fegyverekből újra append elerhetoFegyverekbe
+#     fightFegyverek = elerhetoFegyverek
+#     enemyHp = enemy.Hp
+#     while jatekos.Hp != 0 or enemyHp != 0:
+#         if len(fightFegyverek) == 0:
+#             pass
+#         else:
+#             commands = ["Válassz egy fegyvert a támadáshoz"]
+#             for fegyver in fightFegyverek:
+#                 commands.append(fegyver.Nev)
+#             choice = curses.wrapper(menu, commands)
+#             if choice == commands[1]:
+#                 for fegyver in fightFegyverek:
+#                         if fegyver.Nev == commands[1]:
+
+#                     pass
+#                 else:
+#                     enemyHp - dmg
+#                     print(f"Az ellenség {dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}")
+            
+def healthSystem():
+    healErtek = 20
+    if elerhetoHealek == 0:
+        print("Sajnos nincsen elérhető életerő növelőd.")
+    elif jatekos.Hp == 100:
+        print("Nincsen szükséged életerő növelésre.")
+    else:
+        if jatekos.Hp + healErtek > 100:
+            hozzaadandoHp = 100 - jatekos.Hp
+            jatekos.Hp += hozzaadandoHp
+            print("Életerő feltöltve.") 
+            print(f"Jelenlegi életerő: {jatekos.Hp}") 
+        else:
+            jatekos.Hp += healErtek
+            print("Életerő feltöltve.")    
+            print(f"Jelenlegi életerő: {jatekos.Hp}")     
 
 def room1():
     global elerhetoHealek

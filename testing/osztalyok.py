@@ -1,14 +1,14 @@
 # from main import *
-# from fgvk import *
+from fgvk import *
 
 class karakter:
-    def __init__(self):
-        self.nev = gamertag
-        self.hp = 100
-        self.dmg = 1
-        # self.rng = jrng
-        self.money = 0
-        self.points = 0
+    def __init__(self, gamerNev, megadottHp, megadottDmg, megadottRng):
+        self.Nev = gamerNev
+        self.Hp = megadottHp
+        self.Dmg = megadottDmg
+        self.Rng = megadottRng
+        self.Money = 0
+        self.Points = 0
         #ha lehet akkor az első utése utan a karakterunk minden körben kapjon 2dmg-t
 
 class Opp:
@@ -18,6 +18,7 @@ class Opp:
         self.Hp = int(adatok[1])
         self.Dmg = int(adatok[2])
         self.Type = adatok[3]
+        self.Points = int(adatok[4])
 
 class Fegyver:
     def __init__(self, sor):
