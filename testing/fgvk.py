@@ -4,7 +4,7 @@ import time
 import random
 from osztalyok import *
 import keyboard
-
+import threading
 #Basics
 
 class bcolors:
@@ -71,12 +71,11 @@ def menu(stdscr,commands):
             return commands[selected_index]
 # nem mukodik
 # def  escmenu():
+#     curses.endwin()
 #     os.system("cls")
 #     commands = ["Menü", "Folytatás", "Mentés", "Új játék", "Kilépés", "Segitség"]
 #     choice = curses.wrapper(menu, commands)
 #     if choice == commands[1]:
-#         # stop all curses wrappers
-
 #         pass
 #     elif choice == commands[2]:
 #         save()
@@ -90,7 +89,6 @@ def menu(stdscr,commands):
 #         os.exit()
 
 # keyboard.add_hotkey('esc', escmenu)
-
 def oppOlvas():
     f = open("oppok.txt", "r", encoding="utf-8")
     f.readline()
@@ -171,7 +169,7 @@ def startRoom():
 def room1():
     global szobaid
     szobaid = room1
-    save()
+
     global elerhetoHealek
     commands = ["Nagy szemeteskukák között vagy.", "Körülnézek", "Visszasétálok"]
     choice = curses.wrapper(menu, commands)
@@ -291,22 +289,16 @@ def gameend():
     print("Game over")
 
 def save(gamertag,jhp, szobaid, elerhetoFegyverek):
-    try: 
-        f= open("save.txt", "x")
+    try:
+        f = open("save.txt", "w", encoding = "UTF-8")
+        f.write(gamertag,"\n", jhp, "\n", szobaid, "\n", elerhetoFegyverek)
         f.close()
+        choice = curses.wrapper(menu, commands)
+        thread.join()
     except:
         pass
-    f = open("save.txt", "w", encoding = "UTF-8")
-    f.write(gamertag,"\n", jhp, "\n", szobaid, "\n", elerhetoFegyverek)
-    f.close()
-    os.system("cls")
-    commands = ["Menü", "Folytatás", "Kilépés"]
-    choice = curses.wrapper(menu, commands)
-    if choice == commands[1]:
-        szobaid()
-    elif choice == commands[2]:
-        os.exit()
 
+keyboard.add_hotkey('s', save)
 def load():
     f = open("save.txt", "r", encoding = "UTF-8")
     global gamertag
