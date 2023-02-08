@@ -24,7 +24,6 @@ elerhetoFegyverek = []
 elerhetoHealek = 0
 width = os.get_terminal_size().columns
 szobaid = "startRoom"
-
 # def inventory():
 #     if keyboard.is_pressed('i'):
 #         os.system("cls")
@@ -115,15 +114,15 @@ def gamestart():
     if choice == commands[1]:
         newgame()
     else:
-        try:
+        # try:
             load()
-        except:
-            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-            choice = curses.wrapper(menu, commands)
-            if choice == "Nem":
-                return
-            else:
-                newgame()
+        # except:
+        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+        #     choice = curses.wrapper(menu, commands)
+        #     if choice == "Nem":
+        #         return
+        #     else:
+        #         newgame()
 
 def newgame():
     global gamertag, jhp, jdmg, jrng, jatekos
@@ -144,6 +143,7 @@ def newgame():
         jdmg = 5
         jrng = 2
     jatekos = karakter(gamertag, jhp, jdmg, jrng)
+    keyboard.add_hotkey('s', save())  
     startRoom()
 
 def startRoom():
@@ -303,29 +303,30 @@ def room6():
     elif choice == commands[2]:
         room7()
 
-def anyad():
-    pass
-
-asd = anyad
-asd()
-
 def room7():
     pass
 
 def gameend():
     print("Game over")
 
-def save(gamertag,jhp, szobaid, elerhetoFegyverek):
-    try:
-        f = open("save.txt", "w", encoding = "UTF-8")
-        f.write(gamertag,"\n", jhp, "\n", szobaid, "\n", elerhetoFegyverek)
-        f.close()
-        choice = curses.wrapper(menu, commands)
-        thread.join()
-    except:
-        pass
+def save():
+    f = open("save.txt", "w", encoding = "UTF-8")
+    global gamertag
+    f.write(gamertag)
+    f.write("\n")
+    global jhp
+    f.write(str(jhp))
+    f.write("\n")
+    global szobaid
+    f.write(szobaid)
+    f.write("\n")
+    global elerhetoFegyverek
+    f.write(str(elerhetoFegyverek))
+    f.close()
+    print("A játékállás mentésre került.")
+    var(5)
+    os.system("cls")
 
-keyboard.add_hotkey('s', save)
 def load():
     f = open("save.txt", "r", encoding = "UTF-8")
     global gamertag
@@ -337,4 +338,16 @@ def load():
     global elerhetoFegyverek
     elerhetoFegyverek = f.readline().strip()
     f.close()
+    szobak = {
+        'startRoom' : startRoom,
+        'room1' : room1,
+        'room2' : room2,
+        'room3' : room3,
+        'room4' : room4,
+        'room5' : room5,
+        'room6' : room6,
+        'room7' : room7
+    }
+
+    keyboard.add_hotkey('s', save())
     szobaid()
