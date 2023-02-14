@@ -1,1 +1,2 @@
 # IKT-jatek
+ajsa
