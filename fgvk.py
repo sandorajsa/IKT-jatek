@@ -126,8 +126,10 @@ def gamestart():
 
 def newgame():
     global gamertag, jhp, jdmg, jrng, jatekos
-    gamertag = input("Elsőként add meg miként szólítsunk:\n".center(width))
-    os.system("cls")
+    gamertag = ""
+    while gamertag == "":
+        gamertag = input("Elsőként add meg miként szólítsunk:\n".center(width))
+        os.system("cls")
     commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
     szam = curses.wrapper(menu, commands)
     if szam == "1":
@@ -182,7 +184,10 @@ def healthSystem():
     healErtek = 20
     if elerhetoHealek == 0:
         os.system("cls")
-        print("Sajnos nincsen elérhető életerő növelőd.")
+        text = "Sajnos nincsen elérhető életerő növelőd."
+        rows, columns = os.popen('stty size', 'r').read().split()
+        center = int(columns) // 2
+        print(" " * (center - len(text) // 2) + text)
     elif jatekos.Hp == 100:
         os.system("cls")
         print("Nincsen szükséged életerő növelésre.")
