@@ -1,5 +1,6 @@
 fegyverneve;hasznalhatosag;dmg
-Feszítővas;5;10
+Feszítővas;5;8
+Íj;5;10
 9mm pisztoly;3;12
 Vadászpuska;3;15
 Sörétes puska;3;20

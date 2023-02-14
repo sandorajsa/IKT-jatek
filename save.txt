@@ -1,0 +1,4 @@
+ajsa
+100
+8
+[<osztalyok.Fegyver object at 0x000002304EF79B80>]

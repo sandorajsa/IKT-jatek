@@ -24,6 +24,8 @@ elerhetoFegyverek = []
 elerhetoHealek = 0
 width = os.get_terminal_size().columns
 szobaid = "startRoom"
+room9Elso = True
+gyogyszer = False
 # def inventory():
 #     if keyboard.is_pressed('i'):
 #         os.system("cls")
@@ -158,7 +160,7 @@ def startRoom():
     elif userinput == commands[3]:
         room3()
 
-def fightSystem(enemy): #végén fegyverekből újra append elerhetoFegyverekbe
+def fightSystem(enemy):
     fightFegyverek = elerhetoFegyverek
     enemyHp = enemy.Hp
     while jatekos.Hp != 0 or enemyHp != 0:
@@ -287,6 +289,12 @@ def room5():
     var(6)
     os.system("cls")
     print("Másodpercekkel később már a földön vagy, rajtad pedig egy megvadult ember szerű lény.".center(width))
+    var(6)
+    os.system("cls")
+    jatekos.Hp -= 10
+    print(f"10 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
+    var(6)
+    os.system("cls")
     print("Lerúgod magadról majd elkezdesz a falon található lyuk felé futni.".center(width))
     var(6)
     os.system("cls")
@@ -307,6 +315,7 @@ def room6():
         print("Kutakodás közben az egyik polc alatt észreveszel valamit. Kihúzod és jobban megnézed.".center(width))
         var(3)
         os.system("cls")
+        #át kell írni majd késre
         print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[0].Nev} (Használhatóság: {fegyverek[0].Hasznalhato}, Sebzés: {fegyverek[0].Dmg})".center(width))
         var(5)
         os.system("cls")
@@ -319,6 +328,81 @@ def room6():
         room7()
 
 def room7():
+    global szobaid
+    szobaid = 7
+    keyboard.add_hotkey('s', save())
+    print("Ismét az utcákon találod magad.".center(width))
+    var(4)
+    os.system("cls")
+    commands = ["Jobbra egy családi házat, szemben egy gyógyszertárat látsz.", "Elmegyek jobbra", "Elmegyek előre"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        room8()
+    else:
+        room11()
+
+def room8():
+    global szobaid
+    szobaid = 8
+    keyboard.add_hotkey('s', save())
+    print("A családi ház előterébe lépsz.".center(width))
+    var(4)
+    os.system("cls")
+    commands = ["Vezet egy lépcső lefele és egy felfele.", "Felmegyek", "Lemegyek", "Kimegyek"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        room9()
+    elif choice == commands[2]:
+        room10()
+    else:
+        room7()
+
+def room9():
+    global szobaid, room9Elso
+    szobaid = 8
+    keyboard.add_hotkey('s', save())
+    if room9Elso == True:
+        print("Felérsz az emeletre. A szobában egy matracot találsz a földön, rajta egy kisfiúval.".center(width))
+        print("Mellette egy férfi térdel.".center(width))
+        var(6)
+        os.system("cls")
+        print('"A fiam halálosan beteg. Gyógyszer kell neki, de én nem hagyhatom itt."'.center(width))
+        var(6)
+        os.system("cls")
+        commands = ["Hozol gyógyszert a kisfiúnak?", "Igen", "Nem"]
+        choice = curses.wrapper(menu, commands)
+        if choice == commands[1]:
+            print('"Köszönöm...A neved?"'.center(width))
+            print("Megmondod a neved.".center(width))
+            var(6)
+            os.system("cls")
+            print(f'"Köszönöm {jatekos.Nev}!"'.center(width))
+            print("Elindulsz gyógyszert keresni.".center(width))
+            var(6)
+            os.system("cls")
+            room9Elso = False
+            room8()
+    else:
+        if gyogyszer == False:
+            print('"A gyógyszer...?"'.center(width))
+            var(6)
+            os.system("cls")
+            room8()
+        else:
+            print('"Visszajöttél...A gyógyszer?"'.center(width))
+            print("Odanyújtod neki.".center(width))
+            var(6)
+            os.system("cls")
+            print('"Köszönöm...cserébe tedd el ezt."'.center(width))
+            print("Egy fegyvert nyújt feléd.".center(width))
+            var(6)
+            os.system("cls")
+            print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[2].Nev} (Használhatóság: {fegyverek[2].Hasznalhato}, Sebzés: {fegyverek[2].Dmg})".center(width))
+
+def room10():
+    pass
+
+def room11():
     pass
 
 def gameend():
