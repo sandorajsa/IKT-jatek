@@ -109,20 +109,30 @@ fegyverOlvas()
 
 def gamestart():
     os.system("cls")
-    commands = ["Üdvözlünk a 'jaték neve'","Új játék", "Folytatás"]
+    commands = ["Outback","Új játék", "Folytatás"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         newgame()
-    else:
-        # try:
+    elif choice == commands[2]:
+        try:
             load()
-        # except:
-        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-        #     choice = curses.wrapper(menu, commands)
-        #     if choice == "Nem":
-        #         return
-        #     else:
-        #         newgame()
+        except:
+            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+            choice = curses.wrapper(menu, commands)
+            if choice == "Nem":
+                return
+            else:
+                newgame()
+
+def tutorial():
+    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép")
+    print("Nyomd meg az 'space'-t a továbblépéshez")
+    var(9999)
+    print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
+    print("A hátizsákodban kutatva egy fegyvert találsz".center(width))
+    print(f"{bcolors.FAIL}A robot ellened fordul{bcolors.ENDC}")
+    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad itt tudsz életerőt regenerálni, fegyvert választani{bcolors.ENDC}")
+    ()
 
 def newgame():
     global gamertag, jhp, jdmg, jrng, jatekos
@@ -130,6 +140,12 @@ def newgame():
     while gamertag == "":
         gamertag = input("Elsőként add meg miként szólítsunk:\n".center(width))
         os.system("cls")
+    commands = ["Játszottál már korábban?", "Igen", "Nem"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        pass
+    else:
+        tutorial()
     commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
     szam = curses.wrapper(menu, commands)
     if szam == "1":
