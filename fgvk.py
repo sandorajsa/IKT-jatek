@@ -24,8 +24,10 @@ elerhetoFegyverek = []
 elerhetoHealek = 0
 width = os.get_terminal_size().columns
 gyogyszer = False
+segitseg = True
 szobaid = "startRoom"
 room9Elso = True
+room10Elso = True
 # def inventory():
 #     if keyboard.is_pressed('i'):
 #         os.system("cls")
@@ -177,7 +179,7 @@ def startRoom():
     elif userinput == commands[3]:
         room3()
 
-def fightSystem(enemy, room): #itt megkérdezni hogy fightfegyverekből levonni jó e
+def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
     fightFegyverek = elerhetoFegyverek
     enemyHp = enemy.Hp
     while jatekos.Hp > 0 and enemyHp > 0:
@@ -273,6 +275,25 @@ def healthSystem():
             print(f"Jelenlegi életerő: {jatekos.Hp}")  
             var(6)
             os.system("cls")  
+
+def healthBuy():
+    global elerhetoHealek
+    print("1000 pont - 1 életerő növelő".center(width))
+    var(6)
+    os.system("cls")
+    commands = ["Veszel életerő növelőt?", "Igen", "Nem"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        if jatekos.Points - 1000 < 0:
+            print("Nincsen elegendő pontod.".center(width))
+            var(6)
+            os.system("cls")
+        else:
+            jatekos.Points -= 1000
+            elerhetoHealek += 1
+            print("Életerő növelők száma eggyel megnövelve.".center(width))
+            var(6)
+            os.system("cls")
 
 def room1():
     global szobaid
@@ -389,7 +410,7 @@ def room6():
         var(3)
         os.system("cls")
         #át kell írni majd késre
-        print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[0].Nev} (Használhatóság: {fegyverek[0].Hasznalhato}, Sebzés: {fegyverek[0].Dmg})".center(width))
+        print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[2].Nev} (Használhatóság: {fegyverek[2].Hasznalhato}, Sebzés: {fegyverek[2].Dmg})".center(width))
         var(5)
         os.system("cls")
         elerhetoFegyverek.append(fegyverek[0])
@@ -431,7 +452,7 @@ def room8():
         room7()
 
 def room9():
-    global szobaid, room9Elso
+    global szobaid, room9Elso, segitseg
     szobaid = 8
     keyboard.add_hotkey('s', save())
     if room9Elso == True:
@@ -454,29 +475,89 @@ def room9():
             var(6)
             os.system("cls")
             room9Elso = False
-            room8()
-    else:
-        if gyogyszer == False:
-            print('"A gyógyszer...?"'.center(width))
-            var(6)
-            os.system("cls")
-            room8()
         else:
-            print('"Visszajöttél...A gyógyszer?"'.center(width))
-            print("Odanyújtod neki.".center(width))
+            segitseg = False
+            print('"Sajnálom..nem tehetek mást...Sajnálom!!"'.center(width))
             var(6)
             os.system("cls")
-            print('"Köszönöm...cserébe tedd el ezt."'.center(width))
-            print("Egy fegyvert nyújt feléd.".center(width))
+            print("Az édesapa egyszer csak rádtámad.".center(width))
             var(6)
             os.system("cls")
-            print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[2].Nev} (Használhatóság: {fegyverek[2].Hasznalhato}, Sebzés: {fegyverek[2].Dmg})".center(width))
+            fightSystem(opponents[5])
+            print("Nem tudsz semmi másra gondolni, csak hogy azt tetted amit muszáj volt.".center(width))
+            print("Sokkos állapotodban legjobbnak találod ha továbbhaladsz utadon,".center(width))
+            print("ezzel a kisfiút halálra ítélve.".center(width))
+            var(10)
+            os.system("cls")
+    else:
+        if segitseg == True:
+            if gyogyszer == False:
+                print('"A gyógyszer...?"'.center(width))
+                var(6)
+                os.system("cls")
+            else:
+                print('"Visszajöttél...A gyógyszer?"'.center(width))
+                print("Odanyújtod neki.".center(width))
+                var(6)
+                os.system("cls")
+                print('"Köszönöm...cserébe tedd el ezt."'.center(width))
+                print("Egy fegyvert nyújt feléd.".center(width))
+                var(6)
+                os.system("cls")
+                print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[3].Nev} (Használhatóság: {fegyverek[3].Hasznalhato}, Sebzés: {fegyverek[3].Dmg})".center(width))
+                var(6)
+                os.system("cls")
+        else:
+            print("Nem vagy képes visszatérni az emeletre...".center(width))
+            var(6)
+            os.system("cls")
+    room8()
 
 def room10():
-    pass
+    global szobaid, room10Elso
+    szobaid = 8
+    keyboard.add_hotkey('s', save())
+    if room10Elso == True:
+        print("A családi ház pincéjében találod magad.".center(width))
+        print("Éppen elkezdenél körülnézni, mikor egy nőnek tűnő zombi fut feléd teljes sebességgel.".center(width))
+        var(8)
+        os.system("cls")
+        fightSystem(opponents[2])
+        print("Ahogy a holttest fölött állsz, csak remélheted, hogy a nő nem a ház lakosa volt egykor...".center(width))
+        var(8)
+        os.system("cls")
+        print("Éppen távozni készülsz, mikor észreveszel valamit az egyik sarokban.".center(width))
+        var(6)
+        os.system("cls")
+        print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[4].Nev} (Használhatóság: {fegyverek[4].Hasznalhato}, Sebzés: {fegyverek[4].Dmg})".center(width))
+        var(6)
+        os.system("cls")
+        room10Elso = False
+        room8()
+    else:
+        print("A pincében már mindent felkutattál.".center(width))
+        var(6)
+        os.system("cls")
+        room8()
 
 def room11():
-    pass
+    global gyogyszer
+    print("Az ajtón átlépve egy gyógyszertárba érkezel".center(width))
+    var(6)
+    os.system("cls")
+    commands = ["Itt biztosan találni gyógyszereket...", "Gyógyszert keresek", "Életerő növelőt veszek", "Továbbmegyek egyenesen", "Visszamegyek"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        gyogyszer = True
+        print("A pultok mögött körülnézve többféle gyógyszert is találsz.".center(width))
+        print("Mindet elhozod, hiszen jól jöhet.".center(width))
+        var(8)
+        os.system("cls")
+    elif choice == commands[2]:
+        healthBuy()
+    elif choice == commands[3]:
+        pass
+    room7()
 
 def gameend():
     print("Game over")
