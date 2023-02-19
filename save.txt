@@ -1,4 +1,4 @@
-asdsas
+ajsa
 100
-7
-[<osztalyok.Fegyver object at 0x00000179FCEAAE80>]
+4
+[]
