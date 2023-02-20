@@ -217,28 +217,42 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
                 if choice == commands[1]:
                     for fegyver in fightFegyverek:
                         if fegyver.Nev == commands[1]:
-                            if fegyver.Hasznalhato != 0:
-                                enemyHp -= fegyver.Dmg
-                                print(f"Az ellenség {fegyver.Dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}".center(width))
-                                var(6)
-                                os.system("cls")
-                                fegyver.Hasznalhato - 1
-                                print("Az ellenség visszatámad.".center(width))
-                                var(6)
-                                os.system("cls")
-                                jatekos.Hp -= enemy.Dmg
-                                if jatekos.Hp >= 0:
-                                    print(f"Sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
-                                    var(6)
-                                    os.system("cls")
-                                else:
-                                    print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
-                                    var(6)
-                                    os.system("cls")
-                            else:
-                                print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
-                                var(6)
-                                os.system("cls")
+                            weaponChoose(fegyver, enemy, enemyHp)
+                            print("done")
+                elif choice == commands[2]:
+                    for fegyver in fightFegyverek:
+                        if fegyver.Nev == commands[2]:
+                            weaponChoose(fegyver, enemy, enemyHp)
+                elif choice == commands[3]:
+                    for fegyver in fightFegyverek:
+                        if fegyver.Nev == commands[3]:
+                            weaponChoose(fegyver, enemy, enemyHp)
+                elif choice == commands[4]:
+                    for fegyver in fightFegyverek:
+                        if fegyver.Nev == commands[4]:
+                            weaponChoose(fegyver, enemy, enemyHp)
+                            # if fegyver.Hasznalhato != 0:
+                            #     enemyHp -= fegyver.Dmg
+                            #     print(f"Az ellenség {fegyver.Dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}".center(width))
+                            #     var(6)
+                            #     os.system("cls")
+                            #     fegyver.Hasznalhato - 1
+                            #     print("Az ellenség visszatámad.".center(width))
+                            #     var(6)
+                            #     os.system("cls")
+                            #     jatekos.Hp -= enemy.Dmg
+                            #     if jatekos.Hp >= 0:
+                            #         print(f"Sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
+                            #         var(6)
+                            #         os.system("cls")
+                            #     else:
+                            #         print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
+                            #         var(6)
+                            #         os.system("cls")
+                            # else:
+                            #     print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
+                            #     var(6)
+                            #     os.system("cls")
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -247,6 +261,35 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
         jatekos.Points += enemy.Points
         os.system("cls")
         print(f"{enemy.Nev} meghalt.".center(width))
+        var(6)
+        os.system("cls")
+
+def weaponChoose(fegyver, enemy, enemyHp): #nem vonja le enemyHpból másodjára
+    if fegyver.Hasznalhato != 0:
+        enemyHp -= fegyver.Dmg
+        if enemyHp >= 0:
+            print(f"Az ellenség {fegyver.Dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}".center(width))
+            var(6)
+            os.system("cls")
+        else:
+            print(f"Az ellenség {fegyver.Dmg} sebzést szenvedett. Jelenlegi életereje: 0".center(width))
+            var(6)
+            os.system("cls")
+        fegyver.Hasznalhato - 1
+        print("Az ellenség visszatámad.".center(width))
+        var(6)
+        os.system("cls")
+        jatekos.Hp -= enemy.Dmg
+        if jatekos.Hp >= 0:
+            print(f"Sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
+            var(6)
+            os.system("cls")
+        else:
+            print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
+            var(6)
+            os.system("cls")
+    else:
+        print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
         var(6)
         os.system("cls")
 
@@ -261,21 +304,21 @@ def healthSystem():
         var(6)
         os.system("cls")
     elif jatekos.Hp == 100:
-        print("Nincsen szükséged életerő növelésre.")
+        print("Nincsen szükséged életerő növelésre.".center(width))
         var(6)
         os.system("cls")
     else:
         if jatekos.Hp + healErtek > 100:
             hozzaadandoHp = 100 - jatekos.Hp
             jatekos.Hp += hozzaadandoHp
-            print("Életerő feltöltve.") 
-            print(f"Jelenlegi életerő: {jatekos.Hp}") 
+            print("Életerő feltöltve.".center(width)) 
+            print(f"Jelenlegi életerő: {jatekos.Hp}".center(width)) 
             var(6)
             os.system("cls")
         else:
             jatekos.Hp += healErtek
-            print("Életerő feltöltve.")    
-            print(f"Jelenlegi életerő: {jatekos.Hp}")  
+            print("Életerő feltöltve.".center(width))    
+            print(f"Jelenlegi életerő: {jatekos.Hp}".center(width))  
             var(6)
             os.system("cls")  
 
