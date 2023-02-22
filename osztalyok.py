@@ -1,5 +1,5 @@
 # from main import *
-from fgvk import *
+# from fgvk import *
 
 class karakter:
     def __init__(self, gamerNev, megadottHp, megadottDmg, megadottRng):

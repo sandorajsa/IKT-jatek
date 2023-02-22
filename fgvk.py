@@ -26,19 +26,9 @@ width = os.get_terminal_size().columns
 gyogyszer = False
 segitseg = True
 szobaid = "startRoom"
-#lehetne dictonarybe vagy listaba
 room4Elso = True
 room9Elso = True
 room10Elso = True
-# def inventory():
-#     if keyboard.is_pressed('i'):
-#         os.system("cls")
-#         commands = ["Hátizsákod"]
-#         choice = curses.wrapper(menu, commands)
-#         if choice == commands[1]:
-#             pass
-#         else:
-#             pass
 def var(ido):
     startido = time.time()
     elteltido = 0
@@ -74,26 +64,6 @@ def menu(stdscr,commands):
             selected_index = min(selected_index + 1, len(commands) - 1)
         elif c == ord('\n'):
             return commands[selected_index]
-# nem mukodik
-# def  escmenu():
-#     curses.endwin()
-#     os.system("cls")
-#     commands = ["Menü", "Folytatás", "Mentés", "Új játék", "Kilépés", "Segitség"]
-#     choice = curses.wrapper(menu, commands)
-#     if choice == commands[1]:
-#         pass
-#     elif choice == commands[2]:
-#         save()
-#     elif choice == commands[3]:
-#         newgame()
-#     elif choice == commands[4]:
-#         os.exit()
-#     elif choice == commands[5]:
-#         print("Segitség").center(width)
-#     else:
-#         os.exit()
-
-# keyboard.add_hotkey('esc', escmenu)
 def oppOlvas():
     f = open("oppok.txt", "r", encoding="utf-8")
     f.readline()
@@ -119,15 +89,15 @@ def gamestart():
     if choice == commands[1]:
         newgame()
     elif choice == commands[2]:
-        try:
+        # try:
             load()
-        except:
-            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-            choice = curses.wrapper(menu, commands)
-            if choice == "Nem":
-                return
-            else:
-                newgame()
+        # except:
+        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+        #     choice = curses.wrapper(menu, commands)
+        #     if choice == "Nem":
+        #         return
+        #     else:
+        #         newgame()
 
 def tutorial():
     print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép")
@@ -136,8 +106,10 @@ def tutorial():
     print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
     print("A hátizsákodban kutatva egy fegyvert találsz".center(width))
     print(f"{bcolors.FAIL}A robot ellened fordul{bcolors.ENDC}")
-    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad itt tudsz életerőt regenerálni, fegyvert választani{bcolors.ENDC}")
-    ()
+    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával{bcolors.ENDC}")
+    var(99)
+    fightSystem(opponents[0])
+    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment így sosem kell aggódnod, hogy játékállásod elveszik")
 
 def newgame():
     global gamertag, jhp, jdmg, jrng, jatekos
@@ -154,24 +126,17 @@ def newgame():
     commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
     szam = curses.wrapper(menu, commands)
     if szam == "1":
-        jhp = 100
-        jdmg = 15
-        jrng = 4
+        jatekos = karakter(gamertag, 100, 15, 4)
     elif szam == "2":
-        jhp = 75
-        jdmg = 10
-        jrng = 3
+        jatekos = karakter(gamertag, 75, 10, 3)
     elif szam == "3":
-        jhp = 50
-        jdmg = 5
-        jrng = 2
-    jatekos = karakter(gamertag, jhp, jdmg, jrng)
-    keyboard.add_hotkey('s', save())  
+        jatekos =karakter(gamertag, 50, 5, 2)
+    save()
     startRoom()
 
 def startRoom():
     szobaid = 0
-    keyboard.add_hotkey('s', save())
+    save()
     commands = ["A város zárt kapuja előtt állsz. Merre haladsz tovább?","Bal ", "Előre" , "Jobb"]
     userinput = curses.wrapper(menu, commands)
     if userinput == commands[1]:
@@ -296,10 +261,6 @@ def weaponChoose(fegyver, enemy, enemyHp): #nem vonja le enemyHpból másodjára
 def healthSystem():
     healErtek = 20
     if elerhetoHealek == 0:
-        # text = "Sajnos nincsen elérhető életerő növelőd."
-        # rows, columns = os.popen('stty size', 'r').read().split()
-        # center = int(columns) // 2
-        # print(" " * (center - len(text) // 2) + text)
         print("Sajnos nincsen elérhető életerő növelőd.".center(width))
         var(6)
         os.system("cls")
@@ -345,7 +306,7 @@ def room1():
     global szobaid
     szobaid = 1
     global elerhetoHealek
-    keyboard.add_hotkey('s', save())
+    save()
     commands = ["Nagy szemeteskukák között vagy.", "Körülnézek", "Visszasétálok"]
     choice = curses.wrapper(menu, commands)
     if elerhetoHealek == 0:
@@ -379,7 +340,7 @@ def room1():
 def room2():
     global szobaid
     szobaid = 2
-    keyboard.add_hotkey('s', save())
+    save()
     commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -394,7 +355,7 @@ def room2():
 def room3():
     global szobaid
     szobaid = 3
-    keyboard.add_hotkey('s', save())
+    save()
     commands = ["Egy sikátorba érkezel, ahol furcsa hangokat hallasz.", "Körbenézek", "Visszafutok"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -423,7 +384,7 @@ def room3():
 def room4(): #lehetne itt kutya (fegyverként működne)
     global szobaid, room4Elso
     szobaid = 4
-    keyboard.add_hotkey('s', save())
+    save()
     if room4Elso == True:
         room4Elso = False
         print("Az épületek között barangolva végül egy sikátorban kötöttél ki.".center(width))
@@ -447,7 +408,7 @@ def room4(): #lehetne itt kutya (fegyverként működne)
 def room5():
     global szobaid
     szobaid = 5
-    keyboard.add_hotkey('s', save())
+    save()
     print("Amint belépsz a boltba, egy hullával találod szemben magad.".center(width))
     print("Épphogy magadhoz térsz, egy sötét alakot veszel észre a sarokban.".center(width))
     var(6)
@@ -468,7 +429,7 @@ def room5():
 def room6():
     global szobaid
     szobaid = 6
-    keyboard.add_hotkey('s', save())
+    save()
     print("Szerencsére sikerül elmenekülnöd a lyukon keresztül,".center(width)) 
     print("ám a befelé vezető utat már egy eldőlt szekrény torlaszolja el.".center(width))
     var(6)
@@ -494,7 +455,7 @@ def room6():
 def room7():
     global szobaid
     szobaid = 7
-    keyboard.add_hotkey('s', save())
+    save()
     print("Ismét az utcákon találod magad.".center(width))
     var(4)
     os.system("cls")
@@ -508,7 +469,7 @@ def room7():
 def room8():
     global szobaid
     szobaid = 8
-    keyboard.add_hotkey('s', save())
+    save()
     print("A családi ház előterébe lépsz.".center(width))
     var(4)
     os.system("cls")
@@ -524,7 +485,7 @@ def room8():
 def room9():
     global szobaid, room9Elso, segitseg
     szobaid = 8
-    keyboard.add_hotkey('s', save())
+    save()
     if room9Elso == True:
         print("Felérsz az emeletre. A szobában egy matracot találsz a földön, rajta egy kisfiúval.".center(width))
         print("Mellette egy férfi térdel.".center(width))
@@ -587,28 +548,28 @@ def room9():
 def room10():
     global szobaid, room10Elso
     szobaid = 8
-    keyboard.add_hotkey('s', save())
+    save()
     if room10Elso == True:
         print("A családi ház pincéjében találod magad.".center(width))
         print("Éppen elkezdenél körülnézni, mikor egy nőnek tűnő zombi fut feléd teljes sebességgel.".center(width))
-        var(8)
+        var(5)
         os.system("cls")
         fightSystem(opponents[2])
         print("Ahogy a holttest fölött állsz, csak remélheted, hogy a nő nem a ház lakosa volt egykor...".center(width))
-        var(8)
+        var(5)
         os.system("cls")
         print("Éppen távozni készülsz, mikor észreveszel valamit az egyik sarokban.".center(width))
-        var(6)
+        var(5)
         os.system("cls")
         elerhetoFegyverek.append(fegyverek[4])
         print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[4].Nev} (Használhatóság: {fegyverek[4].Hasznalhato}, Sebzés: {fegyverek[4].Dmg})".center(width))
-        var(6)
+        var(5)
         os.system("cls")
         room10Elso = False
         room8()
     else:
         print("A pincében már mindent felkutattál.".center(width))
-        var(6)
+        var(5)
         os.system("cls")
         room8()
 
@@ -636,12 +597,12 @@ def gameend():
     exit()
 
 def save():
-    f = open("save.txt", "w", encoding = "UTF-8")
-    global gamertag
-    f.write(gamertag)
+    global jatekos
+    f = open("save.txt", "a", encoding = "UTF-8")
+    f.write(jatekos.Nev)
     f.write("\n")
     global jhp
-    f.write(str(jhp))
+    f.write(str(jatekos.Hp))
     f.write("\n")
     global szobaid
     f.write(str(szobaid))
@@ -652,16 +613,14 @@ def save():
 
 def load():
     f = open("save.txt", "r", encoding = "UTF-8")
-    global gamertag
-    gamertag = f.readline().strip()
-    global jhp
-    jhp = f.readline().strip()
+    global jatekos
+    jatekos = karakter
+    jatekos.Nev = f.readline().strip()
+    jatekos.Hp = f.readline().strip()
     global szobaid
-    szobaid = int(f.readline().strip())
+    szobaid = f.readline().strip()
     global elerhetoFegyverek
     elerhetoFegyverek = f.readline().strip()
     f.close()
     szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7]
-    szobak[szobaid]()
-    keyboard.add_hotkey('s', save())
-    szobaid()
+    szobak[int(szobaid)]()

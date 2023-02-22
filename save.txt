@@ -1,4 +1,0 @@
-asdasd
-100
-8
-[<osztalyok.Fegyver object at 0x000001E3167ACF10>, <osztalyok.Fegyver object at 0x000001E3167ACEB0>]
