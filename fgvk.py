@@ -25,11 +25,13 @@ elerhetoHealek = 0
 width = os.get_terminal_size().columns
 gyogyszer = False
 segitseg = True
+gyerekek = False
 szobaid = "startRoom"
 #lehetne dictonarybe vagy listaba
 room4Elso = True
 room9Elso = True
 room10Elso = True
+room13Elso = True
 # def inventory():
 #     if keyboard.is_pressed('i'):
 #         os.system("cls")
@@ -192,11 +194,16 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
                 os.system("cls")
                 print("Mivel nincsen fegyvered kézzel harcolsz.".center(width))
                 var(6)
+                os.system("cls")
                 enemyHp -= jatekos.Dmg
-                os.system("cls")
-                print(f"Az ellenség {jatekos.Dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}".center(width))
-                var(6)
-                os.system("cls")
+                if enemyHp >= 0:
+                    print(f"Az ellenség {jatekos.Dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}".center(width))
+                    var(6)
+                    os.system("cls")
+                else:
+                    print(f"Az ellenség {jatekos.Dmg} sebzést szenvedett. Jelenlegi életereje: 0".center(width))
+                    var(6)
+                    os.system("cls")
                 print("Az ellenség visszatámad.".center(width))
                 var(6)
                 os.system("cls")
@@ -212,7 +219,7 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
             else:
                 commands = ["Válassz egy fegyvert a támadáshoz"]
                 for fegyver in fightFegyverek:
-                    commands.append(fegyver.Nev)
+                    commands.append(f"{fegyver.Nev} ({fegyver.Hasznalhato})")
                 choice = curses.wrapper(menu, commands)
                 if choice == commands[1]:
                     for fegyver in fightFegyverek:
@@ -456,7 +463,7 @@ def room5():
     var(6)
     os.system("cls")
     jatekos.Hp -= 10
-    print(f"10 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
+    print(f"10 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp} HP".center(width))
     var(6)
     os.system("cls")
     print("Lerúgod magadról majd elkezdesz a falon található lyuk felé futni.".center(width))
@@ -521,9 +528,9 @@ def room8():
     else:
         room7()
 
-def room9():
+def room9(): #színes szöveg apukának
     global szobaid, room9Elso, segitseg
-    szobaid = 8
+    szobaid = 9
     keyboard.add_hotkey('s', save())
     if room9Elso == True:
         print("Felérsz az emeletre. A szobában egy matracot találsz a földön, rajta egy kisfiúval.".center(width))
@@ -586,7 +593,7 @@ def room9():
 
 def room10():
     global szobaid, room10Elso
-    szobaid = 8
+    szobaid = 10
     keyboard.add_hotkey('s', save())
     if room10Elso == True:
         print("A családi ház pincéjében találod magad.".center(width))
@@ -613,7 +620,9 @@ def room10():
         room8()
 
 def room11():
-    global gyogyszer
+    global gyogyszer, szobaid
+    szobaid = 11
+    keyboard.add_hotkey('s', save())
     print("Az ajtón átlépve egy gyógyszertárba érkezel".center(width))
     var(6)
     os.system("cls")
@@ -630,6 +639,92 @@ def room11():
     elif choice == commands[3]:
         pass
     room7()
+
+def room12():
+    global szobaid
+    szobaid = 12
+    keyboard.add_hotkey('s', save())
+    print("Kilépsz, és a gyógyszertár hátsó lerakóhelyénél találod magad.".center(width))
+    var(6)
+    os.system("cls")
+    commands = ["Pár méterre egy 10 emeletes hátsó bejáratát látod.", "Bemegyek", "Körülnézek"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        print("Éppen elindulsz az ajtó felé, mikor mögötted megjelenik egy horda zombi.".center(width))
+        print("Elkezdesz rohanni.")
+        var(6)
+        os.system("cls")
+        print("Épphogy belépsz az ajtón, a zombik nagy lendülettel rohannak neki,")
+        print("ezzel a visszautat elzárva.")
+        var(6)
+        os.system("cls")
+        room13()
+    else:
+        print("Ahogy kutatsz, észreveszel valamit az egyik ott álló kamion alatt...".center(width))
+        var(6)
+        os.system("cls")
+        elerhetoFegyverek.append(fegyverek[5])
+        print(f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[5].Nev} (Használhatóság: {fegyverek[5].Hasznalhato}, Sebzés: {fegyverek[5].Dmg})".center(width))
+        var(6)
+        os.system("cls")
+        print("Éppen indulnál tovább, mikor egy zombihorda rohan feléd teljes sebességel.".center(width))
+        var(6)
+        os.system("cls")
+        print("Elkezdesz rohanni, de mielőtt a házhoz érnél elkapják a lábad.".center(width))
+        jatekos.Hp -= 15
+        print(f"15 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp} HP".center(width))
+        var(6)
+        os.system("cls")
+        if jatekos.Hp <= 0:
+            gameend()
+        else:
+            print("Szerencsére sikerül elérned az ajtóig, ám azt az annak rohanó zombik torlaszolják el,".center(width))
+            print("ezzel eltorlaszolva a visszautat.".center(width))
+            var(6)
+            os.system("cls")
+            room13()
+
+def room13():
+    global szobaid, gyerekek
+    szobaid = 12
+    keyboard.add_hotkey('s', save())
+    if room13Elso == True:
+        print("Az épületbe lépve sokkos állapotodban elkezdesz kopogni a legközelebbi ajtón.".center(width))
+        var(6)
+        os.system("cls")
+        print("Egy idős férfi nyit ajtót...".center(width))
+        print("fegyvert fogva rád.".center(width))
+        var(6)
+        os.system("cls")
+        print('"Mekkora szerencse, hogy pont megjelentél..."'.center(width))
+        print('"Lenne egy kérésem hozzád, bár nem éppen vagy abban a helyzetben, hogy visszautasítsd."'.center(width))
+        var(6)
+        os.system("cls")
+        print('"Hozd le nekem a két unokámat a 2. emeletről."'.center(width))
+        print('"Tele van a hely zombikkal, de valahogy úgyis megoldod..."'.center(width))
+        var(6)
+        os.system("cls")
+        print("Nincsen más lehetőséged, így elindulsz az épület folyosójára.".center(width))
+        var(6)
+        os.system("cls")
+    else:
+        if gyerekek == True:
+            print('"Látom elhoztad nekem őket, köszönöm..."'.center(width))
+            print('"Most vedd el ezt és tűnj el innen!"'.center(width))
+            var(6)
+            os.system("cls")
+            varosKulcs = True
+            print("A kezedbe nyomott egy kulcsot...".center(width))
+            print("Nem tudod mit nyithat, de van egy sejtésed...".center(width))
+            var(6)
+            os.system("cls")
+        else:
+            print("A gyerekek nélkül nem mersz visszatérni...".center(width))
+            var(6)
+            os.system("cls")
+    room14()
+
+
 
 def gameend():
     print("Game over".center(width))
