@@ -125,17 +125,25 @@ def gamestart(): #kilepes
         #     else:
         #         newgame()
 
-def tutorial(): #heal vasarlas, kivalasztas, pontok
-    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép")
-    print("Nyomd meg az 'space'-t a továbblépéshez")
+def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
+    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép".center(width))
+    print("Nyomd meg az 'space'-t a továbblépéshez".center(width))
     var(9999)
+    commands = ["A játékunkben ehhez hasonló választésokkal találkozol amit a nyilakkal tudsz navigálni és az enter lenyomásával tudod megerősíteni", "Tovább", "Tovább"]
+    choice = curses.wrapper(menu, commands)
     print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
     print("A hátizsákodban kutatva egy fegyvert találsz".center(width))
-    print(f"{bcolors.FAIL}A robot ellened fordul{bcolors.ENDC}")
-    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával{bcolors.ENDC}")
+    print(f"{bcolors.FAIL}A robot ellened fordul{bcolors.ENDC}".center(width))
+    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával{bcolors.ENDC}".center(width))
     var(99)
     fightSystem(opponents[0])
-    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment így sosem kell aggódnod, hogy játékállásod elveszik")
+    print("A harc közben jelentős mennyiségű életerőt vesztettél, a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni".center(width))
+    print("Az ellenfelek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni".center(width))
+    jatekos.points += 1000
+    var(99)
+    healthBuy()
+    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment így sosem kell aggódnod, hogy játékállásod elveszik".center(width))
+    var(6)
 
 def newgame():
     global gamertag, jhp, jdmg, jrng, jatekos
@@ -151,12 +159,12 @@ def newgame():
         tutorial()
     commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
     szam = curses.wrapper(menu, commands)
-    if szam == "1":
-        jatekos = karakter(gamertag, 100, 15, 4)
-    elif szam == "2":
-        jatekos = karakter(gamertag, 75, 10, 3)
-    elif szam == "3":
-        jatekos =karakter(gamertag, 50, 5, 2)
+    if szam == "Könnyű":
+        jatekos = karakter(gamertag, 100, 15, 4, 0, 0)
+    elif szam == "Közepes":
+        jatekos = karakter(gamertag, 75, 10, 3, 0, 0)
+    elif szam == "Nehéz":
+        jatekos =karakter(gamertag, 50, 5, 2, 0, 0)
     save()
     startRoom()
 
