@@ -7,7 +7,6 @@ class karakter:
         self.Hp = megadottHp
         self.Dmg = megadottDmg
         self.Rng = megadottRng
-        self.Money = 0
         self.Points = 0
         #ha lehet akkor az első utése utan a karakterunk minden körben kapjon 2dmg-t
 
