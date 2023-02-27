@@ -1,5 +1,5 @@
 oppneve;hp;dmg;type;points
-tutorial;20;2;tutorial;500
+Robot;20;15;tutorial;1500
 Csontváz;50;10;opp;500
 Zombi;100;25;opp;1000
 Bandita;110;27;opp;1200

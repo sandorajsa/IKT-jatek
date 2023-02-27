@@ -17,7 +17,7 @@ class bcolors:
     ENDC = '\033[0m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
-
+jatekos = None
 opponents = []
 fegyverek =  []
 elerhetoFegyverek = [] #lehetne esetleg karakter classban
@@ -115,35 +115,41 @@ def gamestart(): #kilepes
     if choice == commands[1]:
         newgame()
     elif choice == commands[2]:
-        # try:
+        try:
             load()
-        # except:
-        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-        #     choice = curses.wrapper(menu, commands)
-        #     if choice == "Nem":
-        #         return
-        #     else:
-        #         newgame()
+        except:
+            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+            choice = curses.wrapper(menu, commands)
+            if choice == "Nem":
+                return
+            else:
+                newgame()
 
 def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
+    global jatekos
     print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép".center(width))
     print("Nyomd meg az 'space'-t a továbblépéshez".center(width))
     var(9999)
-    commands = ["A játékunkben ehhez hasonló választésokkal találkozol amit a nyilakkal tudsz navigálni és az enter lenyomásával tudod megerősíteni", "Tovább", "Tovább"]
-    choice = curses.wrapper(menu, commands)
     print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
     print("A hátizsákodban kutatva egy fegyvert találsz".center(width))
     print(f"{bcolors.FAIL}A robot ellened fordul{bcolors.ENDC}".center(width))
-    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával{bcolors.ENDC}".center(width))
+    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad{bcolors.ENDC}".center(width))
+    print(f"{bcolors.OKGREEN}itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával{bcolors.ENDC}".center(width))
     var(99)
+    elerhetoFegyverek.append(fegyverek[0])
+    os.system("cls")
     fightSystem(opponents[0])
-    print("A harc közben jelentős mennyiségű életerőt vesztettél, a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni".center(width))
+    print("A harc közben jelentős mennyiségű életerőt vesztettél,".center(width))
+    print("a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni".center(width))
     print("Az ellenfelek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni".center(width))
-    jatekos.Points += 1000
     var(99)
     healthBuy()
-    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment így sosem kell aggódnod, hogy játékállásod elveszik".center(width))
+    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment".center(width))
+    print("így sosem kell aggódnod, hogy játékállásod elveszik".center(width))
     var(6)
+    jatekos.Points = 0
+    print(f"{bcolors.HEADER}Sok sikert a játékban{bcolors.ENDC}".center(width))
+    var(5)
 
 def newgame():
     global gamertag, jhp, jdmg, jrng, jatekos
@@ -151,20 +157,20 @@ def newgame():
     while gamertag == "":
         gamertag = input("Elsőként add meg miként szólítsunk:\n".center(width))
         os.system("cls")
+    commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
+    szam = curses.wrapper(menu, commands)
+    if szam == "1":
+        jatekos = karakter(gamertag, 100, 15, 4)
+    elif szam == "2":
+        jatekos = karakter(gamertag, 75, 10, 3)
+    elif szam == "3":
+        jatekos = karakter(gamertag, 50, 5, 2)
     commands = ["Játszottál már korábban?", "Igen", "Nem"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         pass
     else:
         tutorial()
-    commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
-    szam = curses.wrapper(menu, commands)
-    if szam == "Könnyű":
-        jatekos = karakter(gamertag, 100, 15, 4, 0, 0)
-    elif szam == "Közepes":
-        jatekos = karakter(gamertag, 75, 10, 3, 0, 0)
-    elif szam == "Nehéz":
-        jatekos =karakter(gamertag, 50, 5, 2, 0, 0)
     save()
     startRoom()
 
@@ -182,81 +188,20 @@ def startRoom():
 
 def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
     fightFegyverek = elerhetoFegyverek
+    global enemyHp
     enemyHp = enemy.Hp
     while jatekos.Hp > 0 and enemyHp > 0:
         commands = ["Kérlek válassz az alábbiak közül", "Támadás", "Gyógyítás"]
         choice = curses.wrapper(menu, commands)
         if choice == commands[1]:
             if len(fightFegyverek) == 0:
-                # handFight(enemyHp, enemy)
-                os.system("cls")
-                print("Mivel nincsen fegyvered kézzel harcolsz.".center(width))
-                var(6)
-                os.system("cls")
-                enemyHp -= jatekos.Dmg
-                if enemyHp >= 0:
-                    print(f"Az ellenség {jatekos.Dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}".center(width))
-                    var(6)
-                    os.system("cls")
-                else:
-                    print(f"Az ellenség {jatekos.Dmg} sebzést szenvedett. Jelenlegi életereje: 0".center(width))
-                    var(6)
-                    os.system("cls")
-                print("Az ellenség visszatámad.".center(width))
-                var(6)
-                os.system("cls")
-                jatekos.Hp -= enemy.Dmg
-                if jatekos.Hp >= 0:
-                    print(f"Sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
-                    var(6)
-                    os.system("cls")
-                else:
-                    print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
-                    var(6)
-                    os.system("cls")
+                enemyHp = handFight(enemyHp, enemy)
             else:
                 commands = ["Válassz egy fegyvert a támadáshoz"]
                 for fegyver in fightFegyverek:
                     commands.append(f"{fegyver.Nev} ({fegyver.Hasznalhato})")
                 choice = curses.wrapper(menu, commands)
-                if choice == commands[1]:
-                    for fegyver in fightFegyverek:
-                        if fegyver.Nev == commands[1]:
-                #             weaponChoose(fegyver, enemy, enemyHp)
-                # elif choice == commands[2]:
-                #     for fegyver in fightFegyverek:
-                #         if fegyver.Nev == commands[2]:
-                #             weaponChoose(fegyver, enemy, enemyHp)
-                # elif choice == commands[3]:
-                #     for fegyver in fightFegyverek:
-                #         if fegyver.Nev == commands[3]:
-                #             weaponChoose(fegyver, enemy, enemyHp)
-                # elif choice == commands[4]:
-                #     for fegyver in fightFegyverek:
-                #         if fegyver.Nev == commands[4]:
-                #             weaponChoose(fegyver, enemy, enemyHp)
-                            if fegyver.Hasznalhato != 0:
-                                enemyHp -= fegyver.Dmg
-                                print(f"Az ellenség {fegyver.Dmg} sebzést szenvedett. Jelenlegi életereje: {enemyHp}".center(width))
-                                var(6)
-                                os.system("cls")
-                                fegyver.Hasznalhato - 1
-                                print("Az ellenség visszatámad.".center(width))
-                                var(6)
-                                os.system("cls")
-                                jatekos.Hp -= enemy.Dmg
-                                if jatekos.Hp >= 0:
-                                    print(f"Sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
-                                    var(6)
-                                    os.system("cls")
-                                else:
-                                    print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
-                                    var(6)
-                                    os.system("cls")
-                            else:
-                                print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
-                                var(6)
-                                os.system("cls")
+                enemyHp = weaponChoose(fegyver, enemy, enemyHp)
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -296,6 +241,7 @@ def weaponChoose(fegyver, enemy, enemyHp): #nem vonja le enemyHpból másodjára
         print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
         var(6)
         os.system("cls")
+    return enemyHp
 
 def handFight(enemyHp, enemy):
     print("Mivel nincsen fegyvered kézzel harcolsz.".center(width))
@@ -323,6 +269,7 @@ def handFight(enemyHp, enemy):
             print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
             var(6)
             os.system("cls")
+    return enemyHp
 
 def healthSystem():
     healErtek = 20
@@ -355,7 +302,7 @@ def healthBuy():
     print(f"Pontjaid: {jatekos.Points}".center(width))
     var(6)
     os.system("cls")
-    commands = ["Veszel életerő növelőt?", "Igen", "Nem"]
+    commands = ["Vásárolsz életerő növelőt?", "Igen", "Nem"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         if jatekos.Points - 1000 < 0:
@@ -369,7 +316,8 @@ def healthBuy():
             print(f"Életerő növelők száma eggyel megnövelve. Jelenlegi mennyiség: {elerhetoHealek}".center(width))
             var(6)
             os.system("cls")
-            healthBuy()
+            if jatekos.Points > 1000:
+                healthBuy()
 
 def room1():
     global szobaid, elerhetoHealek
@@ -1106,8 +1054,7 @@ def endMenu():
         exit()
 
 def save():
-    global jatekos
-    f = open("save.txt", "a", encoding = "UTF-8")
+    f = open("save.txt", "w", encoding = "UTF-8")
     f.write(jatekos.Nev)
     f.write("\n")
     global jhp
@@ -1118,7 +1065,7 @@ def save():
     f.write("\n")
     global elerhetoFegyverek
     f.write(str(elerhetoFegyverek))
-    f.write(jatekos.Points)
+    f.write(str(jatekos.Points))
     f.close()
 
 def load():
@@ -1134,4 +1081,4 @@ def load():
     jatekos.Points = f.readline().strip()
     f.close()
     szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7]
-    szobak[int(szobaid)]()
+    szobak[int(szobaid)-1]()

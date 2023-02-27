@@ -1,4 +1,4 @@
-asdasd
-100
-8
-[<osztalyok.Fegyver object at 0x000001E3167ACF10>, <osztalyok.Fegyver object at 0x000001E3167ACEB0>]
+asd
+92
+startRoom
+[<osztalyok.Fegyver object at 0x00000000032B0A90>]0
