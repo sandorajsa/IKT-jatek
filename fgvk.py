@@ -139,7 +139,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     fightSystem(opponents[0])
     print("A harc közben jelentős mennyiségű életerőt vesztettél, a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni".center(width))
     print("Az ellenfelek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni".center(width))
-    jatekos.points += 1000
+    jatekos.Points += 1000
     var(99)
     healthBuy()
     print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment így sosem kell aggódnod, hogy játékállásod elveszik".center(width))
@@ -1118,6 +1118,7 @@ def save():
     f.write("\n")
     global elerhetoFegyverek
     f.write(str(elerhetoFegyverek))
+    f.write(jatekos.Points)
     f.close()
 
 def load():
@@ -1130,6 +1131,7 @@ def load():
     szobaid = f.readline().strip()
     global elerhetoFegyverek
     elerhetoFegyverek = f.readline().strip()
+    jatekos.Points = f.readline().strip()
     f.close()
     szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7]
     szobak[int(szobaid)]()
