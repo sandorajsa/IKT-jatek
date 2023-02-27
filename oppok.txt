@@ -5,3 +5,4 @@ Zombi;100;25;opp;1000
 Bandita;110;27;opp;1200
 Bébi sárkány;150;15;boss;5000
 A kisfiú apja;120;15;miniboss;0
+Mutáns zombi;125;30;miniboss;2500
