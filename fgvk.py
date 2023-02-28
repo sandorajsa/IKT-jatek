@@ -130,6 +130,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép".center(width))
     print("Nyomd meg az 'space'-t a továbblépéshez".center(width))
     var(9999)
+    os.system("cls")
     print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
     print("A hátizsákodban kutatva egy fegyvert találsz".center(width))
     print(f"{bcolors.FAIL}A robot ellened fordul{bcolors.ENDC}".center(width))
@@ -143,13 +144,16 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     print("a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni".center(width))
     print("Az ellenfelek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni".center(width))
     var(99)
+    os.system("cls")
     healthBuy()
     print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment".center(width))
     print("így sosem kell aggódnod, hogy játékállásod elveszik".center(width))
     var(6)
+    os.system("cls")
     jatekos.Points = 0
     print(f"{bcolors.HEADER}Sok sikert a játékban{bcolors.ENDC}".center(width))
     var(5)
+    os.system("cls")
 
 def newgame():
     global gamertag, jhp, jdmg, jrng, jatekos
@@ -186,9 +190,11 @@ def startRoom():
     elif userinput == commands[3]:
         room3()
 
-def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
-    fightFegyverek = elerhetoFegyverek
+def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
     global enemyHp
+    fightFegyverek = []
+    for fegyver in elerhetoFegyverek:
+        fightFegyverek.append(fegyver)
     enemyHp = enemy.Hp
     while jatekos.Hp > 0 and enemyHp > 0:
         commands = ["Kérlek válassz az alábbiak közül", "Támadás", "Gyógyítás"]
@@ -201,7 +207,7 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
                 for fegyver in fightFegyverek:
                     commands.append(f"{fegyver.Nev} ({fegyver.Hasznalhato})")
                 choice = curses.wrapper(menu, commands)
-                enemyHp = weaponChoose(fegyver, enemy, enemyHp)
+                enemyHp, fegyver.Hasznalhato = weaponChoose(fegyver, enemy, enemyHp, fightFegyverek)
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -213,7 +219,7 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
         var(6)
         os.system("cls")
 
-def weaponChoose(fegyver, enemy, enemyHp): #nem vonja le enemyHpból másodjára
+def weaponChoose(fegyver, enemy, enemyHp, fegyverLista):
     if fegyver.Hasznalhato != 0:
         enemyHp -= fegyver.Dmg
         if enemyHp >= 0:
@@ -224,7 +230,7 @@ def weaponChoose(fegyver, enemy, enemyHp): #nem vonja le enemyHpból másodjára
             print(f"Az ellenség {fegyver.Dmg} sebzést szenvedett. Jelenlegi életereje: 0".center(width))
             var(6)
             os.system("cls")
-        fegyver.Hasznalhato - 1
+        fegyver.Hasznalhato -= 1
         print("Az ellenség visszatámad.".center(width))
         var(6)
         os.system("cls")
@@ -241,7 +247,11 @@ def weaponChoose(fegyver, enemy, enemyHp): #nem vonja le enemyHpból másodjára
         print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
         var(6)
         os.system("cls")
-    return enemyHp
+        if len(fegyverLista) == 1:
+            handFight(enemyHp, enemy)
+        else:
+            pass
+    return enemyHp, fegyver.Hasznalhato
 
 def handFight(enemyHp, enemy):
     print("Mivel nincsen fegyvered kézzel harcolsz.".center(width))
@@ -272,6 +282,7 @@ def handFight(enemyHp, enemy):
     return enemyHp
 
 def healthSystem():
+    global elerhetoHealek
     healErtek = 20
     if elerhetoHealek == 0:
         print("Sajnos nincsen elérhető életerő növelőd.".center(width))
@@ -285,16 +296,13 @@ def healthSystem():
         if jatekos.Hp + healErtek > 100:
             hozzaadandoHp = 100 - jatekos.Hp
             jatekos.Hp += hozzaadandoHp
-            print("Életerő feltöltve.".center(width)) 
-            print(f"Jelenlegi életerő: {jatekos.Hp}".center(width)) 
-            var(6)
-            os.system("cls")
         else:
             jatekos.Hp += healErtek
-            print("Életerő feltöltve.".center(width))    
-            print(f"Jelenlegi életerő: {jatekos.Hp}".center(width))  
-            var(6)
-            os.system("cls")  
+        print("Életerő feltöltve.".center(width))    
+        print(f"Jelenlegi életerő: {jatekos.Hp}".center(width))  
+        var(6)
+        os.system("cls")
+        elerhetoHealek -= 1
 
 def healthBuy():
     global elerhetoHealek
@@ -333,7 +341,7 @@ def room1():
             print("Nem sokkal arrébb találsz néhány anyagdarabot is.".center(width))
             var(5)
             os.system("cls")
-            elerhetoHealek += 1
+            elerhetoHealek += 2
             print(f"Gratulálok, ezennel feloldottad az életerő növelőket. Jelenlegi mennyiség: {elerhetoHealek} darab".center(width))
             var(5)
             os.system("cls")
@@ -396,7 +404,7 @@ def room4():
         print("Pár pillanat múlva már feléd rohan a sarokból egy csontváz.".center(width))
         var(6)
         os.system("cls")
-        # fightSystem(opponents[1])
+        fightSystem(opponents[1])
         print("Ezt szerencsére megúsztad...".center(width))
         var(6)
         os.system("cls")
@@ -516,7 +524,7 @@ def room9():
             print("Az édesapa egyszer csak rádtámad.".center(width))
             var(5)
             os.system("cls")
-            # fightSystem(opponents[5])
+            fightSystem(opponents[5])
             print("Nem tudsz semmi másra gondolni, csak hogy azt tetted amit muszáj volt.".center(width))
             var(5)
             print("Sokkos állapotodban legjobbnak találod ha továbbhaladsz utadon,".center(width))
@@ -571,7 +579,7 @@ def room10():
         print("Éppen elkezdenél körülnézni, mikor egy zombi fut feléd teljes sebességgel.".center(width))
         var(5)
         os.system("cls")
-        # fightSystem(opponents[2])
+        fightSystem(opponents[2])
         print("Ahogy a holttest fölött állsz, csak remélheted, hogy a nő nem a ház lakosa volt egykor...".center(width))
         var(5)
         print("Éppen távozni készülsz, mikor észreveszel valamit az egyik sarokban.".center(width))
@@ -773,7 +781,7 @@ def room16():
         print("Egy bandita lő rád fegyverével, de szerencsére nem talál el...".center(width))
         var(5)
         os.system("cls")
-        # fightSystem(opponents[3])
+        fightSystem(opponents[3])
         print("El sem hiszed, hogy sikerült túlélned.".center(width))
         var(5)
         print("Szörnyen érzed magad amiatt amit tettél, de tudod,".center(width))
@@ -827,7 +835,7 @@ def room18():
         print("Amint észrevesz téged rádtámad.".center(width))
         var(5)
         os.system("cls")
-        # fightSystem[opponents[2]]
+        fightSystem[opponents[2]]
         print("Szerencsére sikerült megölnöd...".center(width))
         var(5)
         os.system("cls")
@@ -949,7 +957,7 @@ def room21(): #itt nincsen save hogy lehessen végigvinni
     print("Mikor észrevesz ő is téged, teljes sebességel indul meg feléd.".center(width))
     var(5)
     os.system("cls")
-    # fightSystem(opponents[6])
+    fightSystem(opponents[6])
     print("Sikerült megölnöd a zombit, ám a végkimerülés szélén állsz.".center(width))
     var(5)
     print("Ismét a kapu felé veszed az irányt.".center(width))
