@@ -127,8 +127,8 @@ def gamestart(): #kilepes
 
 def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     global jatekos
-    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép".center(width))
-    print("Nyomd meg az 'space'-t a továbblépéshez".center(width))
+    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel automatikusan is továbblép".center(width))
+    print("Nyomd meg az 'space'-t a továbblépéshez és a tutorial elindításához".center(width))
     var(9999)
     os.system("cls")
     print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
@@ -146,7 +146,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     var(99)
     os.system("cls")
     healthBuy()
-    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment".center(width))
+    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment,".center(width))
     print("így sosem kell aggódnod, hogy játékállásod elveszik".center(width))
     var(6)
     os.system("cls")
@@ -161,13 +161,13 @@ def newgame():
     while gamertag == "":
         gamertag = input("Elsőként add meg miként szólítsunk:\n".center(width))
         os.system("cls")
-    commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
+    commands = ["Válassz nehézségi fokozatot:","Könnyű", "Közepes ", "Nehéz "]
     szam = curses.wrapper(menu, commands)
-    if szam == "1":
+    if szam == commands[1]:
         jatekos = karakter(gamertag, 100, 15, 4)
-    elif szam == "2":
+    elif szam == commands[2]:
         jatekos = karakter(gamertag, 75, 10, 3)
-    elif szam == "3":
+    elif szam == commands[3]:
         jatekos = karakter(gamertag, 50, 5, 2)
     commands = ["Játszottál már korábban?", "Igen", "Nem"]
     choice = curses.wrapper(menu, commands)
@@ -207,7 +207,8 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
                 for fegyver in fightFegyverek:
                     commands.append(f"{fegyver.Nev} ({fegyver.Hasznalhato})")
                 choice = curses.wrapper(menu, commands)
-                enemyHp, fegyver.Hasznalhato = weaponChoose(fegyver, enemy, enemyHp, fightFegyverek)
+                enemyHp = weaponChoose(fegyver, enemy, enemyHp)
+                fegyver.Hasznalhato -= 1
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -215,11 +216,12 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
     elif enemyHp <= 0:
         jatekos.Points += enemy.Points
         os.system("cls")
-        print(f"{enemy.Nev} meghalt.".center(width))
+        print(f"{enemy.Nev} meghalt. {enemy.Points} pontot kaptál legyőzéséért".center(width))
+        print(f"Jelenlegi pontszámod:{jatekos.Points}")
         var(6)
         os.system("cls")
 
-def weaponChoose(fegyver, enemy, enemyHp, fegyverLista):
+def weaponChoose(fegyver, enemy, enemyHp):
     if fegyver.Hasznalhato != 0:
         enemyHp -= fegyver.Dmg
         if enemyHp >= 0:
@@ -230,7 +232,7 @@ def weaponChoose(fegyver, enemy, enemyHp, fegyverLista):
             print(f"Az ellenség {fegyver.Dmg} sebzést szenvedett. Jelenlegi életereje: 0".center(width))
             var(6)
             os.system("cls")
-        fegyver.Hasznalhato -= 1
+        # fegyver.Hasznalhato -= 1
         print("Az ellenség visszatámad.".center(width))
         var(6)
         os.system("cls")
@@ -247,11 +249,11 @@ def weaponChoose(fegyver, enemy, enemyHp, fegyverLista):
         print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
         var(6)
         os.system("cls")
-        if len(fegyverLista) == 1:
-            handFight(enemyHp, enemy)
-        else:
-            pass
-    return enemyHp, fegyver.Hasznalhato
+        # if len(fegyverLista) == 1:
+        #     handFight(enemyHp, enemy)
+        # else:
+        #     pass
+    return enemyHp
 
 def handFight(enemyHp, enemy):
     print("Mivel nincsen fegyvered kézzel harcolsz.".center(width))
@@ -279,6 +281,7 @@ def handFight(enemyHp, enemy):
             print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
             var(6)
             os.system("cls")
+            deathEnd()
     return enemyHp
 
 def healthSystem():
@@ -355,7 +358,7 @@ def room2():
     global szobaid
     szobaid = 2
     save()
-    commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek"]
+    commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek", "Körülnézek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         room4()
@@ -363,7 +366,22 @@ def room2():
         room5()
     elif choice == commands[3]:
         startRoom()
-        
+    else:
+        print("A város parkját kutatva egy táblára leszel figyelmes ami a városrész térképéta mutatja.")
+        var(3)
+        print("__________   _________   _________".center(width))
+        print("|          | |         | |         |".center(width))
+        print("| Szemetes |-|Városkapu|-| Sikátor |".center(width))
+        print("|__________| |_________| |_________|".center(width))
+        print(f" |".center(width))
+        print("__________   _________   _________".center(width))
+        print("|          | |         | |         |".center(width))
+        print("     ", end="")
+        print(f"|   Bolt   |-|  {bcolors.FAIL}Park{bcolors.ENDC}   |-|Csatorna |".center(width))
+        print("|__________| |_________| |_________|".center(width))     
+        var(8)
+        os.system("cls")
+        room2()
 def room3():
     global szobaid
     szobaid = 3
@@ -397,11 +415,11 @@ def room4():
     save()
     if roomFirst[szobaid] == True:
         roomFirst[szobaid] = False
-        print("Az épületek között barangolva végül egy sikátorban kötöttél ki.".center(width))
+        print("A városka szűk utcáin barangolva már-mér elbóbiskolsz".center(width))
         var(6)
-        print("Éppen visszafordulnál, mikor valami mozgást veszel észre az egyik sarokban.".center(width))
+        print("Éppen visszafordulnál, mikor egy nyitott csatornafedél miatt a csatornába esel".center(width))
         var(6)
-        print("Pár pillanat múlva már feléd rohan a sarokból egy csontváz.".center(width))
+        print("Mire felelszmélsz már patkányok rohannak feléd.".center(width))
         var(6)
         os.system("cls")
         fightSystem(opponents[1])
@@ -409,7 +427,7 @@ def room4():
         var(6)
         os.system("cls")
     else:
-        print("Inkább úgy döntesz nem mész vissza, hisz pontosan tudod mi vár ott...".center(width))
+        print("Inkább úgy döntesz nem mész vissza, hisz nem találtál ott semmit...".center(width))
         var(6)
         os.system("cls")
     room2()
@@ -440,7 +458,6 @@ def room5():
 def room6():
     global szobaid
     szobaid = 6
-    save()
     print("Szerencsére sikerül elmenekülnöd a lyukon keresztül,".center(width))
     var(6)
     print("ám a befelé vezető utat már egy eldőlt szekrény torlaszolja el.".center(width))
@@ -1007,7 +1024,6 @@ def room21(): #itt nincsen save hogy lehessen végigvinni
 def room22():
     global szobaid
     szobaid = 22
-    save()
     commands = ["Ismét egy sikátorba lépsz.", "Körülnézek", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -1088,5 +1104,61 @@ def load():
     elerhetoFegyverek = f.readline().strip()
     jatekos.Points = f.readline().strip()
     f.close()
-    szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7]
+    szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, room11, room12, room13, room14, room15, room16, room17, room18, room19]
     szobak[int(szobaid)-1]()
+def blackjack():
+    cards = ['A', '2', '3','4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'a' ]
+    pontoter= ['11', '2', '3','4', '5', '6', '7', '8', '9', '10','10','10','10', '1']
+    kezen = []
+    kerlapot = 0
+    osszeg = 0
+    for i in range(2):
+        lap = random.randint(0,12)
+        kezen.append(cards[lap])
+        osszeg += int(pontoter[lap])
+        if "A" in kezen and osszeg > 21:
+            kezen = ["a" if x=="A" else x for x in kezen]
+            osszeg -= 10
+        elif osszeg > 21:
+            print("Vesztettél")
+            input("Nyomjon enter-t a kilépéshez\n")
+            return
+    print(kezen, osszeg)
+    while kerlapot != "i" and kerlapot != "n":
+        kerlapot = input("Kérsz még lapot? I/N ").lower()
+    while kerlapot == "I" or kerlapot == "i":
+        lap = random.randint(0,12)
+        kezen.append(cards[lap])
+        osszeg += int(pontoter[lap])
+        if "A" in kezen and osszeg > 21:
+            kezen = ["a" if x=="A" else x for x in kezen]
+            osszeg -= 10
+        elif osszeg > 21:
+            print(kezen, osszeg)
+            print("Vesztettél")
+            input("Nyomjon enter-t a kilépéshez\n")
+            return
+        print(kezen, osszeg)
+        kerlapot = input("Kérsz még lapot? I/N ")
+    dealer = 0
+    dealerkez = []
+    while dealer < 21 and dealer <= osszeg:
+        lap = random.randint(0,12)
+        dealerkez.append(cards[lap])
+        dealer += int(pontoter[lap])
+        print(dealerkez, dealer)
+    if "A" in kezen and osszeg > 21:
+            kezen = ["a" if x=="A" else x for x in kezen]
+            osszeg -= 10
+    elif dealer > osszeg and dealer < 21:
+        print("Vesztettél")
+        input("Nyomjon enter-t a kilépéshez\n")
+        return
+    elif dealer > 21 and osszeg < 21: 
+        print("Nyertél")
+        input("Nyomjon enter-t a kilépéshez\n")
+        return
+    elif dealer == 21 and osszeg == 21:
+        print("Döntetlen")
+        input("Nyomjon enter-t a kilépéshez\n")
+        return
