@@ -127,8 +127,8 @@ def gamestart(): #kilepes
 
 def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     global jatekos
-    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel is továbblép".center(width))
-    print("Nyomd meg az 'space'-t a továbblépéshez".center(width))
+    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel automatikusan is továbblép".center(width))
+    print("Nyomd meg az 'space'-t a továbblépéshez és a tutorial elindításához".center(width))
     var(9999)
     print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
     print("A hátizsákodban kutatva egy fegyvert találsz".center(width))
@@ -144,7 +144,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     print("Az ellenfelek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni".center(width))
     var(99)
     healthBuy()
-    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment".center(width))
+    print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment,".center(width))
     print("így sosem kell aggódnod, hogy játékállásod elveszik".center(width))
     var(6)
     jatekos.Points = 0
@@ -157,13 +157,13 @@ def newgame():
     while gamertag == "":
         gamertag = input("Elsőként add meg miként szólítsunk:\n".center(width))
         os.system("cls")
-    commands = ["Válassz nehézségi fokozatot:","1", "2", "3"]
+    commands = ["Válassz nehézségi fokozatot:","Könnyű", "Közepes ", "Nehéz "]
     szam = curses.wrapper(menu, commands)
-    if szam == "1":
+    if szam == commands[1]:
         jatekos = karakter(gamertag, 100, 15, 4)
-    elif szam == "2":
+    elif szam == commands[2]:
         jatekos = karakter(gamertag, 75, 10, 3)
-    elif szam == "3":
+    elif szam == commands[3]:
         jatekos = karakter(gamertag, 50, 5, 2)
     commands = ["Játszottál már korábban?", "Igen", "Nem"]
     choice = curses.wrapper(menu, commands)
@@ -202,6 +202,7 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
                     commands.append(f"{fegyver.Nev} ({fegyver.Hasznalhato})")
                 choice = curses.wrapper(menu, commands)
                 enemyHp = weaponChoose(fegyver, enemy, enemyHp)
+                fegyver.Hasznalhato -= 1
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -209,7 +210,8 @@ def fightSystem(enemy): #itt megkérdezni hogy fightfegyverekből levonni jó e
     elif enemyHp <= 0:
         jatekos.Points += enemy.Points
         os.system("cls")
-        print(f"{enemy.Nev} meghalt.".center(width))
+        print(f"{enemy.Nev} meghalt. {enemy.Points} pontot kaptál legyőzéséért".center(width))
+        print(f"Jelenlegi pontszámod:{jatekos.Points}")
         var(6)
         os.system("cls")
 
@@ -269,6 +271,7 @@ def handFight(enemyHp, enemy):
             print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
             var(6)
             os.system("cls")
+            deathEnd()
     return enemyHp
 
 def healthSystem():
@@ -347,7 +350,7 @@ def room2():
     global szobaid
     szobaid = 2
     save()
-    commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek"]
+    commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek", "Körülnézek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         room4()
@@ -355,7 +358,22 @@ def room2():
         room5()
     elif choice == commands[3]:
         startRoom()
-        
+    else:
+        print("A város parkját kutatva egy táblára leszel figyelmes ami a városrész térképéta mutatja.")
+        var(3)
+        print("__________   _________   _________".center(width))
+        print("|          | |         | |         |".center(width))
+        print("| Szemetes |-|Városkapu|-| Sikátor |".center(width))
+        print("|__________| |_________| |_________|".center(width))
+        print(f" |".center(width))
+        print("__________   _________   _________".center(width))
+        print("|          | |         | |         |".center(width))
+        print("     ", end="")
+        print(f"|   Bolt   |-|  {bcolors.FAIL}Park{bcolors.ENDC}   |-|Csatorna |".center(width))
+        print("|__________| |_________| |_________|".center(width))     
+        var(8)
+        os.system("cls")
+        room2()
 def room3():
     global szobaid
     szobaid = 3
@@ -389,19 +407,19 @@ def room4():
     save()
     if roomFirst[szobaid] == True:
         roomFirst[szobaid] = False
-        print("Az épületek között barangolva végül egy sikátorban kötöttél ki.".center(width))
+        print("A városka szűk utcáin barangolva már-mér elbóbiskolsz".center(width))
         var(6)
-        print("Éppen visszafordulnál, mikor valami mozgást veszel észre az egyik sarokban.".center(width))
+        print("Éppen visszafordulnál, mikor egy nyitott csatornafedél miatt a csatornába esel".center(width))
         var(6)
-        print("Pár pillanat múlva már feléd rohan a sarokból egy csontváz.".center(width))
+        print("Mire felelszmélsz már patkányok rohannak feléd.".center(width))
         var(6)
         os.system("cls")
-        # fightSystem(opponents[1])
+        fightSystem(opponents[1])
         print("Ezt szerencsére megúsztad...".center(width))
         var(6)
         os.system("cls")
     else:
-        print("Inkább úgy döntesz nem mész vissza, hisz pontosan tudod mi vár ott...".center(width))
+        print("Inkább úgy döntesz nem mész vissza, hisz nem találtál ott semmit...".center(width))
         var(6)
         os.system("cls")
     room2()
@@ -432,7 +450,6 @@ def room5():
 def room6():
     global szobaid
     szobaid = 6
-    save()
     print("Szerencsére sikerül elmenekülnöd a lyukon keresztül,".center(width))
     var(6)
     print("ám a befelé vezető utat már egy eldőlt szekrény torlaszolja el.".center(width))
@@ -516,7 +533,7 @@ def room9():
             print("Az édesapa egyszer csak rádtámad.".center(width))
             var(5)
             os.system("cls")
-            # fightSystem(opponents[5])
+            fightSystem(opponents[5])
             print("Nem tudsz semmi másra gondolni, csak hogy azt tetted amit muszáj volt.".center(width))
             var(5)
             print("Sokkos állapotodban legjobbnak találod ha továbbhaladsz utadon,".center(width))
@@ -571,7 +588,7 @@ def room10():
         print("Éppen elkezdenél körülnézni, mikor egy zombi fut feléd teljes sebességgel.".center(width))
         var(5)
         os.system("cls")
-        # fightSystem(opponents[2])
+        fightSystem(opponents[2])
         print("Ahogy a holttest fölött állsz, csak remélheted, hogy a nő nem a ház lakosa volt egykor...".center(width))
         var(5)
         print("Éppen távozni készülsz, mikor észreveszel valamit az egyik sarokban.".center(width))
@@ -773,7 +790,7 @@ def room16():
         print("Egy bandita lő rád fegyverével, de szerencsére nem talál el...".center(width))
         var(5)
         os.system("cls")
-        # fightSystem(opponents[3])
+        fightSystem(opponents[3])
         print("El sem hiszed, hogy sikerült túlélned.".center(width))
         var(5)
         print("Szörnyen érzed magad amiatt amit tettél, de tudod,".center(width))
@@ -827,7 +844,7 @@ def room18():
         print("Amint észrevesz téged rádtámad.".center(width))
         var(5)
         os.system("cls")
-        # fightSystem[opponents[2]]
+        fightSystem[opponents[2]]
         print("Szerencsére sikerült megölnöd...".center(width))
         var(5)
         os.system("cls")
@@ -949,7 +966,7 @@ def room21(): #itt nincsen save hogy lehessen végigvinni
     print("Mikor észrevesz ő is téged, teljes sebességel indul meg feléd.".center(width))
     var(5)
     os.system("cls")
-    # fightSystem(opponents[6])
+    fightSystem(opponents[6])
     print("Sikerült megölnöd a zombit, ám a végkimerülés szélén állsz.".center(width))
     var(5)
     print("Ismét a kapu felé veszed az irányt.".center(width))
@@ -999,7 +1016,6 @@ def room21(): #itt nincsen save hogy lehessen végigvinni
 def room22():
     global szobaid
     szobaid = 22
-    save()
     commands = ["Ismét egy sikátorba lépsz.", "Körülnézek", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -1080,5 +1096,5 @@ def load():
     elerhetoFegyverek = f.readline().strip()
     jatekos.Points = f.readline().strip()
     f.close()
-    szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7]
+    szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, room11, room12, room13, room14, room15, room16, room17, room18, room19]
     szobak[int(szobaid)-1]()
