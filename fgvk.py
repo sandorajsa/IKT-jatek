@@ -1098,3 +1098,59 @@ def load():
     f.close()
     szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, room11, room12, room13, room14, room15, room16, room17, room18, room19]
     szobak[int(szobaid)-1]()
+def blackjack():
+    cards = ['A', '2', '3','4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'a' ]
+    pontoter= ['11', '2', '3','4', '5', '6', '7', '8', '9', '10','10','10','10', '1']
+    kezen = []
+    kerlapot = 0
+    osszeg = 0
+    for i in range(2):
+        lap = random.randint(0,12)
+        kezen.append(cards[lap])
+        osszeg += int(pontoter[lap])
+        if "A" in kezen and osszeg > 21:
+            kezen = ["a" if x=="A" else x for x in kezen]
+            osszeg -= 10
+        elif osszeg > 21:
+            print("Vesztettél")
+            input("Nyomjon enter-t a kilépéshez\n")
+            return
+    print(kezen, osszeg)
+    while kerlapot != "i" and kerlapot != "n":
+        kerlapot = input("Kérsz még lapot? I/N ").lower()
+    while kerlapot == "I" or kerlapot == "i":
+        lap = random.randint(0,12)
+        kezen.append(cards[lap])
+        osszeg += int(pontoter[lap])
+        if "A" in kezen and osszeg > 21:
+            kezen = ["a" if x=="A" else x for x in kezen]
+            osszeg -= 10
+        elif osszeg > 21:
+            print(kezen, osszeg)
+            print("Vesztettél")
+            input("Nyomjon enter-t a kilépéshez\n")
+            return
+        print(kezen, osszeg)
+        kerlapot = input("Kérsz még lapot? I/N ")
+    dealer = 0
+    dealerkez = []
+    while dealer < 21 and dealer <= osszeg:
+        lap = random.randint(0,12)
+        dealerkez.append(cards[lap])
+        dealer += int(pontoter[lap])
+        print(dealerkez, dealer)
+    if "A" in kezen and osszeg > 21:
+            kezen = ["a" if x=="A" else x for x in kezen]
+            osszeg -= 10
+    elif dealer > osszeg and dealer < 21:
+        print("Vesztettél")
+        input("Nyomjon enter-t a kilépéshez\n")
+        return
+    elif dealer > 21 and osszeg < 21: 
+        print("Nyertél")
+        input("Nyomjon enter-t a kilépéshez\n")
+        return
+    elif dealer == 21 and osszeg == 21:
+        print("Döntetlen")
+        input("Nyomjon enter-t a kilépéshez\n")
+        return
