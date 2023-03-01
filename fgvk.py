@@ -22,7 +22,6 @@ opponents = []
 fegyverek =  []
 elerhetoFegyverek = [] #lehetne esetleg karakter classban
 elerhetoHealek = 0
-width = os.get_terminal_size().columns #lehetne kezdetnél megkérni hogy resizolja az ablakot és utána többet ne
 szobaid = "startRoom"
 
 roomFirst = {
@@ -110,9 +109,14 @@ def gamestart(): #kilepes
     oppOlvas()
     fegyverOlvas()
     os.system("cls")
-    commands = ["Outback","Új játék", "Folytatás"]
+    commands = ["Kérlek állítsd be az ablak méretét","Folytatás"]
+    global width
+    width = os.get_terminal_size().columns #lehetne kezdetnél megkérni hogy resizolja az ablakot és utána többet ne
+    choice = curses.wrapper(menu, commands)
+    commands = ["Outback","Új játék", "Folytatás", "Kilépés"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
+
         newgame()
     elif choice == commands[2]:
         try:
@@ -124,6 +128,8 @@ def gamestart(): #kilepes
                 return
             else:
                 newgame()
+    else:
+        exit()
 
 def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     global jatekos
