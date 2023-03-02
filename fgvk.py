@@ -174,7 +174,7 @@ def gamestart(): #kilepes
         exit()
 
 def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
-    global jatekos
+    global jatekos, elerhetoHealek
     text = ["Az ehhez hasonló olvasnivalókat a 'SPACE' gomb megnyomásával tudod átlépni, de idővel automatikusan is átlép"]
     global width
     curses.wrapper(centertext, text, 999)
@@ -205,6 +205,8 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     var(6)
     os.system("cls")
     jatekos.Points = 0
+    elerhetoHealek = 0
+    elerhetoFegyverek.remove(fegyverek[0])
     print(f"{bcolors.HEADER}Sok sikert a játékban{bcolors.ENDC}".center(width))
     var(5)
     os.system("cls")
@@ -290,18 +292,19 @@ def weaponChoose(fegyver, enemy, enemyHp):
             var(6)
             os.system("cls")
         fegyver.Hasznalhato -= 1
-        print("Az ellenség visszatámad.".center(width))
-        var(6)
-        os.system("cls")
-        jatekos.Hp -= enemy.Dmg
-        if jatekos.Hp >= 0:
-            print(f"Sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
+        if enemyHp > 0:
+            print("Az ellenség visszatámad.".center(width))
             var(6)
             os.system("cls")
-        else:
-            print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
-            var(6)
-            os.system("cls")
+            jatekos.Hp -= enemy.Dmg
+            if jatekos.Hp >= 0:
+                print(f"Sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp}".center(width))
+                var(6)
+                os.system("cls")
+            else:
+                print("Sebzést szenvedtél. Jelenlegi életerőd: 0".center(width))
+                var(6)
+                os.system("cls")
     else:
         print(f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható.".center(width))
         var(6)
