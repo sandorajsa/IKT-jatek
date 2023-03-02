@@ -1,9 +1,9 @@
 fegyverneve;hasznalhatosag;dmg
 Fegyver;5;5
-Kés;9999999999;10
-Feszítővas;5;8
-9mm pisztoly;3;12
-Íj;5;10
-Vadászpuska;3;15
+Kés;9999999999;12
+Feszítővas;5;10
+9mm pisztoly;3;15
+Íj;5;13
+Vadászpuska;3;20
 Sörétes puska;3;45
-Kutya;999999;10
+Kutya;999999;19

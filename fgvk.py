@@ -1,12 +1,11 @@
+import keyboard
+keyboard.press('f11')
 import curses
 import os
 import time
 import random
 from osztalyok import *
-import keyboard
-import threading
 #Basics
-keyboard.press('f11')
 class bcolors:
     HEADER = '\033[95m'
     OKBLUE = '\033[94m'
@@ -60,7 +59,8 @@ def var(ido):
         elteltido = time.time() - startido
         if keyboard.is_pressed('space'):
             time.sleep(0.5)
-            break
+            return True
+    return True
 
 
 def menu(stdscr,commands):
@@ -88,6 +88,45 @@ def menu(stdscr,commands):
             selected_index = min(selected_index + 1, len(commands) - 1)
         elif c == ord('\n'):
             return commands[selected_index]
+
+def centertext(stdscr, text=["nincs szoveg:("], varido=6, szin=[""]):#fontos hogy a text legyen lista, szin lehet red, gre, yel, blu, mag, cya, nem muszaj megadni neki semmit
+    curses.curs_set(0)
+    for index, szin1 in enumerate(szin):
+        if szin1 == "red":
+            curses.init_pair(index+1, curses.COLOR_RED, curses.COLOR_BLACK)
+        elif szin1 == "gre":
+            curses.init_pair(index+1, curses.COLOR_GREEN, curses.COLOR_BLACK)
+        elif szin1 == "yel":
+            curses.init_pair(index+1, curses.COLOR_YELLOW, curses.COLOR_BLACK)
+        elif szin1 == "blu":
+            curses.init_pair(index+1, curses.COLOR_BLUE, curses.COLOR_BLACK)
+        elif szin1 == "mag":
+            curses.init_pair(index+1, curses.COLOR_MAGENTA, curses.COLOR_BLACK)
+        elif szin1 == "cya":
+            curses.init_pair(index+1, curses.COLOR_CYAN, curses.COLOR_BLACK)
+    while True:
+        stdscr.clear()
+        height, width = stdscr.getmaxyx()
+        for index, command in enumerate(text):
+            x = width//2 - len(command)//2
+            y = height//2 - len(text)//2 + index
+            if len(szin) > 1:
+                stdscr.attron(curses.color_pair(index+1))
+            else:
+                stdscr.attron(curses.color_pair(1))
+            stdscr.addstr(y, x, command)
+            if len(szin) > 1:
+                stdscr.attroff(curses.color_pair(index+1))
+            else:
+                stdscr.attroff(curses.color_pair(1))
+        stdscr.refresh()
+        c = stdscr.getch()
+        if var(varido) == True:
+            return
+        elif c == ord('\n'):
+            return
+
+
         
 def oppOlvas():
     f = open("oppok.txt", "r", encoding="utf-8")
@@ -116,41 +155,49 @@ def gamestart(): #kilepes
     width = os.get_terminal_size().columns
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
+        global roomFirst
         roomFirst = {1: True,4: True,9: True,10: True,13: True,15: True,16: True,18: True,20: True}
+        global quests
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False}
         newgame()
     elif choice == commands[2]:
-        try:
+        # try:
             load()
-        except:
-            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-            choice = curses.wrapper(menu, commands)
-            if choice == "Nem":
-                return
-            else:
-                newgame()
+        # except:
+        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+        #     choice = curses.wrapper(menu, commands)
+        #     if choice == "Nem":
+        #         return
+        #     else:
+        #         newgame()
     else:
         exit()
 
 def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     global jatekos
-    print("Az ehhez hasonló olvasnivalókat a 'space' gomb megnyomásával tudod átlépni de a idővel automatikusan is továbblép".center(width))
-    print("Nyomd meg az 'space'-t a továbblépéshez és a tutorial elindításához".center(width))
-    var(9999)
+    text = ["Az ehhez hasonló olvasnivalókat a 'SPACE' gomb megnyomásával tudod átlépni, de idővel automatikusan is átlép"]
+    global width
+    curses.wrapper(centertext, text, 999)
+    text = [f"Nyomd meg az 'SPACE'-t a továbblépéshez és a tutorial elindításához"]
+    curses.wrapper(centertext, text, 999)
     os.system("cls")
-    print(f"{bcolors.WARNING}Egy szobában találtad magad egy robottal szemben{bcolors.ENDC}".center(width))
-    print("A hátizsákodban kutatva egy fegyvert találsz".center(width))
-    print(f"{bcolors.FAIL}A robot ellened fordul{bcolors.ENDC}".center(width))
-    print(f"{bcolors.OKGREEN} Az ilyen helyzetekben Outbackben egy menü fogad{bcolors.ENDC}".center(width))
-    print(f"{bcolors.OKGREEN}itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával{bcolors.ENDC}".center(width))
-    var(99)
+    text = [f"Egy szobában találtad magad egy robottal szemben"]
+    curses.wrapper(centertext, text, 9, "")
+    text = ["A hátizsákodban kutatva egy fegyvert találsz"]
+    curses.wrapper(centertext, text, 9)
+    text = ["A robot ellened fordul"]
+    szin = ["red"]
+    curses.wrapper(centertext, text, 9, szin)
+    text = ["Az ilyen helyzetekben Outbackben egy menü fogad","itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával"]
+    szin = ["gre",""]
+    curses.wrapper(centertext, text, 9, szin)
     elerhetoFegyverek.append(fegyverek[0])
     os.system("cls")
     fightSystem(opponents[0])
-    print("A harc közben jelentős mennyiségű életerőt vesztettél,".center(width))
-    print("a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni".center(width))
-    print("Az ellenfelek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni".center(width))
-    var(99)
+    text = ["A harc közben jelentős mennyiségű életerőt vesztettél,","a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni"]
+    curses.wrapper(centertext, text, 9)
+    text = ["Az ellenségek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni"]
+    curses.wrapper(centertext, text, 9)
     os.system("cls")
     healthBuy()
     print("A játék automatikus mentéssel rendelkezik ami minden szoba elején ment,".center(width))
@@ -218,7 +265,7 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
                     if choice == commands[i]:
                         enemyHp = weaponChoose(fightFegyverek[i-1], enemy, enemyHp)
                         if fightFegyverek[i-1].Hasznalhato < 1:
-                            fightFegyverek.pop(fightFegyverek[i-1])
+                            fightFegyverek.pop(i-1)
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -373,6 +420,7 @@ def room2():
     elif choice == commands[3]:
         startRoom()
     else:
+        os.system("cls")
         print("A város parkját kutatva egy táblára leszel figyelmes ami a városrész térképéta mutatja.".center(width))
         var(3)
         print("__________   _________   _________".center(width))
@@ -421,6 +469,7 @@ def room4():
     save()
     if roomFirst[szobaid] == True:
         roomFirst[szobaid] = False
+        os.system("cls")
         print("A városka szűk utcáin barangolva már-mér elbóbiskolsz".center(width))
         var(6)
         print("Éppen visszafordulnál, mikor egy nyitott csatornafedél miatt a csatornába esel".center(width))
@@ -1084,6 +1133,7 @@ def endMenu():
         exit()
 
 def save():
+    stri = ""
     f = open("save.txt", "w", encoding = "UTF-8")
     f.write(jatekos.Nev)
     f.write("\n")
@@ -1094,8 +1144,13 @@ def save():
     f.write(str(szobaid))
     f.write("\n")
     global elerhetoFegyverek
-    f.write(str(elerhetoFegyverek))
+    for i in elerhetoFegyverek:
+        stri +=(str(i.Nev))+ ";"
+    f.write(stri)
+    f.write("\n")
     f.write(str(jatekos.Points))
+    f.write("\n")
+    f.write(str(elerhetoHealek))
     f.close()
 
 def load():
@@ -1103,15 +1158,23 @@ def load():
     global jatekos
     jatekos = karakter
     jatekos.Nev = f.readline().strip()
-    jatekos.Hp = f.readline().strip()
+    jatekos.Hp = int(f.readline().strip())
     global szobaid
     szobaid = f.readline().strip()
     global elerhetoFegyverek
-    elerhetoFegyverek = f.readline().strip()
-    jatekos.Points = f.readline().strip()
+    fegyvernevek = f.readline().strip().split(";")
+    for nev in fegyvernevek:
+        for fegyver in fegyverek:
+            if fegyver.Nev == nev:
+                elerhetoFegyverek.append(fegyver)
+                break
+    jatekos.Points = int(f.readline().strip())
+    global elerhetoHealek
+    elerhetoHealek = int(f.readline().strip())
     f.close()
     szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, room11, room12, room13, room14, room15, room16, room17, room18, room19]
-    szobak[int(szobaid)-1]()
+    szobak[int(szobaid)]()
+    
 def blackjack():
     cards = ['A', '2', '3','4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'a' ]
     pontoter= ['11', '2', '3','4', '5', '6', '7', '8', '9', '10','10','10','10', '1']

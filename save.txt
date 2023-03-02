@@ -1,4 +1,6 @@
-asd
-92
+fgv
+100
 startRoom
-[<osztalyok.Fegyver object at 0x00000000032B0A90>]0
+
+0
+0
