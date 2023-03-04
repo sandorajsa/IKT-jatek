@@ -1320,7 +1320,7 @@ def blackjack():
             kezen = ["a" if x=="A" else x for x in kezen]
             osszeg -= 10
         elif osszeg > 21:
-            text = ["Vesztettél")
+            print("Vesztettél")
             input("Nyomjon enter-t a kilépéshez\n")
             return
     print(kezen, osszeg)
