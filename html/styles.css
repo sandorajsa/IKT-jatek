@@ -1,13 +1,67 @@
+body{
+    font-family: 'Quicksand', sans-serif;
+}
+
 .menu{
     height: 4rem;
+    width: 100%;
 }
 
 .cim{
-    padding-left: 3rem;
-    padding-right: 2rem;
+    font-weight: bold;
 }
 
-.menuitems{
+.menuitem{
     padding-left: 1.25rem;
     padding-right: 1.25rem;
+    padding-bottom: 0.5rem;
+    font-size: 13pt;
+    font-weight: bold;
+}
+
+#introduction{
+    height: 58rem;
+    background-image: url(1132084.jpg);
+    background-color: rgb(136, 136, 136);
+    background-blend-mode: darken;
+}
+
+#fooldal{
+    width: auto;
+    height: 52rem;
+    text-align: right;
+}
+
+#fooldal_szoveg{
+    width: auto;
+    margin-top: 16rem;
+    margin-bottom: 44rem;
+    padding: 2rem;
+    /* color: rgba(44, 44, 44, 0.678); */
+    color: whitesmoke;
+    text-align: center;
+    border-bottom: 3px solid rgba(245, 245, 245, 1);
+    border-right: 3px solid rgba(245, 245, 245, 1);
+}
+
+.cimresz{
+    height: 8rem;
+    border-top: 3px solid rgba(0, 0, 0, 0.8);
+}
+
+.cimek{
+    font-size: 25pt;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    color: rgba(44, 44, 44, 0.678);
+}
+
+.leiras{
+    padding: 3rem 2rem;
+    text-align: justify;
+}
+
+.szoveg{
+    
 }
