@@ -1,6 +1,6 @@
-fgv
+zf
 100
-startRoom
-
+3
+Feszítővas;
 0
 0
