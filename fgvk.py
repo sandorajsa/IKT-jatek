@@ -89,7 +89,7 @@ def menu(stdscr,commands):
         elif c == ord('\n'):
             return commands[selected_index]
 
-def centertext(stdscr, text=["nincs szoveg:("], varido=6, szin=[""]):#fontos hogy a text legyen lista, szin lehet red, gre, yel, blu, mag, cya, nem muszaj megadni neki semmit
+def centertext(stdscr, text=["nincs szoveg:("], varido=6, szin=[""]):#fontos hogy a text legyen lista, amit új sorba akarsz az külön elem legyen szin lehet red, gre, yel, blu, mag, cya, nem muszaj megadni neki semmit
     curses.curs_set(0)
     for index, szin1 in enumerate(szin):
         if szin1 == "red":
@@ -120,10 +120,7 @@ def centertext(stdscr, text=["nincs szoveg:("], varido=6, szin=[""]):#fontos hog
             else:
                 stdscr.attroff(curses.color_pair(1))
         stdscr.refresh()
-        c = stdscr.getch()
         if var(varido) == True:
-            return
-        elif c == ord('\n'):
             return
 
 
@@ -161,15 +158,15 @@ def gamestart(): #kilepes
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False}
         newgame()
     elif choice == commands[2]:
-        # try:
+        try:
             load()
-        # except:
-        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-        #     choice = curses.wrapper(menu, commands)
-        #     if choice == "Nem":
-        #         return
-        #     else:
-        #         newgame()
+        except:
+            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+            choice = curses.wrapper(menu, commands)
+            if choice == "Nem":
+                return
+            else:
+                newgame()
     else:
         exit()
 
@@ -182,19 +179,19 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     curses.wrapper(centertext, text, 999)
     os.system("cls")
     text = [f"Egy szobában találtad magad egy robottal szemben"]
-    curses.wrapper(centertext, text, 9, "")
+    curses.wrapper(centertext, text, 9)
     text = ["A hátizsákodban kutatva egy fegyvert találsz"]
     curses.wrapper(centertext, text, 9)
     text = ["A robot ellened fordul"]
     szin = ["red"]
     curses.wrapper(centertext, text, 9, szin)
     text = ["Az ilyen helyzetekben Outbackben egy menü fogad","itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával"]
-    szin = ["gre",""]
+    szin = ["gre"]
     curses.wrapper(centertext, text, 9, szin)
     elerhetoFegyverek.append(fegyverek[0])
     os.system("cls")
     fightSystem(opponents[0])
-    text = ["A harc közben jelentős mennyiségű életerőt vesztettél,","a játék során gyógyszertárakba is be tudsz térni ahol gyógyító tárgakat tudsz venni"]
+    text = ["A harc közben jelentős mennyiségű életerőt vesztettél,","a játék során gyógyszertárakba is be tudsz térni ahol"," gyógyító tárgakat tudsz venni"]#bugos a szöveg
     curses.wrapper(centertext, text, 9)
     text = ["Az ellenségek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni"]
     curses.wrapper(centertext, text, 9)
@@ -205,6 +202,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     var(6)
     os.system("cls")
     jatekos.Points = 0
+    elerhetoFegyverek = []
     print(f"{bcolors.HEADER}Sok sikert a játékban{bcolors.ENDC}".center(width))
     var(5)
     os.system("cls")
@@ -413,27 +411,20 @@ def room2():
     save()
     commands = ["Egy park közepén találtad magad.", "Elmegyek az épületek felé", "Elmegyek a bolt felé", "Visszamegyek", "Körülnézek"]
     choice = curses.wrapper(menu, commands)
+    os.system("cls")
     if choice == commands[1]:
         room4()
     elif choice == commands[2]:
         room5()
     elif choice == commands[3]:
         startRoom()
-    else:
+    elif choice == commands[4]:
         os.system("cls")
-        print("A város parkját kutatva egy táblára leszel figyelmes ami a városrész térképéta mutatja.".center(width))
+        text = ["A város parkját kutatva egy táblára leszel figyelmes ami a városrész térképéta mutatja."]
+        curses.wrapper(centertext, text)
         var(3)
-        print("__________   _________   _________".center(width))
-        print("|          | |         | |         |".center(width))
-        print("| Szemetes |-|Városkapu|-| Sikátor |".center(width))
-        print("|__________| |_________| |_________|".center(width))
-        print(f" |".center(width))
-        print("__________   _________   _________".center(width))
-        print("|          | |         | |         |".center(width))
-        print("     ", end="")
-        print(f"|   Bolt   |-|  {bcolors.FAIL}Park{bcolors.ENDC}   |-|Csatorna |".center(width))
-        print("|__________| |_________| |_________|".center(width))     
-        var(8)
+        text = ["__________   _________   _________","|          | |         | |         |","| Szemetes |-|Városkapu|-| Sikátor |","|__________| |_________| |_________|"," |","__________   _________   _________","|          | |         | |         |","|   Bolt   |-|  Park   |-|Csatorna |","|__________| |_________| |_________|"]
+        curses.wrapper(centertext, text, 99) 
         os.system("cls")
         room2()
 def room3():
@@ -445,8 +436,9 @@ def room3():
     if choice == commands[1]:
         if fegyverek[2] not in elerhetoFegyverek:
             os.system("cls")
-            print(f"{bcolors.FAIL}Hirtelen egy vörös macska fut végig az egyik erkélyen.{bcolors.ENDC}".center(width))
-            var(5)
+            text = ["Hirtelen egy vörös macska fut végig az egyik erkélyen."]
+            color = ["red"]
+            curses.wrapper(centertext, text, 5, color)
             print(f"{bcolors.FAIL}Feletébb aranyos...{bcolors.ENDC}".center(width))
             var(5)
             os.system("cls")
