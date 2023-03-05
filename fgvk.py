@@ -178,11 +178,7 @@ def gamestart(): #kilepes
     oppOlvas()
     fegyverOlvas()
     os.system("cls")
-    commands = ["Kérlek állítsd be az ablak méretét","Folytatás"]
-    global width
-    choice = curses.wrapper(menu, commands)
     commands = ["Outback","Új játék", "Folytatás", "Kilépés"]
-    width = os.get_terminal_size().columns
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         global roomFirst
@@ -281,6 +277,12 @@ def startRoom():
 def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
     global enemyHp
     fightFegyverek = []
+    for i in range(len(elerhetoFegyverek)):
+        for j in range(len(fegyverek)):
+            if elerhetoFegyverek[i].Nev == fegyverek[j].Nev:
+                hasznal = fegyverek[j].Hasznalhato
+                elerhetoFegyverek[i].Hasznalhato = hasznal
+            fightFegyverek.append(elerhetoFegyverek[i])
     for fegyver in elerhetoFegyverek:
         fightFegyverek.append(fegyver)
     enemyHp = enemy.Hp
@@ -661,12 +663,12 @@ def room9():
             #var(75)
             text = [f"Köszönöm...A neved?","Megmondod a neved."]
             #var(75)
-            curses.wrapper(centertext, text, 5, ["cya", "cya"])
+            curses.wrapper(centertext, text, 5, ["cya", ""])
             text = [f"Köszönöm...A neved?","Megmondod a neved.",f"Köszönöm {jatekos.Nev}!"]
-            curses.wrapper(centertext, text, 5, ["cya", "cya", ""])
+            curses.wrapper(centertext, text, 5, ["cya", "", "cya"])
             #var(75)
             text = [f"Köszönöm...A neved?","Megmondod a neved.",f"Köszönöm {jatekos.Nev}!","Elindulsz gyógyszert keresni."]
-            curses.wrapper(centertext, text, 5, ["cya", "cya", "", ""])
+            curses.wrapper(centertext, text, 5, ["cya", "", "cya", ""])
             #var(75)
             os.system("cls")
         else:
@@ -879,7 +881,7 @@ def room13():
         curses.wrapper(centertext, text, 5,["gre"])
         text = ["Mekkora szerencse, hogy pont megjelentél...",f"Lenne egy kérésem hozzád, bár nem éppen vagy abban a helyzetben, hogy visszautasítsd.","Hozd le nekem a két unokámat a 2. emeletről.",f'"Az emeleten van egy férfi, de valahogy úgyis megoldod..."']
         #var(75)
-        curses.wrapper(centertext, text, 5,["gre"])
+        curses.wrapper(centertext, text, 5,["gre","gre","gre","gre",""])
         text = ["Mekkora szerencse, hogy pont megjelentél...",f"Lenne egy kérésem hozzád, bár nem éppen vagy abban a helyzetben, hogy visszautasítsd.","Hozd le nekem a két unokámat a 2. emeletről.",f'"Az emeleten van egy férfi, de valahogy úgyis megoldod..."',"Nincsen más lehetőséged, így elindulsz az épület folyosójára."]
         #var(75)
         curses.wrapper(centertext, text, 5,["gre"])
@@ -971,7 +973,6 @@ def room15():
 def room16():
     global szobaid
     szobaid = 16
-    save()
     if roomFirst[szobaid] == True:
         roomFirst[szobaid] = False
         text = ["A második emeletre érsz."]
@@ -1346,6 +1347,13 @@ def save():
     f.write(str(jatekos.Points))
     f.write("\n")
     f.write(str(elerhetoHealek))
+    for keys, values in quests.items():
+        f.write("\n")
+        f.write(f"{str(keys)}:{str(values)}")
+    for keys, values in roomFirst.items():
+        f.write("\n")
+        f.write(f"{str(keys)}:{str(values)}")
+
     f.close()
 
 def load():
@@ -1369,7 +1377,19 @@ def load():
     f.close()
     szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, room11, room12, room13, room14, room15, room16, room17, room18, room19]
     szobak[int(szobaid)]()
+    global quests
+    for i in range(0,6):
+        i = []
+        i =  f.readline().strip().split(':')
+        quests[i[0]] = i[1]
+    global roomFirst
+    for i in range(0,9):
+        i = []
+        i =  f.readline().strip().split(':')
+        roomFirst[i[0]] = i[1]
+
     
+
 def blackjack():
     cards = ['A', '2', '3','4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'a' ]
     pontoter= ['11', '2', '3','4', '5', '6', '7', '8', '9', '10','10','10','10', '1']

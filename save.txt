@@ -1,6 +1,3 @@
-zf
+asd
 100
 3
-Feszítővas;
-0
-0
