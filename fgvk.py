@@ -217,9 +217,11 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     text = ["Az ilyen helyzetekben Outbackben egy menü fogad","itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával"]
     szin = ["gre"]
     curses.wrapper(centertext, text, 9, szin)
+    global elerhetoFegyverek
     elerhetoFegyverek.append(fegyverek[0])
     os.system("cls")
     fightSystem(opponents[0])
+    # fightSystem(opponents[1])
     text = ["A harc közben jelentős mennyiségű életerőt vesztettél,","a játék során gyógyszertárakba is be tudsz térni ahol"," gyógyító tárgakat tudsz venni"]#bugos a szöveg
     curses.wrapper(centertext, text, 9)
     text = ["Az ellenségek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni"]
@@ -277,12 +279,11 @@ def startRoom():
 def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
     global enemyHp
     fightFegyverek = []
-    for i in range(len(elerhetoFegyverek)):
-        for j in range(len(fegyverek)):
-            if elerhetoFegyverek[i].Nev == fegyverek[j].Nev:
-                hasznal = fegyverek[j].Hasznalhato
-                elerhetoFegyverek[i].Hasznalhato = hasznal
-            fightFegyverek.append(elerhetoFegyverek[i])
+    # for i in range(len(elerhetoFegyverek)):
+    #     for j in range(len(fegyverek)):
+    #         if elerhetoFegyverek[i].Nev == fegyverek[j].Nev:
+    #             hasznal = fegyverek[j].Hasznalhato
+    #             elerhetoFegyverek[i].Hasznalhato = hasznal
     for fegyver in elerhetoFegyverek:
         fightFegyverek.append(fegyver)
     enemyHp = enemy.Hp
