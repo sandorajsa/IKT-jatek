@@ -7,6 +7,15 @@ body{
     width: 100%;
 }
 
+.linkek{
+    transition: .6s;
+}
+
+.linkek:hover{
+    transform:scale(1.15);
+    transition: .6s;
+}
+
 .cim{
     font-weight: bold;
 }
@@ -21,9 +30,10 @@ body{
 
 #introduction{
     height: 58rem;
-    background-image: url(1132084.jpg);
+    background-image: url(pexels-francesco-paggiaro-1209930.jpg);
     background-color: rgb(136, 136, 136);
     background-blend-mode: darken;
+    border-bottom: 3px solid rgba(0, 0, 0, 0.8);
 }
 
 #fooldal{
@@ -32,21 +42,36 @@ body{
     text-align: right;
 }
 
+#info{
+    background-color: whitesmoke;
+}
+
 #fooldal_szoveg{
     width: auto;
     margin-top: 16rem;
     margin-bottom: 44rem;
     padding: 2rem;
-    /* color: rgba(44, 44, 44, 0.678); */
     color: whitesmoke;
     text-align: center;
     border-bottom: 3px solid rgba(245, 245, 245, 1);
     border-right: 3px solid rgba(245, 245, 245, 1);
 }
 
-.cimresz{
-    height: 8rem;
-    border-top: 3px solid rgba(0, 0, 0, 0.8);
+.infok{
+    height: auto;
+    margin: auto;
+}
+
+.cimresz1{
+    padding-top: 4rem;
+    color: #505A5B;
+    background-color: whitesmoke;
+}
+
+.cimresz2{
+    padding-top: 4rem;
+    color: whitesmoke;
+    background-color: #505A5B;
 }
 
 .cimek{
@@ -54,14 +79,38 @@ body{
     font-weight: bold;
     text-align: center;
     margin: 0;
-    color: rgba(44, 44, 44, 0.678);
 }
 
-.leiras{
-    padding: 3rem 2rem;
-    text-align: justify;
+.leiras1{
+    padding: 2vw 10vw;
+    text-align: center;
+    font-size: 14pt;
+    color: #505A5B;
+    background-color: whitesmoke;
+}
+
+.leiras2{
+    padding: 2vw 10vw;
+    text-align: center;
+    font-size: 14pt;
+    color: whitesmoke;
+    background-color: #505A5B;
 }
 
 .szoveg{
-    
+    padding-bottom: 3rem;
+}
+
+.link1{
+    color: #505A5B;
+    font-size: 16pt;
+    text-decoration: underline #505A5B;
+    font-weight: bold;
+}
+
+.link2{
+    color: whitesmoke;
+    font-size: 16pt;
+    text-decoration: underline whitesmoke;
+    font-weight: bold;
 }
