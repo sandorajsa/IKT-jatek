@@ -1,7 +1,27 @@
 body{
     font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
 }
-
+::-webkit-scrollbar {
+    width: 15px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  ::-webkit-scrollbar-thumb {
+    background: #999090; 
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover{
+      background: grey;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a3aaa3; 
+  }
 .menu{
     height: 4rem;
     width: 100%;
@@ -30,7 +50,9 @@ body{
 
 #introduction{
     height: 58rem;
+    width: auto;
     background-image: url(pexels-francesco-paggiaro-1209930.jpg);
+    /* background-image:;kc */
     background-color: rgb(136, 136, 136);
     background-blend-mode: darken;
     border-bottom: 3px solid rgba(0, 0, 0, 0.8);
