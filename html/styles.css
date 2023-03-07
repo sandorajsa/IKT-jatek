@@ -1,5 +1,6 @@
 body{
     font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
 }
 
 .menu{
@@ -113,4 +114,15 @@ body{
     font-size: 16pt;
     text-decoration: underline whitesmoke;
     font-weight: bold;
+}
+
+.tobbimenu{
+    background-color: #505A5B;
+    width: 100%;
+    height: 6rem;
+    text-align: center;
+}
+
+.{
+    
 }
