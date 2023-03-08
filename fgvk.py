@@ -307,7 +307,7 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
                     if choice == commands[i]:
                         enemyHp = weaponChoose(fightFegyverek[i-1], enemy, enemyHp)
                         if fightFegyverek[i-1].Hasznalhato < 1:
-                            fightFegyverek.pop(i-1)
+                            elerhetoFegyverek.pop(i-1)
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -523,7 +523,6 @@ def room3():
         else:
             text = [f"Mivel nem találsz semmit visszatérsz a kapuhoz."]
             curses.wrapper(centertext, text, 5)
-            # #var(5)
             os.system("cls")
     startRoom()
 
@@ -1362,6 +1361,18 @@ def room23():
 def room24():
     global szobaid
     szobaid = 24
+    save()
+    text = [f"'Szia {jatekos.nev}'"]
+    curses.wrapper(centertext, text, 5, ["gre"])
+    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'"]
+    curses.wrapper(centertext, text, 5, ["gre",""])
+    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'","'Elnézést még nem találkoztunk, Jánosnak hívnak'"]
+    curses.wrapper(centertext, text, 5, ["gre","", ""])
+    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'","'Elnézést még nem találkoztunk, Jánosnak hívnak'", "'Bázison az utóbbi időben másról sem beszélnek csak rólad"]
+    curses.wrapper(centertext, text, 5, ["gre","", "gre", "gre"])
+    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'","'Elnézést még nem találkoztunk, Jánosnak hívnak'", "'Bázison az utóbbi időben másról sem beszélnek csak rólad", "Mindenesetre, nálam tudsz pontokért fegyvert és életerő növelőt vásárolni"]
+    curses.wrapper(centertext, text, 5, ["gre","", "gre", "gre", "gre"])
+    healthBuy()
 
 def room25():
     global szobaid
