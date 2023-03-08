@@ -1,0 +1,17 @@
+A bázisra visszatérve Fanni áll veled szemben;;5
+Istenem, megcsináltad!;mag;5
+Istenem, megcsináltad!+El sem hiszem!;mag;5
+Istenem, megcsináltad!+El sem hiszem!+Gergő!;mag;5
+Annyira köszönjük, hogy megtetted ezt nekünk!;cya;5
+Annyira köszönjük, hogy megtetted ezt nekünk!+Sajnos nincs időnk ünnepelni, mivel lassan indulunk.;cya;5
+Annyira köszönjük, hogy megtetted ezt nekünk!+Sajnos nincs időnk ünnepelni, mivel lassan indulunk.+Szedj össze minden fontosat, és gyere fel!;cya;5
+Sietsz fel az autóhoz.;;5
+Sietsz fel az autóhoz.+El sem hiszed, hogy végre elhagyod a várost.;;5
+Pár perccel utánad Fanni és Gergő is beszáll az autóba és eilndultok.;;5
+A kapuhoz vezető úton csodálkozol a tájban.;;5
+A kapuhoz vezető úton csodálkozol a tájban.+Ahogyan a növényzet visszafoglalta a város nagy részét.;;5
+A kapuhoz vezető úton csodálkozol a tájban.+Ahogyan a növényzet visszafoglalta a város nagy részét.+Mikor már közel jártok Gergő hangját hallod meg.;;5
+Kapaszkodjatok!;cya;5
+Nagy sebességgel szabtok át a kapun az autóval, kitörve azt.;;5
+Nagy sebességgel szabtok át a kapun az autóval, kitörve azt.+Hivatalosan is kinn vagytok a városból.;;5
+Furcsa érzés a város falain kívül lenni.;;5

@@ -1,0 +1,5 @@
+Lelőtted az utolsó banditát is.;;5
+Lelőtted az utolsó banditát is.+Szörnyű bűntudat fog el, hisz mégiscsak megöltél egy embert.;;5
+Lelőtted az utolsó banditát is.+Szörnyű bűntudat fog el, hisz mégiscsak megöltél egy embert.+Az egyetlen ami nyugtat az, hogy ezzel talán+több embert mentettél meg, mint ahánynak ártottál.;;5
+Mielőtt még a leütött bandita felkel,+beülsz az autóba és elvezetsz onnan.;;5
+Mielőtt még a leütött bandita felkel,+beülsz az autóba és elvezetsz onnan.+Az autót lerakod a bázis fölötti kisebb garászba, majd bemész.;;5

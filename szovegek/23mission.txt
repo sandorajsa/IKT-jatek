@@ -1,0 +1,10 @@
+Másnap reggel kilépve a szobádból Gergő köszönt.;;5
+Jó reggelt!+A jelenlétedből ítélve gondolom segítesz.;cya;5
+Jó reggelt!+A jelenlétedből ítélve gondolom segítesz.+Azonban egy rossz hír...;cya;5
+Jó reggelt!+A jelenlétedből ítélve gondolom segítesz.+Azonban egy rossz hír...+Egyedül kell menned...;cya;5
+De ne aggódj, az út egészen könnyű.;cya;5
+De ne aggódj, az út egészen könnyű. Menj el a csatornák végéig.;cya;5
+De ne aggódj, az út egészen könnyű. Menj el a csatornák végéig.+Ott aztán mássz fel és a táboruk mellett fogod+találni magad.;cya;5
+Adok egy fegyvert is a biztonság kedvéért,+de jobb esetben nem kell majd használnod.;cya;5
+Adok egy fegyvert is a biztonság kedvéért,+de jobb esetben nem kell majd használnod.+És mégegyszer köszönjük a segítséged!;cya;5
+A kezedbe nyom egy gépfegyvert és el is indulsz.;;5

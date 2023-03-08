@@ -7,3 +7,4 @@ Rozsdás feszítővas;5;10
 Vadászpuska;7;20
 Sörétes puska;6;45
 Kutya;9999999999;19
+Gépfegyver;6;30

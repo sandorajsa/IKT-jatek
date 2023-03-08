@@ -1,0 +1,38 @@
+Köszönöm hogy segítettél...;cya;5
+Köszönöm hogy segítettél.+Azthittem már az összeset kiírtottuk...;cya;5  
+Köszönöm hogy segítettél.+Azthittem már az összeset kiírtottuk...+Mindegy is inkább menjünk tovább...;cya;5
+Egy létrán felmásztok egy csatornafedélhez, amely egy kisebb utcára vezet.;;5
+Gyere, már nem járunk messze...;cya;5
+Éppen indulnátok tovább, mikor érdekes hangra leszel figyelmes.;;5
+Éppen indulnátok tovább, mikor érdekes hangra leszel figyelmes.+Ahogy közeledik, egyre világosabb,,hogy egy autót hallassz.;;5
+Gergő hirtelen leránt a földre, és kezével jelzi, hogy maradj csendben.;;5
+Gergő hirtelen leránt a földre, és kezével jelzi, hogy maradj csendben.+Csodálkozva nézed a járművet, nem gondoltad,+hogy vannak még olyanok, amik működnek.;;5
+Szerencsére nem vettek észre...;cya;5
+Szerencsére nem vettek észre...+Csodálkozol mi?+Mi is így néztünk mikor először láttuk.;cya;5
+Szerencsére nem vettek észre...+Csodálkozol mi?+Mi is így néztünk mikor először láttuk.+Tudtunkkal ők az egyetlenek, akiknek még+van működő autójuk.;cya;5
+Gergő kinyitja a bolt ajtaját, majd beléptek.;;5
+Gergő kinyitja a bolt ajtaját, majd beléptek.+A különböző konzervek külön-külön+szépen elrendezve állnak a polcokon.;;5
+Gergő kinyitja a bolt ajtaját, majd beléptek.+A különböző konzervek külön-külön+szépen elrendezve állnak a polcokon.+Biztosan rendszeresen járnak ide élelemért.;;5
+Tudnál hozni mindegyik konzervből egyet?;cya;5
+Tudnál hozni mindegyik konzervből egyet?+Köszönöm, hogy segítesz!;cya;5
+Tudnál hozni mindegyik konzervből egyet?+Köszönöm, hogy segítesz!+Induljunk vissza a bázisra.;cya;5
+A bázisra visszatérve néhány fiatal veszi át tőletek a konzerveket.;;5
+Látom visszatértetek...;mag;5
+Látom visszatértetek...+Mostmár beszélhetünk az lényegről?;mag;5
+Tudunk egy utat ki a városból+ de kapuval van lezárva.;cya;5
+Tudunk egy utat ki a városból+ de kapuval van lezárva.+A kulcsot hónapokig kerestük sikertelenül...;cya;5
+Tudunk egy utat ki a városból+ de kapuval van lezárva.+A kulcsot hónapokig kerestük sikertelenül...+Autóval viszont hamar áttudnánk törni rajta.;cya;5
+Tudunk egy utat ki a városból+ de kapuval van lezárva.+A kulcsot hónapokig kerestük sikertelenül...+Autóval viszont hamar áttudnánk törni rajta.+Később aztán a többiekért is visszajönnénk.;cya;5
+Tudunk egy utat ki a városból+ de kapuval van lezárva.+A kulcsot hónapokig kerestük sikertelenül...+Autóval viszont hamar áttudnánk törni rajta.+Később aztán a többiekért is visszajönnénk.+Ha segítesz az elsők között lehetsz akik elhagyják a várost.;cya;5
+Tudunk egy utat ki a városból+ de kapuval van lezárva.+A kulcsot hónapokig kerestük sikertelenül...+Autóval viszont hamar áttudnánk törni rajta.+Később aztán a többiekért is visszajönnénk.+Ha segítesz az elsők között lehetsz akik elhagyják a várost.+Holnap kéne elindulnod az ellenséges bázisra.;cya;5
+Ne aggódj, van időd dönteni reggelig.;cya;5
+Ne aggódj, van időd dönteni reggelig.+Addig is kapsz egy szobát, amiben aludhatsz.;cya;5
+Gergő a magyarázat után+sietve távozott a szobából.;;5
+Tele voltál kérdésekkel, hogy mit kéne tenned.;;5
+Tele voltál kérdésekkel, hogy mit kéne tenned.+De elsőként Fannihoz fordultál és+a zárt kapuról kérdezted.;;5
+Mi zártuk be.;mag;5
+Mi zártuk be.+Úgy gondoltuk, jobb így, mivel így+semmi sem jöhet át a város azon részéről.;mag;5
+Mi zártuk be.+Úgy gondoltuk, jobb így, mivel így+semmi sem jöhet át a város azon részéről.+Ha igazán arra akarsz menni,+kérd el valakitől a kulcsot...;mag;5
+Mi zártuk be.+Úgy gondoltuk, jobb így, mivel így+semmi sem jöhet át a város azon részéről.+Ha igazán arra akarsz menni,+kérd el valakitől a kulcsot.+Bár kétlem, hogy odaadják...;mag;5
+Nem sokat segített Fanni válasza...;;5
+Nem sokat segített Fanni válasza...+Inkább úgy döntöttél, körülnézel a bázison.;;5
