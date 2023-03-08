@@ -1282,6 +1282,7 @@ def room22():
     global szobaid
     szobaid = 22
     if roomFirst[szobaid]:
+        roomFirst[szobaid] = False
         text = ["A szűk kis utcáról hirtelen egy főúton találod magad."]
         curses.wrapper(centertext, text, 5)
         text = ["A szűk kis utcáról hirtelen egy főúton találod magad.","A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg."]
@@ -1298,6 +1299,7 @@ def room23():
     global szobaid
     szobaid = 23
     if roomFirst[szobaid]:
+        roomFirst[szobaid] = False
         jatekos.Hp == 100
         text = ["Mikor felkelsz, egy matracon találod magad."]
         curses.wrapper(centertext, text, 5)
@@ -1382,6 +1384,7 @@ def room26():
     global szobaid
     szobaid = 26
     if roomFirst[szobaid]:
+        roomFirst[szobaid] = False
         text = ["Gergővel a szobából egy ajtón keresztül a város alatt húzódó", "csatorna rendszerbe léptek."]
         curses.wrapper(centertext, text, 5)
         text = ["Nem is sejtetted, hogy a város alatt vagy, mi?"]
@@ -1408,6 +1411,7 @@ def room27():
     global szobaid
     szobaid = 27
     if roomFirst[szobaid]:
+        roomFirst[szobaid] = False
         text = ["Egy létrán felmásztok egy csatornafedélhez, amely egy kisebb utcára vezet."]
         curses.wrapper(centertext, text, 5)
         text = ["Gyere, már nem járunk messze..."]
@@ -1435,11 +1439,67 @@ def room27():
         text = ["Szerencsére nem vettek észre..", "Csodálkozol mi?", "Mi is így néztünk mikor először láttuk.", "Tudtunkkal ők az egyetlenek, akiknek még", "vannak működő autóik.", "Na menjünk!"]
         szin = ["cya"]
         curses.wrapper(centertext, text, 5, szin)
+        os.system("cls")
         room28()
 
 def room28():
     global szobaid
     szobaid = 28
+    save()
+    text = ["A boltba léptek."]
+    curses.wrapper(centertext, text, 5)
+    text = ["A boltba léptek.", "Az különböző konzervek külön-külön, szépen elrendezve állnak a polcokon."]
+    curses.wrapper(centertext, text, 5)
+    text = ["A boltba léptek.", "Az különböző konzervek külön-külön, szépen elrendezve állnak a polcokon.", "Biztosan rendszeresen járnak ide élelemért."]
+    curses.wrapper(centertext, text, 5)
+    os.system("cls")
+    text = ['"Tudnál hozni mindegyik konzervből egyet?"']
+    szin = ["cya"]
+    curses.wrapper(centertext, text, 5, szin)
+    text = ["Tudnál hozni mindegyik konzervből egyet?", f'"Köszönöm, hogy segítesz {jatekos.Nev}!"']
+    szin = ["cya"]
+    curses.wrapper(centertext, text, 5, szin)
+    text = ["Tudnál hozni mindegyik konzervből egyet?", f'"Köszönöm, hogy segítesz {jatekos.Nev}!"', '"Induljunk vissza a bázisra."']
+    szin = ["cya"]
+    curses.wrapper(centertext, text, 5, szin)
+    os.system("cls")
+    text = ["A bázisra visszatérve néhány fiatal veszi át tőletek a konzerveket."]
+    curses.wrapper(centertext, text, 5)
+    os.system("cls")
+    text = ['"Látom visszatértetek..."']
+    szin = ["mag"]
+    curses.wrapper(centertext, text, 5, szin)
+    text = ['"Látom visszatértetek..."', '"Mostmár beszélhetünk az lényegről?"']
+    szin = ["mag"]
+    curses.wrapper(centertext, text, 5, szin)
+    os.system("cls")
+    text = [f'"{jatekos.Nev}, emlékszel az autóra a boltnál?"']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = [f'"{jatekos.Nev}, emlékszel az autóra a boltnál?"', '"Szükségünk lenne rá..."']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = [f'"{jatekos.Nev}, emlékszel az autóra a boltnál?"', '"Szükségünk lenne rá..."', '"Tudnál segíteni megszerezni?"']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    os.system("cls")
+    text = ['"Tudunk egy utat ki a városból, de kapuval van lezárva."']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = ['"Tudunk egy utat ki a városból, de kapuval van lezárva."', '"A kulcsot hónapokig kerestük sikertelenül..."']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = ['"Tudunk egy utat ki a városból, de kapuval van lezárva."', '"A kulcsot hónapokig kerestük sikertelenül..."','"Autóval viszont hamar áttudnánk törni rajtad,"']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = ['"Tudunk egy utat ki a városból, de kapuval van lezárva."', '"A kulcsot hónapokig kerestük sikertelenül..."','"Autóval viszont hamar áttudnánk törni rajtad,"', '"Később aztán a többiekért is visszajönnénk."']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = ['"Tudunk egy utat ki a városból, de kapuval van lezárva."', '"A kulcsot hónapokig kerestük sikertelenül..."','"Autóval viszont hamar áttudnánk törni rajtad,"', '"Később aztán a többiekért is visszajönnénk."', '"Ha segítesz, az elsők között lehetsz akik elhagyják a várost."']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = ['"Tudunk egy utat ki a városból, de kapuval van lezárva."', '"A kulcsot hónapokig kerestük sikertelenül..."','"Autóval viszont hamar áttudnánk törni rajtad,"', '"Később aztán a többiekért is visszajönnénk."', '"Ha segítesz, az elsők között lehetsz akik elhagyják a várost."', '"Holnap reggel kéne elindulnok az ellenséges bázisra."']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    text = ['"Tudunk egy utat ki a városból, de kapuval van lezárva."', '"A kulcsot hónapokig kerestük sikertelenül..."','"Autóval viszont hamar áttudnánk törni rajtad,"', '"Később aztán a többiekért is visszajönnénk."', '"Ha segítesz, az elsők között lehetsz akik elhagyják a várost."', '"Holnap reggel kéne elindulnok az ellenséges bázisra."', '"Ne aggódj, van időd dönteni reggelig."']
+    curses.wrapper(centertext, text, 5, ["cya"])
+    os.system("cls")
+    text = ["Gergő sietve távozott a szobából."]
+    curses.wrapper(centertext, text, 5)
+    text = ["Gergő sietve távozott a szobából.", "Habár "]
+    curses.wrapper(centertext, text, 5)
+
 
 def gameEnd():
     text = ["Sikerült kijutnod a városból..."]
