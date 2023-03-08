@@ -1,0 +1,172 @@
+
+
+Az ehhez hasonló olvasnivalókat a 'SPACE' gomb megnyomásával tudod átlépni, de idővel automatikusan is átlép
+Nyomd meg az 'SPACE'-t a továbblépéshez és a tutorial elindításához
+Egy szobában találtad magad egy robottal szemben
+A hátizsákodban kutatva egy fegyvert találsz
+A robot ellened fordul
+Az ilyen helyzetekben Outbackben egy menü fogad
+A harc közben jelentős mennyiségű életerőt vesztettél,
+Az ellenségek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni
+A játék automatikusan menti a játékállásod minden szoba elején,
+Sok sikert a játékban!
+Kérlek add meg a játékos nevedet:
+Az ellenség visszatámad.
+Mivel nincsen fegyvered kézzel harcolsz.
+Az ellenség visszatámad.
+Sajnos nincsen elérhető életerő növelőd.
+Nincsen szükséged életerő növelésre.
+Életerő feltöltve.
+500 pont - 1 életerő növelő
+Nincsen elegendő pontod.
+Két kuka között észreveszel egy alkoholos üveget, az alján még pár cseppel.
+Két kuka között észreveszel egy alkoholos üveget, az alján még pár cseppel.
+A kukák között már mindent megtaláltál.
+A város parkját kutatva egy táblára leszel figyelmes ami a városrész térképét mutatja.
+__________   _________   _________
+Hirtelen egy vörös macska fut végig az egyik erkélyen.
+Egyszer csak leesik valami az erkélyről és nagy hanggal ér földet.
+Mivel nem találsz semmit visszatérsz a kapuhoz.
+A városka szűk utcáin barangolva már-már elbóbiskolsz.
+Éppen visszafordulnál, mikor egy nyitott csatornafedél miatt a csatornába esel.
+Mire feleszmélsz már patkányok rohannak feléd.
+Ezt szerencsére megúsztad...
+Inkább úgy döntesz nem mész vissza, hisz nem találtál ott semmit...
+Amint belépsz a boltba, egy hullával találod szemben magad.
+Épphogy magadhoz térsz, egy sötét alakot veszel észre a sarokban.
+Másodpercekkel később már a földön vagy, rajtad pedig egy megvadult ember szerű lény.
+Lerúgod magadról majd elkezdesz a falon található lyuk felé futni.
+Szerencsére sikerül elmenekülnöd a lyukon keresztül,
+ám a befelé vezető utat már egy eldőlt szekrény torlaszolja el.
+Kutakodás közben az egyik polc alatt észreveszel valamit. Kihúzod és jobban megnézed.
+Keresgélsz még de nem találsz semmi mást, így továbbmész.
+Ismét az utcákon találod magad.
+A családi ház előterébe lépsz.
+Felérsz az emeletre. A szobában egy matracot találsz a földön, rajta egy kisfiúval.
+Felérsz az emeletre. A szobában egy matracot találsz a földön, rajta egy kisfiúval.
+A fiam halálosan beteg. Gyógyszer kell neki, de én nem hagyhatom itt.
+Köszönöm...A neved?
+Köszönöm...A neved?
+Sajnálom..nem tehetek mást...Sajnálom!!
+Sajnálom..nem tehetek mást...Sajnálom!!
+Nem tudsz semmi másra gondolni, csak hogy azt tetted amit muszáj volt.
+Nem tudsz semmi másra gondolni, csak hogy azt tetted amit muszáj volt.
+Nem tudsz semmi másra gondolni, csak hogy azt tetted amit muszáj volt.
+A gyógyszer...?
+Visszajöttél...A gyógyszer?
+Visszajöttél...A gyógyszer?
+Visszajöttél...A gyógyszer?
+Visszajöttél...A gyógyszer?
+Elteszed a kulcsot is, bár nem tudod mit nyithat...
+Inkább nem zaklatod őket...
+Nem vagy képes visszatérni az emeletre...
+A családi ház pincéjében találod magad.
+A családi ház pincéjében találod magad.
+Ahogy a holttest fölött állsz, csak remélheted, hogy a nő nem a ház lakosa volt egykor...
+Ahogy a holttest fölött állsz, csak remélheted, hogy a nő nem a ház lakosa volt egykor...
+A pincében már mindent felkutattál.
+Az ajtón átlépve egy gyógyszertárba érkezel
+A pultok mögött körülnézve többféle gyógyszert is találsz.
+A pultok mögött körülnézve többféle gyógyszert is találsz.
+Már az összes gyógyszert összeszedted.
+Kilépsz, és a gyógyszertár hátsó lerakóhelyénél találod magad.
+Éppen elindulsz az ajtó felé, mikor mögötted megjelenik egy horda zombi.
+Éppen elindulsz az ajtó felé, mikor mögötted megjelenik egy horda zombi.
+Éppen elindulsz az ajtó felé, mikor mögötted megjelenik egy horda zombi.
+Ahogy kutatsz, észreveszel valamit az egyik ott álló kamion alatt...
+Éppen indulnál tovább, mikor egy zombihorda rohan feléd teljes sebességel.
+Éppen indulnál tovább, mikor egy zombihorda rohan feléd teljes sebességel.
+Az épületbe lépve sokkos állapotodban elkezdesz kopogni a legközelebbi ajtón.
+Az épületbe lépve sokkos állapotodban elkezdesz kopogni a legközelebbi ajtón.
+Mekkora szerencse, hogy pont megjelentél...
+Mekkora szerencse, hogy pont megjelentél...
+Mekkora szerencse, hogy pont megjelentél...
+Mekkora szerencse, hogy pont megjelentél...
+Mekkora szerencse, hogy pont megjelentél...
+Inkább nem mész vissza...
+Látom elhoztad nekem őket, köszönöm...
+Látom elhoztad nekem őket, köszönöm...
+A kezedbe nyomott egy kulcsot...
+A kezedbe nyomott egy kulcsot...
+A gyerekek nélkül nem mersz visszatérni...
+Zárva...
+Leskelődés közben észreveszel a földön egy falról leesett elsősegély dobozt.
+Már mindent megtaláltál ezen az emeleten.
+A második emeletre érsz.
+A második emeletre érsz.
+A második emeletre érsz.
+El sem hiszed, hogy sikerült túlélned.
+El sem hiszed, hogy sikerült túlélned.
+El sem hiszed, hogy sikerült túlélned.
+A lakásba lépve meglátod a két kisgyereket.
+A lakásba lépve meglátod a két kisgyereket.
+A lakásba lépve meglátod a két kisgyereket.
+A lakásba lépve meglátod a két kisgyereket.
+A lakásba lépve meglátod a két kisgyereket.
+A lakásba lépve meglátod a két kisgyereket.
+Felérve a harmadik emeletre mozgásra leszel figyelmes...
+Felérve a harmadik emeletre mozgásra leszel figyelmes...
+Felérve a harmadik emeletre mozgásra leszel figyelmes...
+Szerencsére sikerült megölnöd...
+A lépcső romjai között figyelmes leszel valamire.
+Mindent megtaláltál már.
+A lépcső romjai között figyelmes leszel valamire.
+Mindent megtaláltál már.
+A dobozok között nézelődve egyszercsak szuszogásra leszel figyelmes.
+A dobozok között nézelődve egyszercsak szuszogásra leszel figyelmes.
+Gratulálok, ezzennel a kutya a társad.
+Gratulálok, ezzennel a kutya a társad.
+A dobozok környékén már mindent fontosat megtaláltál.
+Az utca jobb oldalán egy kapu van.
+Az utca jobb oldalán egy kapu van.
+A kapu a kulccsal kinyílik.
+A padok között sétálva az egyiken észreveszel két elsősegély dobozt.
+A padok között sétálva az egyiken észreveszel két elsősegély dobozt.
+Már mindent megtaláltál.
+Ahogy közeledsz a kapuhoz, egyre inkább érzed,
+Ahogy közeledsz a kapuhoz, egyre inkább érzed,
+Ahogy közeledsz a kapuhoz, egyre inkább érzed,
+A kapu előtt állsz, készen arra, hogy elhagyd ezt a helyet...
+A kapu előtt állsz, készen arra, hogy elhagyd ezt a helyet...
+A kapu előtt állsz, készen arra, hogy elhagyd ezt a helyet...
+A kapu előtt állsz, készen arra, hogy elhagyd ezt a helyet...
+Sikerült megölnöd a zombit, ám a végkimerülés szélén állsz.
+Sikerült megölnöd a zombit, ám a végkimerülés szélén állsz.
+Ott állva veszed észre, hogy a kapu zárva,
+Ott állva veszed észre, hogy a kapu zárva,
+Ott állva veszed észre, hogy a kapu zárva,
+Ott állva veszed észre, hogy a kapu zárva,
+Ott állva veszed észre, hogy a kapu zárva,
+Ott állva jössz rá, hogy a kiút zárva,
+Ott állva jössz rá, hogy a kiút zárva,
+Ott állva jössz rá, hogy a kiút zárva,
+Ott állva jössz rá, hogy a kiút zárva,
+Ott állva jössz rá, hogy a kiút zárva,
+Ott állva veszed észre, hogy a kapu zárva.
+Ott állva veszed észre, hogy a kapu zárva.
+Ott állva veszed észre, hogy a kapu zárva.
+Ott állva veszed észre, hogy a kapu zárva.
+Ott állva veszed észre, hogy a kapu zárva.
+A szűk kis utcáról hirtelen egy főúton találod magad.
+A szűk kis utcáról hirtelen egy főúton találod magad.
+A szűk kis utcáról hirtelen egy főúton találod magad.
+A szűk kis utcáról hirtelen egy főúton találod magad.
+A boltba léptek.
+A boltba léptek.
+A boltba léptek.
+Tudnál hozni mindegyik konzervből egyet?
+A bázisra visszatérve néhány fiatal veszi át tőletek a konzerveket.
+Látom visszatértetek...
+Látom visszatértetek...
+Tudunk egy utat ki a városból, de kapuval van lezárva.
+Tudunk egy utat ki a városból, de kapuval van lezárva.
+Tudunk egy utat ki a városból, de kapuval van lezárva.
+Tudunk egy utat ki a városból, de kapuval van lezárva.
+Tudunk egy utat ki a városból, de kapuval van lezárva.
+Tudunk egy utat ki a városból, de kapuval van lezárva.
+Tudunk egy utat ki a városból, de kapuval van lezárva.
+Gergő sietve távozott a szobából.
+Sikerült kijutnod a városból...
+Sikerült kijutnod a városból...
+JÁTÉK VÉGE\n
+MEGHALTÁL\n
