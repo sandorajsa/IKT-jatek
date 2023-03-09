@@ -72,7 +72,7 @@ def var(ido):
     return True
 
 def kiir(szoba):
-    f = open(f"{szoba}.txt", "r", encoding="UTF-8")
+    f = open(f"szovegek/{szoba}.txt", "r", encoding="UTF-8")
     for sor in f: 
         asd = sor.strip().split(';') 
         strtext = asd[0]
@@ -1306,7 +1306,7 @@ def room22():
 def roomStory():
     global szobaid, jatekos
     szobaid = "story"
-    jatekos.Hp == 100
+    jatekos.Hp = 100
     kiir("story1")
     text = [f'"Tehát {jatekos.Nev}..."']
     szin = ["cya"]
@@ -1337,6 +1337,7 @@ def room23():
                 gameEnd()
             else:
                 kiir("23mission")
+                elerhetoFegyverek.append(fegyverek[8])
                 room26()
         else:
             pass
@@ -1421,7 +1422,7 @@ def room29():
         room26()
 
 def room30():
-    global szobaid
+    global szobaid, elerhetoHealek
     szobaid = 30
     commands = ["A másik bázis hátuljánál állsz", "Bemegyek", "Körülnézek", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
@@ -1429,13 +1430,17 @@ def room30():
         room31()
     elif choice == commands[2]:
         if roomFirst[szobaid]:
+            roomFirst[szobaid] = False
+            elerhetoHealek += 1
             text = ["Találsz néhány elszórt kötözőanyagot."]
             curses.wrapper(centertext, text, 5)
             text = [f"Gratulálok, találtál egy életerő növelőt. Jelenlegi mennyiség: {elerhetoHealek} darab"]
             curses.wrapper(centertext, text, 5)
+            room30()
         else:
             text = ["Már mindent megtaláltál."]
             curses.wrapper(centertext, text, 5)
+            room30()
     else:
         room29()
 
