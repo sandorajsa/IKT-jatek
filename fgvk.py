@@ -20,6 +20,7 @@ jatekos = None
 opponents = []
 fegyverek =  []
 elerhetoFegyverek = [] #lehetne esetleg karakter classban
+elhasznaltFegyverek = []
 elerhetoHealek = 0
 szobaid = "startRoom"
 
@@ -33,8 +34,8 @@ roomFirst = {
     16: True,
     18: True,
     20: True,
-    22: True,
     23: True,
+    24: True,
     26: True,
     27: True,
     30: True
@@ -50,7 +51,8 @@ quests = {
     "kapuKulcs": False,
     "segitseg2": True,
     "mission": False,
-    "auto": False
+    "auto": False,
+    "deadGergo": False
 }
 # def inventory():
 #     if keyboard.is_pressed('i'):
@@ -202,9 +204,9 @@ def gamestart(): #kilepes
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         global roomFirst
-        roomFirst = {1: True,4: True,9: True,10: True,13: True,15: True,16: True,18: True,20: True,22: True,23: True,26: True,27: True,30: True}
+        roomFirst = {1: True,4: True,9: True,10: True,13: True,15: True,16: True,18: True,20: True,23: True,24: True,26: True,27: True,30: True}
         global quests
-        quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False}
+        quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
     elif choice == commands[2]:
         try:
@@ -323,6 +325,7 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
                     if choice == commands[i]:
                         enemyHp = weaponChoose(fightFegyverek[i-1], enemy, enemyHp)
                         if fightFegyverek[i-1].Hasznalhato < 1:
+                            elhasznaltFegyverek.append(fightFegyverek[i-1])
                             elerhetoFegyverek.pop(i-1)
         elif choice == commands[2]:
             healthSystem()
@@ -455,6 +458,32 @@ def healthBuy():
             os.system("cls")
             if jatekos.Points >= 500:
                 healthBuy()
+
+def weaponBuy():
+    text = ["1000 pont - 1 adag lőszer", f"Pontjaid: {jatekos.Points}"]
+    curses.wrapper(centertext, text, 5)
+    commands = ["Vásárolsz lőszert?", "Igen", "Nem"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        if len(elhasznaltFegyverek) != 0:
+            commands = ["Kérlek válassz fegyvert"]
+            for fegyver in elhasznaltFegyverek:
+                commands.append(f"{fegyver.Nev}")
+            choice = curses.wrapper(menu, commands)
+            for i in range(1,len(commands)):
+                if choice == commands[i]:
+                    if jatekos.Points - 1000 < 0:
+                        text = ["Nincsen elegendő pontod."]
+                        curses.wrapper(centertext, text, 5)
+                        weaponBuy()
+                    else:
+                        for fegyver in fegyverek:
+                            if fegyver.Nev == elhasznaltFegyverek[i-1].Nev:
+                                elerhetoFegyverek.append(fegyver)
+                                elhasznaltFegyverek.pop(i-1)
+                                text = ["Sikeres vásárlás."]
+                                curses.wrapper(centertext, text, 5)
+                                weaponBuy()
 
 def room1():
     global szobaid, elerhetoHealek
@@ -1119,7 +1148,7 @@ def room19():
     global szobaid
     szobaid = 19
     save()
-    commands = ["A ház melletti utcára lépsz ki.", "Körülnézek", "Megnézem a kaput", "Elmegyek balra"]
+    commands = ["A ház melletti utcára lépsz.", "Körülnézek", "Megnézem a kaput", "Elmegyek balra"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         if fegyverek[7] not in elerhetoFegyverek:
@@ -1145,8 +1174,6 @@ def room19():
         else:
             text = ["A dobozok környékén már mindent fontosat megtaláltál."]
             curses.wrapper(centertext, text, 5)
-            #var(75)
-            os.system("cls")
             room19()
     elif choice == commands[2]:
         if not quests["kapuKulcs"]:
@@ -1154,18 +1181,24 @@ def room19():
             curses.wrapper(centertext, text, 5)
             text = ["Az utca jobb oldalán egy kapu van.", "Megpróbálod kinyitni, de sajnos zárva van..."]
             curses.wrapper(centertext, text, 5)
+            room19()
         else:
             text = ["A kapu a kulccsal kinyílik."]
             curses.wrapper(centertext, text, 5)
             room20()
     else:
-        room22()
+        if quests["deadGergo"]:
+            text = ["Nem akarsz visszamenni"]
+            curses.wrapper(centertext, text, 5)
+            room19()
+        else:
+            room22()
 
 def room20():
     global szobaid, elerhetoHealek
     szobaid = 20
     save()
-    commands = ["A város főterén állsz, szemben egy óriási kapuval.", "Körülnézek", "Elmegyek a kapuhoz", "Elmegyek balra", "Visszamegyek"]
+    commands = ["A város főterén állsz, szemben egy óriási kapuval.", "Körülnézek", "Elmegyek a kapuhoz", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         if roomFirst[szobaid]:
@@ -1191,8 +1224,6 @@ def room20():
     elif choice == commands[2]:
         room21()
     elif choice == commands[3]:
-        room22()
-    else:
         room19()
 
 def room21(): #itt nincsen save hogy lehessen végigvinni
@@ -1289,19 +1320,16 @@ def room21(): #itt nincsen save hogy lehessen végigvinni
 def room22():
     global szobaid
     szobaid = 22
-    if roomFirst[szobaid]:
-        roomFirst[szobaid] = False
-        text = ["A szűk kis utcáról hirtelen egy főúton találod magad."]
-        curses.wrapper(centertext, text, 5)
-        text = ["A szűk kis utcáról hirtelen egy főúton találod magad.","A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg."]
-        curses.wrapper(centertext, text, 5)
-        text = ["A szűk kis utcáról hirtelen egy főúton találod magad.","A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.", "Időd sincsen rájönni mi lehetett az,"]
-        curses.wrapper(centertext, text, 5)
-        text = ["A szűk kis utcáról hirtelen egy főúton találod magad.","A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.", "Időd sincsen rájönni mi lehetett az,", "mivel hirtelen egy éles fájdalmat érzel a fejedben és a világ elsötétül..."]
-        curses.wrapper(centertext, text, 5)
-        roomStory()
-    else:
-        pass
+    save()
+    text = ["A szűk kis utcáról hirtelen egy főúton találod magad."]
+    curses.wrapper(centertext, text, 5)
+    text = ["A szűk kis utcáról hirtelen egy főúton találod magad.","A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg."]
+    curses.wrapper(centertext, text, 5)
+    text = ["A szűk kis utcáról hirtelen egy főúton találod magad.","A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.", "Időd sincsen rájönni mi lehetett az,"]
+    curses.wrapper(centertext, text, 5)
+    text = ["A szűk kis utcáról hirtelen egy főúton találod magad.","A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.", "Időd sincsen rájönni mi lehetett az,", "mivel hirtelen egy éles fájdalmat érzel a fejedben és a világ elsötétül..."]
+    curses.wrapper(centertext, text, 5)
+    roomStory()
 
 def roomStory():
     global szobaid, jatekos
@@ -1324,6 +1352,7 @@ def room23():
     global szobaid
     szobaid = 23
     if not quests["mission"]:
+        save()
         commands = ["A bázis fő részében vagy.", "Elmegyek a kereskedőhöz", "Bemegyek a szobámba"]
         choice = curses.wrapper(menu, commands)
         if choice == commands[1]:
@@ -1332,7 +1361,9 @@ def room23():
             room25()
     else:
         if quests["segitseg2"]:
+            save()
             if quests["auto"]:
+                jatekos.Points += 5000
                 kiir("23missionComplete")
                 gameEnd()
             else:
@@ -1340,23 +1371,41 @@ def room23():
                 elerhetoFegyverek.append(fegyverek[8])
                 room26()
         else:
-            pass
+            kiir("23noMission")
+            fightSystem(opponents[7])
+            quests["kapuKulcs"] = True
+            quests["deadGergo"] = True
+            room26()
 
 def room24(): #lehetne ammot venni és akkor újra elérhető az a fegyver
     global szobaid
     szobaid = 24
     save()
-    text = [f"'Szia {jatekos.nev}'"]
-    curses.wrapper(centertext, text, 5, ["gre"])
-    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'"]
-    curses.wrapper(centertext, text, 5, ["gre",""])
-    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'","'Elnézést még nem találkoztunk, Jánosnak hívnak'"]
-    curses.wrapper(centertext, text, 5, ["gre","", ""])
-    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'","'Elnézést még nem találkoztunk, Jánosnak hívnak'", "'Bázison az utóbbi időben másról sem beszélnek csak rólad"]
-    curses.wrapper(centertext, text, 5, ["gre","", "gre", "gre"])
-    text = [f"'Szia {jatekos.nev}'", "'Jó napot, ismerjük egymást?'","'Elnézést még nem találkoztunk, Jánosnak hívnak'", "'Bázison az utóbbi időben másról sem beszélnek csak rólad", "Mindenesetre, nálam tudsz pontokért fegyvert és életerő növelőt vásárolni"]
-    curses.wrapper(centertext, text, 5, ["gre","", "gre", "gre", "gre"])
-    healthBuy()
+    if roomFirst[szobaid]:
+        roomFirst[szobaid] = False
+        text = [f"Szia {jatekos.Nev}!"]
+        curses.wrapper(centertext, text, 5, ["gre"])
+        text = [f"Szia {jatekos.Nev}!", "Jó napot, ismerjük egymást?"]
+        curses.wrapper(centertext, text, 5, ["gre",""])
+        text = [f"Szia {jatekos.Nev}!", "Jó napot, ismerjük egymást?","Elnézést még nem találkoztunk, Jánosnak hívnak."]
+        curses.wrapper(centertext, text, 5, ["gre","", "gre"])
+        text = [f"Szia {jatekos.Nev}!", "Jó napot, ismerjük egymást?","Elnézést még nem találkoztunk, Jánosnak hívnak.", "Bázison az utóbbi időben másról sem beszélnek csak rólad."]
+        curses.wrapper(centertext, text, 5, ["gre","", "gre", "gre"])
+        text = [f"Szia {jatekos.Nev}!", "Jó napot, ismerjük egymást?","Elnézést még nem találkoztunk, Jánosnak hívnak.", "Bázison az utóbbi időben másról sem beszélnek csak rólad.", "Mindenesetre, nálam tudsz pontokért lőszert és életerő növelőt vásárolni."]
+        curses.wrapper(centertext, text, 5, ["gre","", "gre", "gre", "gre"])
+    else:
+        text = ["Látom visszatértél!"]
+        curses.wrapper(centertext, text, 5, ["gre"])
+    commands = ["Melyiket szeretnéd?", "Lőszert", "Életerő növelőt", "Most egyiket sem"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        weaponBuy()
+    elif choice == commands[2]:
+        healthBuy()
+    else:
+        text = ["Rendben, nyugodtan gyere vissza később!"]
+        curses.wrapper(centertext, text, 5, ["gre"])
+    room23()
 
 def room25():
     global szobaid
@@ -1376,13 +1425,18 @@ def room25():
 def room26():
     global szobaid
     szobaid = 26
+    save()
+    if not quests["segitseg2"]:
+        if roomFirst[szobaid]:
+            roomFirst[szobaid] = False
+            kiir(26)
     commands = ["Belépsz a csatornarendszerbe", "Továbbmegyek", "Felmegyek", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         if quests["segitseg2"]:
             room29()
         else:
-            text = ["Nem mész inkább arra, mivel nem tudod mi van ott."]
+            text = ["Nem mész inkább arra, hisz nem tudod hová vezet és milyen hosszú..."]
             curses.wrapper(centertext, text, 5)
             room26()
     elif choice == commands[2]:
@@ -1398,7 +1452,7 @@ def room26():
             curses.wrapper(centertext, text, 5)
             room26()
         else:
-            text = ["Nem bírsz visszamenni."]
+            text = ["Nem bírsz visszamenni..."]
             curses.wrapper(centertext, text, 5)
             room26()
 
@@ -1406,14 +1460,39 @@ def room26():
 def room27():
     global szobaid
     szobaid = 27
+    save()
+    commands = ["A bolt melletti utcára lépsz", "Bemegyek a boltba", "Visszamegyek"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        room28()
+    else:
+        room26()
 
 def room28():
     global szobaid
     szobaid = 28
+    save()
+    commands = ["A boltba lépve ismét egy szörnyű érzés fog el", "Tovább menekülök", "Körülnézek", "Visszamegyek"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        room32()
+    elif choice == commands[2]:
+        if not quests["letra"]:
+            quests["letra"] = True
+            text = ["Nézelődés közben találsz egy létrát az egyik sarokban.","Elhozod, hátha még jól jön."]
+            curses.wrapper(centertext, text, 5)
+            room28()
+        else:
+            text = ["Már mindent megtaláltál."]
+            curses.wrapper(centertext, text, 5)
+            room28()
+    else:
+        room27()
 
 def room29():
     global szobaid
     szobaid = 29
+    save()
     commands = ["A csatornarendszer végére érsz", "Felmegyek", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -1424,6 +1503,7 @@ def room29():
 def room30():
     global szobaid, elerhetoHealek
     szobaid = 30
+    save()
     commands = ["A másik bázis hátuljánál állsz", "Bemegyek", "Körülnézek", "Visszamegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
@@ -1452,6 +1532,19 @@ def room31():
     quests["auto"] = True
     kiir(31.2)
     room23()
+
+def room32():
+    global szobaid
+    szobaid = 31
+    save()
+    text = ["A bolt mögötti kis sikátorba érkezel."]
+    curses.wrapper(centertext, text, 5)
+    commands = ["Innen már látod a kaput nem messze...", "Továbbmegyek", "Visszamegyek"]
+    choice = curses.wrapper(menu, commands)
+    if choice == commands[1]:
+        room19()
+    else:
+        room28()
 
 def gameEnd():
     text = ["Sikerült kijutnod a városból..."]
