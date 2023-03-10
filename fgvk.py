@@ -316,7 +316,6 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
             if len(fightFegyverek) == 0:
                 enemyHp = handFight(enemyHp, enemy)
             else:
-                # commands = ["Válassz egy fegyvert a támadáshoz"]
                 commands = ["Fegyver (Használható/Sebzés)"]
                 for fegyver in fightFegyverek:
                     commands.append(f"{fegyver.Nev} ({fegyver.Hasznalhato}/{fegyver.Dmg})")
@@ -325,8 +324,11 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
                     if choice == commands[i]:
                         enemyHp = weaponChoose(fightFegyverek[i-1], enemy, enemyHp)
                         if fightFegyverek[i-1].Hasznalhato < 1:
-                            elhasznaltFegyverek.append(fightFegyverek[i-1])
-                            elerhetoFegyverek.pop(i-1)
+                            for fegyver in fegyverek:
+                                if fegyver.Nev == fightFegyverek[i-1].Nev:
+                                    elhasznaltFegyverek.append(fegyver)
+                                    elerhetoFegyverek.pop(i-1)
+                                    fightFegyverek.pop(i-1)
         elif choice == commands[2]:
             healthSystem()
     if jatekos.Hp <= 0:
@@ -477,13 +479,14 @@ def weaponBuy():
                         curses.wrapper(centertext, text, 5)
                         weaponBuy()
                     else:
-                        for fegyver in fegyverek:
-                            if fegyver.Nev == elhasznaltFegyverek[i-1].Nev:
-                                elerhetoFegyverek.append(fegyver)
-                                elhasznaltFegyverek.pop(i-1)
-                                text = ["Sikeres vásárlás."]
-                                curses.wrapper(centertext, text, 5)
-                                weaponBuy()
+                        elerhetoFegyverek.append(elhasznaltFegyverek[i-1])
+                        elhasznaltFegyverek.pop(i-1)
+                        text = ["Sikeres vásárlás."]
+                        curses.wrapper(centertext, text, 5)
+                        weaponBuy()
+        else:
+            text = ["Nincsen olyan fegyvered ami", "nem használható."]
+            curses.wrapper(centertext, text, 5)
 
 def room1():
     global szobaid, elerhetoHealek
