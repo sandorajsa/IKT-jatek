@@ -1,9 +1,9 @@
-asd
-15
-15
-Kés;Íj;Rozsdás feszítővas;
-1000
-1
+zgbhj
+95
+8
+Rozsdás feszítővas+5+10;Kés+9999999999+12;
+0
+0
 gyogyszer:False
 segitseg:True
 gyerekek:False
@@ -18,9 +18,9 @@ deadGergo:False
 1:True
 4:True
 9:True
-10:False
-13:False
-15:False
+10:True
+13:True
+15:True
 16:True
 18:True
 20:True

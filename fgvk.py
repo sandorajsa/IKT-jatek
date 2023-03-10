@@ -210,15 +210,15 @@ def gamestart(): #kilepes
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
     elif choice == commands[2]:
-        try:
+        # try:
             load()
-        except:
-            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-            choice = curses.wrapper(menu, commands)
-            if choice == "Nem":
-                return
-            else:
-                newgame()
+        # except:
+        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+        #     choice = curses.wrapper(menu, commands)
+        #     if choice == "Nem":
+        #         return
+        #     else:
+        #         newgame()
     else:
         exit()
 
@@ -309,7 +309,7 @@ def fightSystem(enemy): #nem mukodik jol a hasznalhato tobb fegyvernel
                     if choice == commands[i]:
                         enemyHp = weaponChoose(fightFegyverek[i-1], enemy, enemyHp)
                         if fightFegyverek[i-1].Hasznalhato < 1:
-                            for fegyver in fegyverek:
+                            for fegyver in fightFegyverek:
                                 if fegyver.Nev == fightFegyverek[i-1].Nev:
                                     elhasznaltFegyverek.append(fegyver)
                                     elerhetoFegyverek.pop(i-1)
@@ -464,7 +464,9 @@ def weaponBuy():
                         curses.wrapper(centertext, text, 5)
                         weaponBuy()
                     else:
-                        elerhetoFegyverek.append(elhasznaltFegyverek[i-1])
+                        for fegyer in fegyverek:
+                            if elhasznaltFegyverek[i-1].Nev == fegyer.Nev:
+                                elerhetoFegyverek.append(fegyer)
                         elhasznaltFegyverek.pop(i-1)
                         text = ["Sikeres vásárlás."]
                         curses.wrapper(centertext, text, 5)
@@ -1482,7 +1484,7 @@ def gameEnd():
     text = [f"JÁTÉK VÉGE\n",f"Elért pontszám: {jatekos.Points}"]
     curses.wrapper(centertext, text, 5, ["red",""])
     #var(2)
-    text = [f"JÁTÉK VÉGE\n",f"Elért pontszám: {jatekos.Points}",f"Megszerzett fegyverek: {len(elerhetoFegyverek)}/{len(fegyverek)}"]
+    text = [f"JÁTÉK VÉGE\n",f"Elért pontszám: {jatekos.Points}",f"Megszerzett fegyverek: {len(elerhetoFegyverek)+len(elhasznaltFegyverek)}/{len(fegyverek)}"]
     curses.wrapper(centertext, text, 5, ["red","",""])
     #var(10)
     os.system("cls")
@@ -1495,7 +1497,7 @@ def deathEnd():
     text = [f"MEGHALTÁL\n",f"Elért pontszám: {jatekos.Points}"]
     curses.wrapper(centertext, text, 5, ["red",""])
     #var(2)
-    text = [f"MEGHALTÁL\n",f"Elért pontszám: {jatekos.Points}",f"Megszerzett fegyverek: {len(elerhetoFegyverek)}/{len(fegyverek)}"]
+    text = [f"MEGHALTÁL\n",f"Elért pontszám: {jatekos.Points}",f"Megszerzett fegyverek: {len(elerhetoFegyverek)+len(elhasznaltFegyverek)}/{len(fegyverek)}"]
     curses.wrapper(centertext, text, 5, ["red","",""])
     #var(10)
     os.system("cls")
@@ -1513,6 +1515,7 @@ def endMenu():
 
 def save():
     stri = ""
+    elstri = ""
     f = open("save.txt", "w", encoding = "UTF-8")
     f.write(jatekos.Nev)
     f.write("\n")
@@ -1524,8 +1527,13 @@ def save():
     f.write("\n")
     global elerhetoFegyverek
     for i in elerhetoFegyverek:
-        stri +=(str(i.Nev))+ ";"
+        hasz = str(i.Hasznalhato)
+        stri +=(str(i.Nev+"+"+hasz+"+"+str(i.Dmg)))+ ";"
     f.write(stri)
+    for i in elhasznaltFegyverek:
+        hasz = str(i.Hasznalhato)
+        elstri +=(str(i.Nev+"+"+hasz+"+"+str(i.Dmg)))+ ";"
+    f.write(elstri)
     f.write("\n")
     f.write(str(jatekos.Points))
     f.write("\n")
@@ -1536,7 +1544,7 @@ def save():
     for keys, values in roomFirst.items():
         f.write("\n")
         f.write(f"{str(keys)}:{str(values)}")
-
+    
     f.close()
 
 def load():
@@ -1548,28 +1556,49 @@ def load():
     global szobaid
     szobaid = f.readline().strip()
     global elerhetoFegyverek
-    fegyvernevek = f.readline().strip().split(";")
-    for nev in fegyvernevek:
-        for fegyver in fegyverek:
-            if fegyver.Nev == nev:
-                elerhetoFegyverek.append(fegyver)
-                break
+    fegyvernh = f.readline().strip().split(";")
+    fegyverrek = []
+    szam = 0
+    for fegyverr in fegyvernh:
+        szam += 1
+        if szam == len(fegyvernh):
+            break
+        else:
+            fegyverr = fegyverr.strip(";").split("+")
+            ujFegyver = Fegyver(f"{fegyverr[0]};{fegyverr[1]};{fegyverr[2]}")
+            if ujFegyver not in fegyverrek:
+                fegyverrek.append(ujFegyver)
+                global elerhetoFegyverek
+                elerhetoFegyverek.append(ujFegyver)
+    elfegyvernh = f.readline().strip().split(";")
+    fegyverrek = []
+    szam = 0
+    for fegyverr in elfegyvernh:
+        szam += 1
+        if szam == len(elfegyvernh):
+            break
+        else:
+            fegyverr = fegyverr.strip(";").split("+")
+            ujFegyver = Fegyver(f"{fegyverr[0]};{fegyverr[1]};{fegyverr[2]}")
+            if ujFegyver not in fegyverrek:
+                fegyverrek.append(ujFegyver)
+                global elerhetoFegyverek
+                elhasznaltFegyverek.append(ujFegyver)
     jatekos.Points = int(f.readline().strip())
     global elerhetoHealek
     elerhetoHealek = int(f.readline().strip())
     f.close()
-    szobak = [startRoom,room1, room2, room3, room4, room5, room6, room7, room8, room9, room10, room11, room12, room13, room14, room15, room16, room17, room18, room19]
+    szobak = [startRoom,room1, room2, room3, 
+              room4, room5, room6, room7, room8, room9, room10, room11, room12, room13, room14, room15, room16, room17, room18, room19,]
     szobak[int(szobaid)]()
     global quests
     for i in range(0,6):
-        i = []
-        i =  f.readline().strip().split(':')
-        quests[i[0]] = i[1]
+        quest =  f.readline().strip().split(':')
+        quests[quest[0]] = quest[1]
     global roomFirst
     for i in range(0,9):
-        i = []
-        i =  f.readline().strip().split(':')
-        roomFirst[i[0]] = i[1]
+        room =  f.readline().strip().split(':')
+        roomFirst[room[0]] = room[1]
 
     
 
