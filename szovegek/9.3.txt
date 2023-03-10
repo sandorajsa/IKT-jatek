@@ -1,0 +1,4 @@
+Visszajöttél...A gyógyszer?;cya;5
+Visszajöttél...A gyógyszer?+Odanyújtod neki.;cya+"";5
+Visszajöttél...A gyógyszer?+Odanyújtod neki.+Köszönöm...cserébe tedd el ezt.;cya+""+cya;5
+Visszajöttél...A gyógyszer?+Odanyújtod neki.+Köszönöm...cserébe tedd el ezt.+Egy fegyvert és egy kulcsot nyújt feléd.;cya+""+cya+"";5

@@ -1,0 +1,2 @@
+Köszönöm...A neved?;cya;5
+Köszönöm...A neved?+Megmondod a neved.;cya+ ;5
