@@ -46,12 +46,13 @@ body{
     padding-bottom: 0.5rem;
     font-size: 13pt;
     font-weight: bold;
+    text-align: center;
 }
 
 #introduction{
     height: 58rem;
     width: auto;
-    background-image: url(pexels-francesco-paggiaro-1209930.jpg);
+    background-image: url(htmlphotos/pexels-francesco-paggiaro-1209930.jpg);
     /* background-image:;kc */
     background-color: rgb(136, 136, 136);
     background-blend-mode: darken;
@@ -103,18 +104,17 @@ body{
     margin: 0;
 }
 
-.leiras1{
-    padding: 2vw 10vw;
+.leiras1, .leiras2{
+    padding: 5vw 10vw;
     text-align: center;
     font-size: 14pt;
+    
+}.leiras1{
     color: #505A5B;
     background-color: whitesmoke;
 }
 
 .leiras2{
-    padding: 2vw 10vw;
-    text-align: center;
-    font-size: 14pt;
     color: whitesmoke;
     background-color: #505A5B;
 }
@@ -123,27 +123,85 @@ body{
     padding-bottom: 3rem;
 }
 
+.link1, .link2{
+    font-size: 16pt;
+    font-weight: bold;
+}
+
 .link1{
     color: #505A5B;
-    font-size: 16pt;
     text-decoration: underline #505A5B;
-    font-weight: bold;
 }
 
 .link2{
     color: whitesmoke;
-    font-size: 16pt;
     text-decoration: underline whitesmoke;
-    font-weight: bold;
 }
 
 .tobbimenu{
-    background-color: #505A5B;
     width: 100%;
     height: 6rem;
     text-align: center;
 }
 
-.{
-    
+.lablec{
+    width: auto;
+    background-color: whitesmoke;
+    padding: 2vw 10vw;
+    text-align: center;
+    font-size: 14pt;
+}
+
+.lablec_icon{
+    color: black;
+    transition: .4s;
+}
+
+.lablec_icon:hover{
+    transition: .4s;
+}
+
+.icon_resz{
+    padding: 1rem 0rem;
+}
+
+#keszitok{
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 4rem 0rem 4rem 0rem;
+    height: auto;
+    width: auto;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.keszito_cim{
+    font-weight: bold;
+    padding-bottom: 4rem;
+}
+
+.keszito_alcim{
+    font-weight: bold;
+    padding-bottom: 2rem;
+}
+
+.keszito_kep{
+    width: 20rem;
+    height: 20rem;
+    border-radius: 10rem;
+    margin-bottom: 4rem;
+}
+
+.keszito_leiras{
+    font-size: 14pt;
+    padding-bottom: 4rem;
+}
+
+.keszito_eler{
+    font-size: 14pt;
+    padding-bottom: 2rem;
+}
+
+.keszito_magamrol{
+    font-size: 14pt;
+    padding: 0rem 4rem 2rem 4rem;
 }
