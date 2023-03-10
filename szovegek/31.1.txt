@@ -1,0 +1,8 @@
+Az ellenséges bázisra lépve az ajtótól+nem messze veszel észre egy banditát.;;5
+Az ellenséges bázisra lépve az ajtótól+nem messze veszel észre egy banditát.+Lassan odalopódzol mögé és fejbevered.;;5
+Az ellenséges bázisra lépve az ajtótól+nem messze veszel észre egy banditát.+Lassan odalopódzol mögé és fejbevered.+Szerencsére elájul és a földre esik.;;5
+Az ellenséges bázisra lépve az ajtótól+nem messze veszel észre egy banditát.+Lassan odalopódzol mögé és fejbevered.+Szerencsére elájul és a földre esik.+Ekkor tekinted meg az autót az épület közepén.;;5
+Az ellenséges bázisra lépve az ajtótól+nem messze veszel észre egy banditát.+Lassan odalopódzol mögé és fejbevered.+Szerencsére elájul és a földre esik.+Ekkor tekinted meg az autót az épület közepén.+Lassan elindulsz felé, mikor két újabb bandiat lép be.;;5
+Az ellenséges bázisra lépve az ajtótól+nem messze veszel észre egy banditát.+Lassan odalopódzol mögé és fejbevered.+Szerencsére elájul és a földre esik.+Ekkor tekinted meg az autót az épület közepén.+Lassan elindulsz felé, mikor két újabb bandiat lép be.+Igyekszel minél hamarabb elbújni, de észrevesznek és fegyverükért nyúlnak.;;5
+Ijedtedben előrántod a fegyvert és rájuk lősz.;;5
+Ijedtedben előrántod a fegyvert és rájuk lősz.+Egyikőjükön halálos lövést ejtesz, ám a másik megtámad.;;5

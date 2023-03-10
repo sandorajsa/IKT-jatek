@@ -1,9 +1,0 @@
-Egy létrán felmásztok egy csatornafedélhez, amely egy kisebb utcára vezet.;;5
-Gyere, már nem járunk messze...;cya;5
-Éppen indulnátok tovább, mikor érdekes hangra leszel figyelmes.;;5
-Éppen indulnátok tovább, mikor érdekes hangra leszel figyelmes.+Ahogy közeledik, egyre világosabb,,hogy egy autót hallassz.;;5
-Gergő hirtelen leránt a földre, és kezével jelzi, hogy maradj csendben.;;5
-Gergő hirtelen leránt a földre, és kezével jelzi, hogy maradj csendben.+Csodálkozva nézed a járművet, nem gondoltad,+hogy vannak még olyanok, amik működnek.;;5
-Szerencsére nem vettek észre...;cya;5
-Szerencsére nem vettek észre...+Csodálkozol mi?+Mi is így néztünk mikor először láttuk.;cya;5
-Szerencsére nem vettek észre...+Csodálkozol mi?+Mi is így néztünk mikor először láttuk.+Tudtunkkal ők az egyetlenek, akiknek még+van működő autójuk.;cya;5

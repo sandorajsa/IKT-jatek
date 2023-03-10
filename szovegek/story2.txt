@@ -7,3 +7,7 @@ Fanninak igaza van...+De egyelőre ne zaklassuk ilyenekkel...+Kezdésnek eljöhe
 Még mindig szörnyen érzed magad de egyet értesz...;;5    
 Még mindig szörnyen érzed magad de egyet értesz...+Egy kis friss levegő nem ártana.;;5
 Még mindig szörnyen érzed magad de egyet értesz...+Egy kis friss levegő nem ártana.+Elindulsz Gergővel élelmiszerért.;;5
+Gergővel a szobából egy ajtón keresztül a város alatt húzódó+csatorna rendszerbe léptek.;;5
+Nem is sejtetted hogy a város alatt vagy mi?;cya;5
+Valóban meglepődtél hogy nem a felszínen vagy;;5
+Valóban meglepődtél hogy nem a felszínen vagy+ám annál inkább lepett meg a veletek szemben hirtelen megjelenő zombi.;;5

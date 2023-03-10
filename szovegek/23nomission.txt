@@ -1,0 +1,20 @@
+Elhatározod, hogy ellopod a kulcsot.;;5
+A szobádban vársz, míg kívül teljes csend lesz.;;5
+A szobádban vársz, míg kívül teljes csend lesz.+Mikor úgy gondolod, hogy mindenki elaludt+kilépsz a folyosóra.;;5
+A szobádban vársz, míg kívül teljes csend lesz.+Mikor úgy gondolod, hogy mindenki elaludt+kilépsz a folyosóra.+Szemben a szobáddal van egy fadoboz a falon.;;5
+A szobádban vársz, míg kívül teljes csend lesz.+Mikor úgy gondolod, hogy mindenki elaludt+kilépsz a folyosóra.+Szemben a szobáddal van egy fadoboz a falon.+Csendben odasétálsz hozzá.;;5
+A szobádban vársz, míg kívül teljes csend lesz.+Mikor úgy gondolod, hogy mindenki elaludt+kilépsz a folyosóra.+Szemben a szobáddal van egy fadoboz a falon.+Csendben odasétálsz hozzá.+Szerencsére minden kulcs fölé van írva, mit nyit.;;5
+Hamar megtalálod a KELETI KAPU feliratút, és nyúlsz már érte...;;5
+Hamar megtalálod a KELETI KAPU feliratút, és nyúlsz már érte...+mikor melletted megjelenik a tábor egyik lakója+kezében fegyverrel.;red;5
+Tedd azt le...;blu;5
+Tedd azt le...+Most azonnal...;blu;5
+Megpróbálod megmagyarázni, hogy te csak ki akarsz jutni.;;5
+Megpróbálod megmagyarázni, hogy te csak ki akarsz jutni...+De mondanivalód néma fülekre talál...;;5
+Megpróbálod megmagyarázni, hogy te csak ki akarsz jutni...+De mondanivalód néma fülekre talál...+A férfi neked ront.;red;5
+Te sem tudod pontosan miért vetted elő...;;5
+Te sem tudod pontosan miért vetted elő...+de a kezedben tartottad a késed.;;5
+Te sem tudod pontosan miért vetted elő...+de a kezedben tartottad a késed.+Azzal nyugtatod magad, hogy önvédelem volt.;;5
+Te sem tudod pontosan miért vetted elő...+de a kezedben tartottad a késed.+Azzal nyugtatod magad, hogy önvédelem volt.+Ám ekkor egy ismerős hangot hallasz magad mögül.;;5
+Mit tettél?;cya;5
+Mit tettél?+MIT CSINÁLTÁL?;cya;5
+Gergő rádlő...;;5

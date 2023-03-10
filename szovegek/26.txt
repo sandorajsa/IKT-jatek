@@ -1,0 +1,5 @@
+Megölted...;red;5
+Megölted...+Nem akarod beismerni, de tudod...;;5
+Megölted...+Nem akarod beismerni, de tudod...+hogy ez az egész elkerülhető lett volna.;;5
+Megölted...+Nem akarod beismerni, de tudod...+hogy ez az egész elkerülhető lett volna.+Most viszont menekülnöd kell...;;5
+Megölted...+Nem akarod beismerni, de tudod...+hogy ez az egész elkerülhető lett volna.+Most viszont menekülnöd kell...+Úgy gondolod, a bolt felé visszajuthatsz.;;5

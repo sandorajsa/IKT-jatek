@@ -1,9 +1,0 @@
-Mikor felkelsz, egy matracon találod magad.;;5
-Mikor felkelsz, egy matracon találod magad.+Az első pillanatokban nehezedre esik a látás, de hamarossan több emberfigurát is felismersz.;;5
-Szerencsére felkeltél, már kezdtem aggódni...;mag;5
-Szerencsére felkeltél, már kezdtem aggódni...+Bocs, ha korábban túl erőszakos voltam...;mag;5
-Szerencsére felkeltél, már kezdtem aggódni...+Bocs, ha korábban túl erőszakos voltam...+Mindegy, hagyjuk, inkább szólok valakinek...;mag;5
-Nemsokkal később egy férfi térdel melléd.;;5
-Szia, Gergő vagyok. Bocsi Fanni miatt, kicsit erőszakos tud lenni néha...;cya;5
-Szia, Gergő vagyok. Bocsi Fanni miatt, kicsit erőszakos tud lenni néha...+Esetleg megtudhatom a neved?;cya;5
-Elég nehézkesen, de megmondod neki a neved.;;5
