@@ -1,0 +1,6 @@
+Az ehhez hasonló olvasnivalókat a 'SPACE' gomb megnyomásával tudod átlépni, de idővel automatikusan is átlép;;999
+Nyomd meg az 'SPACE'-t a továbblépéshez és a tutorial elindításához;;999
+Egy szobában találtad magad egy robottal szemben;;9
+A hátizsákodban kutatva egy fegyvert találsz";;9
+A robot ellened fordul;red;9
+Az ilyen helyzetekben Outbackben egy menü fogad+itt tudsz életerőt regenerálni, fegyvert választani az enter lenyomásával;gre;9

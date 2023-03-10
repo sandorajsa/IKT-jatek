@@ -1,9 +1,9 @@
-adsadas
+hzg
 4
 19
-Feszítővas;Kés;Íj;9mm pisztoly;Feszítővas;Kés;Íj;9mm pisztoly;Sörétes puska;
-6500
-0
+Kés;9mm pisztoly;Íj;Sörétes puska;Kutya;
+2500
+9
 gyogyszer:True
 segitseg:True
 gyerekek:True
