@@ -1,0 +1,5 @@
+Ott állva veszed észre, hogy a kapu zárva,;mag;5
+Ott állva veszed észre, hogy a kapu zárva,+az idős férfitől kapott kulcs pedig nem nyitja...;mag+mag;5
+Ott állva veszed észre, hogy a kapu zárva,+az idős férfitől kapott kulcs pedig nem nyitja...+Ekkor jut eszedbe a létra...;mag+mag+cya;5
+Ott állva veszed észre, hogy a kapu zárva,+az idős férfitől kapott kulcs pedig nem nyitja...+Ekkor jut eszedbe a létra...+A sikátorban talált létrával sikerül átmásznod a kapun,;mag+mag+cya+gre;5
+Ott állva veszed észre, hogy a kapu zárva,+az idős férfitől kapott kulcs pedig nem nyitja...+Ekkor jut eszedbe a létra...+A sikátorban talált létrával sikerül átmásznod a kapun,+melynek a másik oldalán kimerülve érsz földet.;mag+mag+cya+gre+yel;5

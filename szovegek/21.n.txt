@@ -1,0 +1,5 @@
+Ott állva jössz rá, hogy a kiút zárva,;"";5
+Ott állva jössz rá, hogy a kiút zárva,+neked pedig nincs kulcsod.;"";5
+Ott állva jössz rá, hogy a kiút zárva,+neked pedig nincs kulcsod.+Megpróbálsz átmászni, de a kapu túl magas...;"";5
+Ott állva jössz rá, hogy a kiút zárva,+neked pedig nincs kulcsod.+Megpróbálsz átmászni, de a kapu túl magas...+Kimerülten esel a földre...;"";5
+Ott állva jössz rá, hogy a kiút zárva,+neked pedig nincs kulcsod.+Megpróbálsz átmászni, de a kapu túl magas...+Kimerülten esel a földre...+Feladod...;""+""+""+""+red;5

@@ -26,7 +26,15 @@ body{
     height: 4rem;
     width: 100%;
 }
-
+.x :hover{
+    text-decoration: none;
+    
+} 
+.szel{
+    width: 60vw;
+    height: 100vh;
+    text-align: center;
+}
 .linkek{
     transition: .6s;
 }

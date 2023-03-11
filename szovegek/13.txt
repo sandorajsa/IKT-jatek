@@ -1,0 +1,7 @@
+Az épületbe lépve sokkos állapotodban elkezdesz kopogni a legközelebbi ajtón.;"";5
+Az épületbe lépve sokkos állapotodban elkezdesz kopogni a legközelebbi ajtón.+Egy idős férfi nyit ajtót...+fegyvert fogva rád.;"";5
+'Mekkora szerencse, hogy pont megjelentél...';gre;5
+'Mekkora szerencse, hogy pont megjelentél...'+'Lenne egy kérésem hozzád, bár nem éppen vagy abban a helyzetben, hogy visszautasítsd.';gre;5
+'Mekkora szerencse, hogy pont megjelentél...'+'Lenne egy kérésem hozzád, bár nem éppen vagy abban a helyzetben, hogy visszautasítsd.'+'Hozd le nekem a két unokámat a 2. emeletről.';gre;5
+'Mekkora szerencse, hogy pont megjelentél...'+'Lenne egy kérésem hozzád, bár nem éppen vagy abban a helyzetben, hogy visszautasítsd.'+'Hozd le nekem a két unokámat a 2. emeletről.'+'Az emeleten van egy férfi, de valahogy úgyis megoldod...';gre;5
+'Mekkora szerencse, hogy pont megjelentél...'+'Lenne egy kérésem hozzád, bár nem éppen vagy abban a helyzetben, hogy visszautasítsd.'+'Hozd le nekem a két unokámat a 2. emeletről.'+'Az emeleten van egy férfi, de valahogy úgyis megoldod...'+Nincsen más lehetőséged, így elindulsz az épület folyosójára.;gre+gre+gre+gre+"";5

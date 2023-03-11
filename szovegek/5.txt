@@ -1,0 +1,3 @@
+Amint belépsz a boltba, egy hullával találod szemben magad.;"";5
+Épphogy magadhoz térsz, egy sötét alakot veszel észre a sarokban.;red;5
+Másodpercekkel később már a földön vagy, rajtad pedig egy megvadult ember szerű lény.;cya;5

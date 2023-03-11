@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="htmlphotos/outbackicon.ico">
  </head>
- <body>
+ <body class="bg-dark">
     <div id="menu">
         <div class="row my-auto">
           <nav class="navbar navbar-expand-lg navbar-dark menu">
@@ -26,9 +26,6 @@
                 <ul class="navbar-nav mx-auto">
                   <li class="nav-item menuitem">
                     <a class="nav-link linkek" aria-current="page" href="index.html">Főoldal</a>
-                  </li>
-                  <li class="nav-item menuitem">
-                    <a class="nav-link linkek" href="jatek.html">Játék</a>
                   </li>
                   <li class="nav-item menuitem">
                     <a class="nav-link linkek" href="keszitok.html">Készítők</a>
@@ -45,32 +42,45 @@
           </nav>    
         </div>
     </div>
-    <table class="table table-dark">
-        <thead>
-          <tr>
-            <th scope="col">Tervben</th>
-            <th scope="col">Folyamatban</th>
-            <th scope="col">Elkészült</th>
-          </tr>
-
-        </thead>
-        <tbody>
+    <div class="mx-auto szel">
+      <h1 class="text-center text-light">Ütemterv</h1>
+      <p class="text-center text-light">Fiatal indie játékfejlesztőkként fontosnak tartjuk, hogy rajongóink tisztában legyenek terveinkkel<br> és, hogy a játék fejlesztésének folyamatába a lehető legtöbb behatásuk legyen</p>
+      <p  class="text-center text-light x">Ha ötleted van, el tudsz érni bennünket a <a href="keszitok.html">készítőkben</a> feltüntetett email címen és telefon számon</p>
+      <table class="table table-dark" width="70vw">
+          <thead>
             <tr>
-              <td>Térképek elkészítése</td>
-              <td>Blackjack</td>
-              <td>A történet végig játszható</td>
+              <th scope="col">Tervben</th>
+              <th scope="col">Folyamatban</th>
+              <th scope="col">Elkészült 🗸</th>
             </tr>
-            <tr>
-              <td>A nehézségi szint több <br>dolgot befolyásol</td>
-              <td>Bug fixek</td>
-              <td>A harc rendszer működik</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td>A játék letölthető</td>
+          </thead>
+          <tbody>
+              <tr>
+                <td>Térképek elkészítése</td>
+                <td>Blackjack</td>
+                <td>A történet végig játszható</td>
               </tr>
-          </tbody>
-    </table>
+              <tr>
+                <td>A nehézségi szint több <br>dolgot befolyásol</td>
+                <td>Bug fixek</td>
+                <td>A harc rendszer működik</td>
+              </tr>
+              <tr>
+                  <td>Fordítás különböző nyelvekre</td>
+                  <td>Mentések védelme kódolással </td>
+                  <td>A játék letölthető</td>
+                </tr>
+                <tr>
+                  <td>Minijátékok</td>
+                  <td></td>
+                  <td>Stem oldal</td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td>Mentés rendszer újraírása</td>
+            </tbody>
+      </table>
+    </div>
  </body>
  </html>

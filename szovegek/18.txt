@@ -1,0 +1,3 @@
+Felérve a harmadik emeletre mozgásra leszel figyelmes...;"";5
+Felérve a harmadik emeletre mozgásra leszel figyelmes...","Ekkor veszed észre a sarokban ülő, fertőzött lakót.;"";5s
+Felérve a harmadik emeletre mozgásra leszel figyelmes...","Ekkor veszed észre a sarokban ülő, fertőzött lakót.","Amint észrevesz téged rádtámad.;"";5

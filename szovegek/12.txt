@@ -1,0 +1,3 @@
+Éppen elindulsz az ajtó felé, mikor mögötted megjelenik egy horda zombi.;"";5
+Éppen elindulsz az ajtó felé, mikor mögötted megjelenik egy horda zombi.+Elkezdesz rohanni.;"";5
+Éppen elindulsz az ajtó felé, mikor mögötted megjelenik egy horda zombi.+Elkezdesz rohanni.+Épphogy belépsz az ajtón, a zombik nagy lendülettel rohannak neki,+ezzel a visszautat elzárva.;"";5
