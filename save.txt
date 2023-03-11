@@ -1,9 +1,9 @@
-zvbhj
-60
-3
-Rozsdás feszítővas+3+10;Rozsdás feszítővas+3+10;Rozsdás feszítővas+3+10;Rozsdás feszítővas+5+10;
+trcfgvhbkjnlk
+65
+12
 
-500
+
+0
 0
 gyogyszer:False
 segitseg:True
@@ -14,22 +14,6 @@ letra:False
 kapuKulcs:False
 segitseg2:True
 mission:False
-auto:False
-deadGergo:False
-1:True
-4:False
-9:True
-10:True
-13:True
-15:True
-16:True
-18:True
-20:True
-23:True
-24:True
-26:True
-27:True
-30:True
 auto:False
 deadGergo:False
 1:True
@@ -44,3 +28,5 @@ deadGergo:False
 23:True
 24:True
 26:True
+27:True
+30:True
