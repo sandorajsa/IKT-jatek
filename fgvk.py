@@ -4,6 +4,7 @@ import curses
 import os
 import time
 import random
+import webbrowser
 from osztalyok import *
 #Basics
 class bcolors:
@@ -203,7 +204,7 @@ def gamestart(): #kilepes
     oppOlvas()
     fegyverOlvas()
     os.system("cls")
-    commands = ["Outback","Új játék", "Folytatás", "Kilépés"]
+    commands = ["Outback","Új játék", "Folytatás", "Tekintsd meg a weboldalunkat","Kilépés"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         global roomFirst
@@ -221,6 +222,8 @@ def gamestart(): #kilepes
                 return
             else:
                 newgame()
+    elif choice == commands[3]:
+        os.system("start html/index.html")
     else:
         exit()
 
