@@ -1291,7 +1291,6 @@ def save():
     for keys, values in roomFirst.items():
         f.write("\n")
         f.write(f"{str(keys)}:{str(values)}")
-    
     f.close()
 
 def load():
