@@ -14,4 +14,4 @@ Fontosnak tartjuk projektünk folyamatos fejlesztését, több tervünk is van a
 - Fordítás különöbző nyelvekre
 - Hibák folyamatos javítása
 - Minijátékok
-- Térképek készítése a különböző városrészekhez****
+- Térképek készítése a különböző városrészekhez
