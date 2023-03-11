@@ -6,7 +6,7 @@ A játék futtatásához szükség van *Pip* -re, illetve a *keyboard* és a *cu
 
 https://pip.pypa.io/en/stable/installation/
 
-A játék első futtatásához használja az update.bat fáljt, amely telepíti a futáshoz szükséges Python könyvtárakat. A későbbi futtatásokhoz használhatja az OUTBACK.bat fájlt, azonban ha fríssíteni szeretné a futáshoz szükséges Python könyvtárakat, futtassa az update.bat -ot.
+A játék első futtatásához használja az update.bat fáljt, amely telepíti a futáshoz szükséges Python könyvtárakat. A későbbi futtatásokhoz használhatja az OUTBACK.ink parancsikont, azonban ha fríssíteni szeretné a futáshoz szükséges Python könyvtárakat, futtassa az update.bat -ot.
 ## Tervek
 Fontosnak tartjuk projektünk folyamatos fejlesztését, több tervünk is van a jövőre nézve. Az aktuális terveket és folyamatban lévő változtatásokat itt olvashatják:
 
