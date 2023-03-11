@@ -1,0 +1,4 @@
+A dobozok között nézelődve egyszercsak szuszogásra leszel figyelmes.;"";5
+A dobozok között nézelődve egyszercsak szuszogásra leszel figyelmes.+Közelebb lépve egy juhászkutyát találsz összekuporodva az egyik dobozban.;"";5
+Gratulálok, ezzennel a kutya a társad.;"";5
+Gratulálok, ezzennel a kutya a társad.+Harcokban tudod őt használni, melyekben fegyverként működik.;"";5

@@ -1,0 +1,5 @@
+Ott állva veszed észre, hogy a kapu zárva.;"";5
+Ott állva veszed észre, hogy a kapu zárva.+Kipróbálod az idős férfitől kapott kulcsot ám az nem nyitja...;"";5
+Ott állva veszed észre, hogy a kapu zárva.+Kipróbálod az idős férfitől kapott kulcsot ám az nem nyitja...+Ekkor jut eszedbe az apukától kapott kulcs.;"";5
+Ott állva veszed észre, hogy a kapu zárva.+Kipróbálod az idős férfitől kapott kulcsot ám az nem nyitja...+Ekkor jut eszedbe az apukától kapott kulcs.+Belehelyezed a kulcslyukba és szerencsére kinyitja.;""+""+""+gre;5
+Ott állva veszed észre, hogy a kapu zárva.+Kipróbálod az idős férfitől kapott kulcsot ám az nem nyitja...+Ekkor jut eszedbe az apukától kapott kulcs.+Belehelyezed a kulcslyukba és szerencsére kinyitja.+Átlépsz a kapun és kimerülten esel a földre.;""+""+""+gre+yel;5
