@@ -214,15 +214,15 @@ def gamestart(): #kilepes
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
     elif choice == commands[2]:
-        try:
+        # try:
             load()
-        except:
-            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-            choice = curses.wrapper(menu, commands)
-            if choice == "Nem":
-                return
-            else:
-                newgame()
+        # except:
+        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+        #     choice = curses.wrapper(menu, commands)
+        #     if choice == "Nem":
+        #         return
+        #     else:
+        #         newgame()
     elif choice == commands[3]:
         os.system("start html/index.html")
     else:
@@ -844,6 +844,7 @@ def room16():
         fightSystem(opponents[3])
         kiir("16.1")
         os.system("cls")
+        roomFirst[szobaid] = False
         room17()
     else:
         commands = ["Visszatérsz a második emeleti folyosóra.", "Felmegyek", "Lemegyek"]
@@ -865,12 +866,9 @@ def room17():
 def room18():
     global szobaid
     szobaid = 18
-    save()
     if roomFirst[szobaid]:
-        roomFirst[szobaid] = False
         kiir("18")
-        curses.wrapper(centertext, text, 5)
-        os.system("cls")
+        roomFirst[szobaid] = False
         fightSystem(opponents[2])
         text = ["Szerencsére sikerült megölnöd..."]
         curses.wrapper(centertext, text, 5)
@@ -1291,12 +1289,18 @@ def save(): #jatekos.buyPoints elmenteni
     f.write(str(jatekos.Points))
     f.write("\n")
     f.write(str(elerhetoHealek))
-    for keys, values in quests.items():
+    for key, value in quests.items():
         f.write("\n")
-        f.write(f"{str(keys)}:{str(values)}")
-    for keys, values in roomFirst.items():
+        if key == True:
+            f.write(f"{str(key)}:{str(value)}")
+        else:
+            f.write(f"{str(key)}:")
+    for key, value in roomFirst.items():
         f.write("\n")
-        f.write(f"{str(keys)}:{str(values)}")
+        if key == True:
+            f.write(f"{str(key)}:{str(value)}")
+        else:
+            f.write(f"{str(key)}:")
     f.close()
 
 def load(): #betöltésnél kétszer vannak bent a fegyverek
@@ -1334,11 +1338,13 @@ def load(): #betöltésnél kétszer vannak bent a fegyverek
     elerhetoHealek = int(f.readline().strip())
     for i in range(0,9):
         quest =  f.readline().strip().split(':')
-        quests[quest[0]] = quest[1]
-    global roomFirst
+        quests[quest[0]] = bool(quest[1])
     for i in range(0,14):
         room =  f.readline().strip().split(':')
-        roomFirst[room[0]] = room[1]
+        try:
+            roomFirst[int(room[0])] = bool(room[1])
+        except:
+            roomFirst[room[0]] = bool(room[1])
     f.close()
     szobak = [startRoom,room1, room2, room3, 
               room4, room5, room6, room7, room8, 
