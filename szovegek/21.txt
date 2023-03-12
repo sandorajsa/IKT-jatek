@@ -1,6 +1,6 @@
 Ahogy közeledsz a kapuhoz, egyre inkább érzed,;"";5
 Ahogy közeledsz a kapuhoz, egyre inkább érzed,+hogy amiért eddig harcoltál végre itt van előtted.;"";5
-Ahogy közeledsz a kapuhoz, egyre inkább érzed,+hogy amiért eddig harcoltál végre itt van előtted.+Ez a kapu jelenti a kijutásodat.;""5
+Ahogy közeledsz a kapuhoz, egyre inkább érzed,+hogy amiért eddig harcoltál végre itt van előtted.+Ez a kapu jelenti a kijutásodat.;"";5
 A kapu előtt állsz, készen arra, hogy elhagyd ezt a helyet...;"";5
 A kapu előtt állsz, készen arra, hogy elhagyd ezt a helyet...+...ám ekkor érdekes hangot hallassz magad mögül.;""+mag;5
 A kapu előtt állsz, készen arra, hogy elhagyd ezt a helyet...+...ám ekkor érdekes hangot hallassz magad mögül.+Hátrafordulva egy óriási mutáns zombit veszel észre.;""+red+red;5

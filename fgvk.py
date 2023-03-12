@@ -812,7 +812,7 @@ def room15():
     global szobaid, elerhetoHealek
     szobaid = 15
     save()
-    commands = ["Az első emeleti folyósóra érkezel.", "Körülnézek", "Felmegyek", "Lemegyek"]
+    commands = ["Az   emeleti folyósóra érkezel.", "Körülnézek", "Felmegyek", "Lemegyek"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         if roomFirst[szobaid]:
@@ -1270,6 +1270,8 @@ def save(): #jatekos.buyPoints elmenteni
     global jhp
     f.write(str(jatekos.Hp))
     f.write("\n")
+    f.write(str(jatekos.Dmg))
+    f.write("\n")
     global szobaid
     f.write(str(szobaid))
     f.write("\n")
@@ -1309,6 +1311,7 @@ def load(): #betöltésnél kétszer vannak bent a fegyverek
     jatekos = karakter
     jatekos.Nev = f.readline().strip()
     jatekos.Hp = int(f.readline().strip())
+    jatekos.Dmg = int(f.readline().strip())
     global szobaid
     szobaid = f.readline().strip()
     fegyvernh = f.readline().strip().split(";")

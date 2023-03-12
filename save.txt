@@ -1,9 +1,10 @@
-asd
-36
-25
-Kés+9999999998+12;Gépfegyver+3+30;Kés+9999999998+12;Vadászpuska+1+20;Kutya+9999999997+19;Gépfegyver+2+30;Kés+9999999998+12;Vadászpuska+1+20;Kutya+9999999997+19;Gépfegyver+3+30;Kés+9999999998+12;Vadászpuska+1+20;Kutya+9999999997+19;Gépfegyver+3+30;Vadászpuska+0+20;Kutya+9999999997+19;
-4000
-2
+trcfgvhbkjnlk
+8
+20
+20
+Vadászpuska+6+20;Kutya+9999999998+19;Vadászpuska+8+20;Kutya+9999999998+19;Sörétes puska+0+45;Kutya+9999999999+19;Sörétes puska+0+45;
+6000
+1
 gyogyszer:
 segitseg:
 gyerekek:
@@ -24,7 +25,6 @@ deadGergo:
 15:
 16:
 18:
-19:
 20:
 23:
 24:
