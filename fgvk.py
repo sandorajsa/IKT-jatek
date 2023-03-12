@@ -214,15 +214,15 @@ def gamestart(): #kilepes
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
     elif choice == commands[2]:
-        # try:
+        try:
             load()
-        # except:
-        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-        #     choice = curses.wrapper(menu, commands)
-        #     if choice == "Nem":
-        #         return
-        #     else:
-        #         newgame()
+        except:
+            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+            choice = curses.wrapper(menu, commands)
+            if choice == "Nem":
+                return
+            else:
+                newgame()
     elif choice == commands[3]:
         os.system("start html/index.html")
     else:
@@ -250,6 +250,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     elerhetoFegyverek = []
     text = ["Sok sikert a játékban!"]
     szin = ["mag"]
+    jatekos.Hp = jatekos.MaxHp
     curses.wrapper(centertext, text, 9, szin)
     os.system("cls")
 
@@ -1304,6 +1305,7 @@ def save(): #jatekos.buyPoints elmenteni
         else:
             f.write(f"{str(key)}:")
     f.write(str(jatekos.buyPoints))
+    f.write(str(jatekos.maxHp))
     f.close()
 
 def load(): #betöltésnél kétszer vannak bent a fegyverek
@@ -1350,6 +1352,7 @@ def load(): #betöltésnél kétszer vannak bent a fegyverek
         except:
             roomFirst[room[0]] = bool(room[1])
     jatekos.buyPoints = f.readline().strip()
+    jatekos.maxHp = f.readline().strip()
     f.close()
     szobak = [startRoom,room1, room2, room3, 
               room4, room5, room6, room7, room8, 
