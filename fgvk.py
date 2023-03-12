@@ -355,6 +355,7 @@ def weaponChoose(fegyver, enemy, enemyHp):
         text = [f"Sajnos a {fegyver.Nev} ebben a harcban már nem használható."]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
+        handFight(enemyHp, enemy)
     return enemyHp
 
 def handFight(enemyHp, enemy):
@@ -449,6 +450,7 @@ def weaponBuy():
                         curses.wrapper(centertext, text, 5)
                         weaponBuy()
                     else:
+                        jatekos.buyPoints -= 1000
                         for fegyer in fegyverek:
                             if elhasznaltFegyverek[i-1].Nev == fegyer.Nev:
                                 elerhetoFegyverek.append(fegyer)
@@ -741,13 +743,13 @@ def room12():
         curses.wrapper(centertext, text, 5)
         os.system("cls")
         kiir("12.1")
-        jatekos.Hp -= 10
-        text = ["Éppen indulnál tovább, mikor egy zombihorda rohan feléd teljes sebességel.","Elkezdesz rohanni, de mielőtt a házhoz érnél elkapják a lábad.",f"10 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp} HP"]
+        jatekos.Hp -= 5
+        text = ["Éppen indulnál tovább, mikor egy zombihorda rohan feléd teljes sebességel.","Elkezdesz rohanni, de mielőtt a házhoz érnél elkapják a lábad.",f"5 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp} HP"]
         curses.wrapper(centertext, text, 5)
         if jatekos.Hp <= 0:
             deathEnd()
         else:
-            text = ["Éppen indulnál tovább, mikor egy zombihorda rohan feléd teljes sebességel.","Elkezdesz rohanni, de mielőtt a házhoz érnél elkapják a lábad.",f"10 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp} HP","Szerencsére sikerül elérned az ajtóig, ám azt az annak rohanó zombik torlaszolják el,","ezzel eltorlaszolva a visszautat."]
+            text = ["Éppen indulnál tovább, mikor egy zombihorda rohan feléd teljes sebességel.","Elkezdesz rohanni, de mielőtt a házhoz érnél elkapják a lábad.",f"5 sebzést szenvedtél. Jelenlegi életerőd: {jatekos.Hp} HP","Szerencsére sikerül elérned az ajtóig, ám azt az annak rohanó zombik torlaszolják el,","ezzel eltorlaszolva a visszautat."]
             curses.wrapper(centertext, text, 8)
             os.system("cls")
             room13()
@@ -1306,7 +1308,7 @@ def save(): #jatekos.buyPoints elmenteni
     f.write(jatekos.buyPoints)
     f.close()
 
-def load(): #betöltésnél kétszer vannak bent a fegyverek
+def load():
     f = open("save.txt", "r", encoding = "UTF-8")
     global jatekos
     jatekos = karakter

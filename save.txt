@@ -1,10 +1,11 @@
-trcfgvhbkjnlk
-8
+Ajsa
+36
+5
 20
-20
-Vadászpuska+6+20;Kutya+9999999998+19;Vadászpuska+8+20;Kutya+9999999998+19;Sörétes puska+0+45;Kutya+9999999999+19;Sörétes puska+0+45;
-6000
-1
+Rozsdás feszítővas+3+10;Kés+9999999995+12;Íj+10+13;9mm pisztoly+10+15;Sörétes puska+4+45;Kutya+9999999997+19;Vadászpuska+0+20;
+
+10500
+4
 gyogyszer:
 segitseg:
 gyerekek:
@@ -25,6 +26,7 @@ deadGergo:
 15:
 16:
 18:
+19:
 20:
 23:
 24:
