@@ -1,11 +1,11 @@
-Ajsa
-36
+asd
+70
 5
-20
-Rozsdás feszítővas+3+10;Kés+9999999995+12;Íj+10+13;9mm pisztoly+10+15;Sörétes puska+4+45;Kutya+9999999997+19;Vadászpuska+0+20;
+startRoom
 
-10500
-4
+
+0
+0
 gyogyszer:
 segitseg:
 gyerekek:
@@ -32,6 +32,4 @@ deadGergo:
 24:
 26:
 27:
-30:
-auto:
-deadGergo:
+30:0

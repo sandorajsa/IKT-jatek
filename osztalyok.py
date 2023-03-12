@@ -4,6 +4,7 @@
 class karakter:
     def __init__(self, gamerNev, megadottHp, megadottDmg, megadottRng):
         self.Nev = gamerNev
+        self.maxHp = megadottHp
         self.Hp = megadottHp
         self.Dmg = megadottDmg
         self.Rng = megadottRng
