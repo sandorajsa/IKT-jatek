@@ -1,10 +1,11 @@
-trcfgvhbkjnlk
-8
-20
-20
-Vadászpuska+6+20;Kutya+9999999998+19;Vadászpuska+8+20;Kutya+9999999998+19;Sörétes puska+0+45;Kutya+9999999999+19;Sörétes puska+0+45;
-6000
-1
+asd
+70
+5
+startRoom
+
+
+0
+0
 gyogyszer:
 segitseg:
 gyerekek:
@@ -25,11 +26,10 @@ deadGergo:
 15:
 16:
 18:
+19:
 20:
 23:
 24:
 26:
 27:
-30:
-auto:
-deadGergo:
+30:0

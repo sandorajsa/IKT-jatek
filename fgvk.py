@@ -1303,7 +1303,7 @@ def save(): #jatekos.buyPoints elmenteni
             f.write(f"{str(key)}:{str(value)}")
         else:
             f.write(f"{str(key)}:")
-    f.write(jatekos.buyPoints)
+    f.write(str(jatekos.buyPoints))
     f.close()
 
 def load(): #betöltésnél kétszer vannak bent a fegyverek
