@@ -1,83 +1,35 @@
-<<<<<<< HEAD
 asd
-15
-15
-Rozsdás feszítővas+4+10;Kés+9999999994+12;Íj+10+13;Rozsdás feszítővas+5+10;Kés+9999999994+12;Íj+10+13;
-
-1000
-4
-gyogyszer:False
-=======
-trcfgvhbkjnlk
-58
-18
-Vadászpuska+8+20;
-
-3000
-0
+36
+25
+Kés+9999999998+12;Gépfegyver+3+30;Kés+9999999998+12;Vadászpuska+1+20;Kutya+9999999997+19;Gépfegyver+2+30;Kés+9999999998+12;Vadászpuska+1+20;Kutya+9999999997+19;Gépfegyver+3+30;Kés+9999999998+12;Vadászpuska+1+20;Kutya+9999999997+19;Gépfegyver+3+30;Vadászpuska+0+20;Kutya+9999999997+19;
+4000
+2
 gyogyszer:
->>>>>>> 74ec993d41a87a178a7fe548e360962b73ae75ee
-segitseg:True
-gyerekek:True
+segitseg:
+gyerekek:
 epuletKulcs:
 varosKulcs:
 letra:
 kapuKulcs:
-segitseg2:True
-<<<<<<< HEAD
-mission:False
-auto:False
-deadGergo:False
-1:False
-3:False
-=======
+segitseg2:
 mission:
 auto:
 deadGergo:
 1:True
-3:True
->>>>>>> 74ec993d41a87a178a7fe548e360962b73ae75ee
-4:True
-9:True
-10:False
-13:False
-15:True
-16:True
-<<<<<<< HEAD
-18:True
-19:True
-=======
+3:
+4:
+9:
+10:
+13:
+15:
+16:
 18:
->>>>>>> 74ec993d41a87a178a7fe548e360962b73ae75ee
-20:True
-23:True
-24:True
-26:True
-27:True
-30:True
-<<<<<<< HEAD
-auto:False
-deadGergo:False
-1:False
-3:False
-=======
+19:
+20:
+23:
+24:
+26:
+27:
+30:
 auto:
 deadGergo:
-1:True
-3:True
->>>>>>> 74ec993d41a87a178a7fe548e360962b73ae75ee
-4:True
-9:True
-10:False
-13:False
-15:True
-16:True
-18:True
-19:True
-20:True
-<<<<<<< HEAD
-23:True
-=======
-23:True
-24:True
->>>>>>> 74ec993d41a87a178a7fe548e360962b73ae75ee
