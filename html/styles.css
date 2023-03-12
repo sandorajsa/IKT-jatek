@@ -43,10 +43,23 @@ body{
     }
 }
 .gimg{
-    width: 18vw;
+    width: 22vw;
+    object-fit: cover;
+    object-position: center;
+    margin-left: 1vw;
+}
+.mimg{
+    width: 29vw;
     object-fit: cover;
     object-position: center;
     margin-left: 2vw;
+}
+.simg{
+    width: 80vw;
+}
+.xsc{
+    margin: 10vw;
+    margin-bottom: 5vh;
 }
 .cim{
     font-weight: bold;
