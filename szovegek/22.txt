@@ -1,4 +1,4 @@
 A szűk kis utcáról hirtelen egy főúton találod magad.;"";5
 A szűk kis utcáról hirtelen egy főúton találod magad.+A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.;"";5
-A szűk kis utcáról hirtelen egy főúton találod magad.+A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.", "Időd sincsen rájönni mi lehetett az,;"";5
-A szűk kis utcáról hirtelen egy főúton találod magad.+A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.", "Időd sincsen rájönni mi lehetett az,", "mivel hirtelen egy éles fájdalmat érzel a fejedben és a világ elsötétül...;""+""+""+red;5
+A szűk kis utcáról hirtelen egy főúton találod magad.+A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.+Időd sincsen rájönni mi lehetett az,;"";5
+A szűk kis utcáról hirtelen egy főúton találod magad.+A természet által visszafoglalt útban való gyönyörködésedet egy, a szemed sarkában felbukkanó furcsa árny töri meg.+Időd sincsen rájönni mi lehetett az,+mivel hirtelen egy éles fájdalmat érzel a fejedben és a világ elsötétül...;""+""+""+red;5

@@ -35,7 +35,19 @@ body{
     transform:scale(1.15);
     transition: .6s;
 }
+  
 
+@media only screen and (max-width: 500px) {
+    .sveg{
+        font-size: medium;
+    }
+}
+.gimg{
+    width: 18vw;
+    object-fit: cover;
+    object-position: center;
+    margin-left: 2vw;
+}
 .cim{
     font-weight: bold;
 }
