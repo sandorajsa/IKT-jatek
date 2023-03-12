@@ -1351,7 +1351,7 @@ def load(): #betöltésnél kétszer vannak bent a fegyverek
             roomFirst[int(room[0])] = bool(room[1])
         except:
             roomFirst[room[0]] = bool(room[1])
-    jatekos.buyPoints = f.readline().strip()
+    jatekos.buyPoints = int(f.readline().strip())
     jatekos.maxHp = f.readline().strip()
     f.close()
     szobak = [startRoom,room1, room2, room3, 
