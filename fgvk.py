@@ -1303,6 +1303,7 @@ def save(): #jatekos.buyPoints elmenteni
             f.write(f"{str(key)}:{str(value)}")
         else:
             f.write(f"{str(key)}:")
+    f.write(jatekos.buyPoints)
     f.close()
 
 def load(): #betöltésnél kétszer vannak bent a fegyverek
@@ -1348,6 +1349,7 @@ def load(): #betöltésnél kétszer vannak bent a fegyverek
             roomFirst[int(room[0])] = bool(room[1])
         except:
             roomFirst[room[0]] = bool(room[1])
+    jatekos.buyPoints = f.readline().strip()
     f.close()
     szobak = [startRoom,room1, room2, room3, 
               room4, room5, room6, room7, room8, 
