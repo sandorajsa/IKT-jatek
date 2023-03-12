@@ -35,6 +35,7 @@ roomFirst = {
     15: True,
     16: True,
     18: True,
+    19: True,
     20: True,
     23: True,
     24: True,
@@ -208,7 +209,7 @@ def gamestart(): #kilepes
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
         global roomFirst
-        roomFirst = {1: True,4: True,9: True,10: True,13: True,15: True,16: True,18: True,20: True,23: True,24: True,26: True,27: True,30: True}
+        roomFirst = {1: True,3: True,4: True,9: True,10: True,13: True,15: True,16: True,18: True,19: True,20: True,23: True,24: True,26: True,27: True,30: True}
         global quests
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
@@ -244,6 +245,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     curses.wrapper(centertext, text, 9)
     os.system("cls")
     jatekos.Points = 0
+    jatekos.buyPoints = 0
     elerhetoHealek = 0
     elerhetoFegyverek = []
     text = ["Sok sikert a játékban!"]
@@ -319,6 +321,7 @@ def fightSystem(enemy):
         deathEnd()
     elif enemyHp <= 0:
         jatekos.Points += enemy.Points
+        jatekos.buyPoints += enemy.Points
         os.system("cls")
         text = [f"{enemy.Nev} meghalt. {enemy.Points} pontot kaptál legyőzéséért"]
         curses.wrapper(centertext, text, 5)
@@ -408,28 +411,28 @@ def healthBuy():
     global elerhetoHealek
     text = ["500 pont - 1 életerő növelő"]
     curses.wrapper(centertext, text, 5)
-    text = ["500 pont - 1 életerő növelő", f"Pontjaid: {jatekos.Points}"]
+    text = ["500 pont - 1 életerő növelő", f"Pontjaid: {jatekos.buyPoints}"]
     curses.wrapper(centertext, text, 5)
     os.system("cls")
     commands = ["Vásárolsz életerő növelőt?", "Igen", "Nem"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
-        if jatekos.Points - 500 < 0:
+        if jatekos.buyPoints - 500 < 0:
             text = ["Nincsen elegendő pontod."]
             curses.wrapper(centertext, text, 5)
             os.system("cls")
             healthBuy()
         else:
-            jatekos.Points -= 500
+            jatekos.buyPoints -= 500
             elerhetoHealek += 1
             text = [f"Életerő növelők száma eggyel megnövelve. Jelenlegi mennyiség: {elerhetoHealek} darab"]
             curses.wrapper(centertext, text, 5)
             os.system("cls")
-            if jatekos.Points >= 500:
+            if jatekos.buyPoints >= 500:
                 healthBuy()
 
 def weaponBuy():
-    text = ["1000 pont - 1 adag lőszer", f"Pontjaid: {jatekos.Points}"]
+    text = ["1000 pont - 1 adag lőszer", f"Pontjaid: {jatekos.buyPoints}"]
     curses.wrapper(centertext, text, 5)
     commands = ["Vásárolsz lőszert?", "Igen", "Nem"]
     choice = curses.wrapper(menu, commands)
@@ -441,7 +444,7 @@ def weaponBuy():
             choice = curses.wrapper(menu, commands)
             for i in range(1,len(commands)):
                 if choice == commands[i]:
-                    if jatekos.Points - 1000 < 0:
+                    if jatekos.buyPoints - 1000 < 0:
                         text = ["Nincsen elegendő pontod."]
                         curses.wrapper(centertext, text, 5)
                         weaponBuy()
@@ -644,6 +647,7 @@ def room9():
             else:
                 if fegyverek[3] not in elerhetoFegyverek:
                     jatekos.Points += 5000
+                    jatekos.buyPoints += 5000
                     kiir("9.3")
                     os.system("cls")
                     elerhetoFegyverek.append(fegyverek[3])
@@ -915,7 +919,8 @@ def room19():
     commands = ["A ház melletti utcára lépsz.", "Körülnézek", "Megnézem a kaput", "Elmegyek balra"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
-        if fegyverek[7] not in elerhetoFegyverek:
+        if roomFirst[szobaid]:
+            roomFirst[szobaid] = False
             kiir("19")
             elerhetoFegyverek.append(fegyverek[7])
             text = ["Gratulálok, ezzennel a kutya a társad.","Harcokban tudod őt használni, melyekben fegyverként működik.",f"(Használhatóság: Végtelen, Sebzés: {fegyverek[7].Dmg})"]
@@ -1030,6 +1035,7 @@ def room23():
             save()
             if quests["auto"]:
                 jatekos.Points += 5000
+                jatekos.buyPoints += 5000
                 kiir("23missionComplete")
                 gameEnd()
             else:
@@ -1255,7 +1261,7 @@ def endMenu():
     else:
         exit()
 
-def save():
+def save(): #jatekos.buyPoints elmenteni
     stri = ""
     elstri = ""
     f = open("save.txt", "w", encoding = "UTF-8")
@@ -1299,7 +1305,7 @@ def save():
             f.write(f"{str(key)}:")
     f.close()
 
-def load():
+def load(): #betöltésnél kétszer vannak bent a fegyverek
     f = open("save.txt", "r", encoding = "UTF-8")
     global jatekos
     jatekos = karakter

@@ -1,2 +1,2 @@
 A családi ház pincéjében találod magad.; ;5
-A családi ház pincéjében találod magad.", "Éppen elkezdenél körülnézni, mikor egy zombi fut feléd teljes sebességgel.; ;5
+A családi ház pincéjében találod magad.+Éppen elkezdenél körülnézni, mikor egy zombi fut feléd teljes sebességgel.; ;5

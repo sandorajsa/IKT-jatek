@@ -8,6 +8,7 @@ class karakter:
         self.Dmg = megadottDmg
         self.Rng = megadottRng
         self.Points = 0
+        self.buyPoints = 0
         #ha lehet akkor az első utése utan a karakterunk minden körben kapjon 2dmg-t
 
 class Opp:
