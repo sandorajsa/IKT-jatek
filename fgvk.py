@@ -212,6 +212,7 @@ def gamestart(): #kilepes
     commands = ["Outback","Új játék", "Folytatás", "Tekintsd meg a weboldalunkat","Kilépés"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
+        global roomFirst
         roomFirst = {1: True,3: True,4: True,6: True,9: True,49: True,10: True,12: True,13: True,15: True,16: True,18: True,58: True,19: True,20: True,23: True,24: True,26: True,27: True,30: True}
         global quests
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
