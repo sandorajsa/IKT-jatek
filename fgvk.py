@@ -217,15 +217,15 @@ def gamestart(): #kilepes
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
     elif choice == commands[2]:
-        # try:
+        try:
             load()
-        # except:
-        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-        #     choice = curses.wrapper(menu, commands)
-        #     if choice == "Nem":
-        #         return
-        #     else:
-        #         newgame()
+        except:
+            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+            choice = curses.wrapper(menu, commands)
+            if choice == "Nem":
+                return
+            else:
+                newgame()
     elif choice == commands[3]:
         os.system("start html/index.html")
     else:
