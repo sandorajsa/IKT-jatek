@@ -1298,7 +1298,6 @@ def save(): #jatekos.buyPoints elmenteni
     f.write("\n")
     for key, value in quests.items():
         f.write(f"{str(key)}:{str(value)}\n")
-        print(key, value)
     for keys, value in roomFirst.items():
         f.write(f"{str(keys)}:{str(value)}\n")
     f.write(str(jatekos.buyPoints))

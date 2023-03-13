@@ -1,9 +1,9 @@
-asd
+fzvh
 100
 5
-1
+5
 0
-2
+0
 gyogyszer:False
 segitseg:True
 gyerekek:False
@@ -15,7 +15,7 @@ segitseg2:True
 mission:False
 auto:False
 deadGergo:False
-1:False
+1:True
 3:True
 4:True
 6:True
