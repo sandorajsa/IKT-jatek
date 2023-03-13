@@ -29,12 +29,16 @@ roomFirst = {
     1: True,
     3: True,
     4: True,
+    6: True,
     9: True,
+    -9: True,
     10: True,
+    12: True,
     13: True,
     15: True,
     16: True,
     18: True,
+    -18: True,
     19: True,
     20: True,
     23: True,
@@ -214,15 +218,15 @@ def gamestart(): #kilepes
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
     elif choice == commands[2]:
-        try:
+        # try:
             load()
-        except:
-            commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
-            choice = curses.wrapper(menu, commands)
-            if choice == "Nem":
-                return
-            else:
-                newgame()
+        # except:
+        #     commands = ["Nem találtunk előző játékmentést, szeretnél új játékot kezdeni?", "Igen", "Nem"]
+        #     choice = curses.wrapper(menu, commands)
+        #     if choice == "Nem":
+        #         return
+        #     else:
+        #         newgame()
     elif choice == commands[3]:
         os.system("start html/index.html")
     else:
@@ -250,7 +254,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     elerhetoFegyverek = []
     text = ["Sok sikert a játékban!"]
     szin = ["mag"]
-    jatekos.Hp = jatekos.MaxHp
+    jatekos.Hp = jatekos.maxHp
     curses.wrapper(centertext, text, 9, szin)
     os.system("cls")
 
@@ -573,7 +577,7 @@ def room6():
     os.system("cls")
     commands = ["Körülnézve látod, hogy a bolt raktárában vagy.", "Körülnézek", "Menekülök tovább"]
     choice = curses.wrapper(menu, commands)
-    if choice == commands[1]:
+    if choice == commands[1] and roomFirst[szobaid]:
         text = ["Kutakodás közben az egyik polc alatt észreveszel valamit. Kihúzod és jobban megnézed."]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
@@ -584,6 +588,9 @@ def room6():
         text = ["Keresgélsz még de nem találsz semmi mást, így továbbmész."]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
+    else:
+        text = ["Keresgélsz még de nem találsz semmi mást, így továbbmész."]
+        curses.wrapper(centertext, text, 5)
     room7()
 
 def room7():
@@ -621,7 +628,6 @@ def room9():
     szobaid = 9
     save()
     if roomFirst[szobaid]:
-        roomFirst[szobaid] = False
         kiir("9")
         commands = ["Hozol gyógyszert a kisfiúnak?", "Igen", "Nem"]
         choice = curses.wrapper(menu, commands)
@@ -632,6 +638,7 @@ def room9():
             text = [f"Köszönöm...A neved?","Megmondod a neved.",f"Köszönöm {jatekos.Nev}!","Elindulsz gyógyszert keresni."]
             curses.wrapper(centertext, text, 5, ["cya", "", "cya", ""])
             os.system("cls")
+            roomFirst[szobaid] = False
         else:
             quests["segitseg"] = False
             text = ["Sajnálom..nem tehetek mást...Sajnálom!!"]
@@ -654,10 +661,12 @@ def room9():
                     jatekos.buyPoints += 5000
                     kiir("9.3")
                     os.system("cls")
-                    elerhetoFegyverek.append(fegyverek[3])
+                    if roomFirst[-9]:
+                        elerhetoFegyverek.append(fegyverek[3])
+                        text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[3].Nev} (Használhatóság: {fegyverek[3].Hasznalhato}, Sebzés: {fegyverek[3].Dmg})"]
+                        curses.wrapper(centertext, text, 5)
+                        roomFirst[-9] = False
                     quests["varosKulcs"] = True
-                    text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[3].Nev} (Használhatóság: {fegyverek[3].Hasznalhato}, Sebzés: {fegyverek[3].Dmg})"]
-                    curses.wrapper(centertext, text, 5)
                     os.system("cls")
                     text = ["Elteszed a kulcsot is, bár nem tudod mit nyithat..."]
                     curses.wrapper(centertext, text, 5)
@@ -740,7 +749,8 @@ def room12():
         text = ["Ahogy kutatsz, észreveszel valamit az egyik ott álló kamion alatt..."]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
-        elerhetoFegyverek.append(fegyverek[5])
+        if roomFirst[szobaid]:
+            elerhetoFegyverek.append(fegyverek[5])
         text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[5].Nev} (Használhatóság: {fegyverek[5].Hasznalhato}, Sebzés: {fegyverek[5].Dmg})"]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
@@ -883,7 +893,9 @@ def room18():
             if fegyverek[6] not in elerhetoFegyverek:
                 text = ["A lépcső romjai között figyelmes leszel valamire."]
                 os.system("cls")
-                elerhetoFegyverek.append(fegyverek[6])
+                if roomFirst[-18]:
+                    elerhetoFegyverek.append(fegyverek[6])
+                    roomFirst[-18] = False
                 text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[6].Nev} (Használhatóság: {fegyverek[6].Hasznalhato}, Sebzés: {fegyverek[6].Dmg})"]
                 curses.wrapper(centertext, text, 5)
                 os.system("cls")
@@ -1279,36 +1291,30 @@ def save(): #jatekos.buyPoints elmenteni
     global szobaid
     f.write(str(szobaid))
     f.write("\n")
+    f.write(str(jatekos.Points))
+    f.write("\n")
+    f.write(str(elerhetoHealek))
+    f.write("\n")
+    for key, value in quests.items():
+        f.write(f"{str(key)}:{str(value)}\n")
+    for key, value in roomFirst.items():
+        f.write(f"{str(key)}:{str(value)}\n")
+    f.write(str(jatekos.buyPoints))
+    f.write("\n")
+    f.write(str(jatekos.maxHp))
+    f.write("\n")
     global elerhetoFegyverek
     for i in elerhetoFegyverek:
         hasz = str(i.Hasznalhato)
-        stri +=(str(i.Nev+"+"+hasz+"+"+str(i.Dmg)))+ ";"
+        stri +=(str(i.Nev+"+"+hasz+"+"+str(i.Dmg)+"+"+str(i.maxHasznal)))+ ";"
     f.write(stri)
     if len(elhasznaltFegyverek) == 0:
         f.write("\n")
     else:
         for i in elhasznaltFegyverek:
             hasz = str(i.Hasznalhato)
-            elstri +=(str(i.Nev+"+"+hasz+"+"+str(i.Dmg)))+ ";"
+            elstri +=(str(i.Nev+"+"+hasz+"+"+str(i.Dmg)+"+"+str(i.maxHasznal)))+ ";"
     f.write(elstri)
-    f.write("\n")
-    f.write(str(jatekos.Points))
-    f.write("\n")
-    f.write(str(elerhetoHealek))
-    for key, value in quests.items():
-        f.write("\n")
-        if key == True:
-            f.write(f"{str(key)}:{str(value)}")
-        else:
-            f.write(f"{str(key)}:")
-    for key, value in roomFirst.items():
-        f.write("\n")
-        if key == True:
-            f.write(f"{str(key)}:{str(value)}")
-        else:
-            f.write(f"{str(key)}:")
-    f.write(str(jatekos.buyPoints))
-    f.write(str(jatekos.maxHp))
     f.close()
 
 def load():
@@ -1320,6 +1326,29 @@ def load():
     jatekos.Dmg = int(f.readline().strip())
     global szobaid
     szobaid = f.readline().strip()
+    jatekos.Points = int(f.readline().strip())
+    global elerhetoHealek
+    elerhetoHealek = int(f.readline().strip())
+    for i in range(0,len(quests.keys())):
+        quest =  f.readline().strip().split(':')
+        if quest[1] == 'True':
+            quests[quest[0]] = True
+        else:
+            quests[quest[0]] = False
+    for i in range(0,len(roomFirst.keys())):
+        room =  f.readline().strip().split(':')
+        try:
+            if room[1] == 'True':
+                roomFirst[int(room[0])] = True
+            else:
+                roomFirst[int(room[0])] = False
+        except:
+            if room[1] == 'True':
+                roomFirst[room[0]] = True
+            else:
+                roomFirst[room[0]] = False
+    jatekos.buyPoints = int(f.readline().strip())
+    jatekos.maxHp = f.readline().strip()
     fegyvernh = f.readline().strip().split(";")
     szam = 0
     for fegyverr in fegyvernh:
@@ -1328,7 +1357,7 @@ def load():
             break
         else:
             fegyverr = fegyverr.strip(";").split("+")
-            ujFegyver = Fegyver(f"{fegyverr[0]};{fegyverr[1]};{fegyverr[2]}")
+            ujFegyver = Fegyver(f"{fegyverr[0]};{fegyverr[1]};{fegyverr[2]};{fegyverr[3]}")
             if ujFegyver not in elerhetoFegyverek:
                 elerhetoFegyverek.append(ujFegyver)
     elfegyvernh = f.readline().strip().split(";")
@@ -1339,23 +1368,9 @@ def load():
             break
         else:
             fegyverr = fegyverr.strip(";").split("+")
-            ujFegyver = Fegyver(f"{fegyverr[0]};{fegyverr[1]};{fegyverr[2]}")
+            ujFegyver = Fegyver(f"{fegyverr[0]};{fegyverr[1]};{fegyverr[2]};{fegyverr[3]}")
             if ujFegyver not in elhasznaltFegyverek:
                 elhasznaltFegyverek.append(ujFegyver)
-    jatekos.Points = int(f.readline().strip())
-    global elerhetoHealek
-    elerhetoHealek = int(f.readline().strip())
-    for i in range(0,9):
-        quest =  f.readline().strip().split(':')
-        quests[quest[0]] = bool(quest[1])
-    for i in range(0,14):
-        room =  f.readline().strip().split(':')
-        try:
-            roomFirst[int(room[0])] = bool(room[1])
-        except:
-            roomFirst[room[0]] = bool(room[1])
-    jatekos.buyPoints = int(f.readline().strip())
-    jatekos.maxHp = f.readline().strip()
     f.close()
     szobak = [startRoom,room1, room2, room3, 
               room4, room5, room6, room7, room8, 
