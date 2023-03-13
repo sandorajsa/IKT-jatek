@@ -228,6 +228,7 @@ def gamestart(): #kilepes
                 newgame()
     elif choice == commands[3]:
         os.system("start html/index.html")
+        gamestart()
     else:
         exit()
 
