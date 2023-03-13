@@ -4,6 +4,6 @@ Patkány;50;10;opp;500
 Zombi;50;20;opp;1000
 Bandita;100;18;opp;1500
 Bébi sárkány;150;15;boss;5000
-A kisfiú apja;120;15;miniboss;0
+A kisfiú apja;100;15;miniboss;0
 Mutáns zombi;125;35;miniboss;2500
 Gergő;100;18;opp;1000

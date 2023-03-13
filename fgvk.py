@@ -239,7 +239,7 @@ def tutorial(): #heal vasarlas, kivalasztas, pontok kesz
     global elerhetoFegyverek
     elerhetoFegyverek.append(fegyverek[0])
     os.system("cls")
-    fightSystem(opponents[0], False)
+    fightSystem(opponents[0])
     text = ["A harc közben jelentős mennyiségű életerőt vesztettél,","a játék során gyógyszertárakba is be tudsz térni ahol"," gyógyító tárgyakat tudsz venni"]#bugos a szöveg
     curses.wrapper(centertext, text, 9)
     text = ["Az ellenségek legyőzésével pontokat szerzel amiket többek közt itt is el tudsz költeni"]
@@ -295,17 +295,14 @@ def startRoom():
     elif userinput == commands[3]:
         room3()
 
-def fightSystem(enemy, flee):
+def fightSystem(enemy):
     global enemyHp
     fightFegyverek = []
-    kilepes = False
     for fegyver in elerhetoFegyverek:
         fightFegyverek.append(fegyver)
     enemyHp = enemy.Hp
-    while jatekos.Hp > 0 and enemyHp > 0 and not kilepes:
+    while jatekos.Hp > 0 and enemyHp > 0:
         commands = [f"Életerőd: {jatekos.Hp} HP / Ellenség: {enemyHp} HP", "Támadás", f"Gyógyítás / {elerhetoHealek} db"]
-        if flee and jatekos.Hp != 100:
-            commands.append("Elmenekülés")
         choice = curses.wrapper(menu, commands)
         if choice == commands[1]:
             if len(fightFegyverek) == 0:
@@ -326,13 +323,6 @@ def fightSystem(enemy, flee):
                                     fightFegyverek.pop(i-1)
         elif choice == commands[2]:
             healthSystem()
-        else:
-            text = ["Ha elmenekülsz nem kapod meg a harcért járó jutalmakat","és nem tudsz visszalépni a harcba."]
-            curses.wrapper(centertext, text, 5)
-            commands = ["Biztosan elmenekülsz?", "Igen", "Nem"]
-            choice = curses.wrapper(menu, commands)
-            if choice == commands[1]:
-                kilepes = True
     if jatekos.Hp <= 0:
         deathEnd()
     elif enemyHp <= 0:
@@ -344,10 +334,6 @@ def fightSystem(enemy, flee):
         text = [f"{enemy.Nev} meghalt. {enemy.Points} pontot kaptál legyőzéséért", f"Jelenlegi pontszámod: {jatekos.Points}"]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
-    elif kilepes == True:
-        text = [f"Elmenekülsz a(z) {enemy.Nev} elől."]
-        curses.wrapper(centertext, text, 5)
-    return kilepes
 
 def weaponChoose(fegyver, enemy, enemyHp):
     if fegyver.Hasznalhato != 0:
@@ -557,7 +543,7 @@ def room4(): #lehetne itt heal
     if roomFirst[szobaid]:
         roomFirst[szobaid] = False
         kiir("4")
-        fightSystem(opponents[1], True)
+        fightSystem(opponents[1])
         text =["Ezt szerencsére megúsztad..."]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
@@ -661,7 +647,7 @@ def room9():
             text = ["Sajnálom..nem tehetek mást...Sajnálom!!","Az édesapa egyszer csak rádtámad."]
             curses.wrapper(centertext, text, 5, ["red", ""])
             os.system("cls")
-            fightSystem(opponents[5], False)
+            fightSystem(opponents[5])
             kiir("9.1")
             os.system("cls")
     else:
@@ -704,16 +690,13 @@ def room10():
     if roomFirst[szobaid]:
         roomFirst[szobaid] = False
         kiir("10")
-        kilepes = fightSystem(opponents[2], True)
-        if kilepes:
-            pass 
-        else:
-            kiir("10.1")
-            os.system("cls")
-            elerhetoFegyverek.append(fegyverek[4])
-            text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[4].Nev} (Használhatóság: {fegyverek[4].Hasznalhato}, Sebzés: {fegyverek[4].Dmg})"]
-            curses.wrapper(centertext, text, 5)
-            os.system("cls")
+        fightSystem(opponents[2])
+        kiir("10.1")
+        os.system("cls")
+        elerhetoFegyverek.append(fegyverek[4])
+        text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[4].Nev} (Használhatóság: {fegyverek[4].Hasznalhato}, Sebzés: {fegyverek[4].Dmg})"]
+        curses.wrapper(centertext, text, 5)
+        os.system("cls")
     else:
         text = ["Nem mész vissza a pincébe..."]
         curses.wrapper(centertext, text, 5)
@@ -873,7 +856,7 @@ def room16():
     if roomFirst[szobaid]:
         kiir("16")
         os.system("cls")
-        fightSystem(opponents[3], False)
+        fightSystem(opponents[3])
         kiir("16.1")
         os.system("cls")
         roomFirst[szobaid] = False
@@ -901,7 +884,7 @@ def room18():
     if roomFirst[szobaid]:
         kiir("18")
         roomFirst[szobaid] = False
-        fightSystem(opponents[2], False)
+        fightSystem(opponents[2])
         text = ["Szerencsére sikerült megölnöd..."]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
@@ -1011,7 +994,7 @@ def room21(): #itt nincsen save hogy lehessen végigvinni
     global szobaid
     szobaid = 21
     kiir("21")
-    fightSystem(opponents[6], False)
+    fightSystem(opponents[6])
     text = ["Sikerült megölnöd a zombit, ám a végkimerülés szélén állsz."]
     curses.wrapper(centertext, text, 5)
     text = ["Sikerült megölnöd a zombit, ám a végkimerülés szélén állsz.","Ismét a kapu felé veszed az irányt."]
@@ -1049,7 +1032,7 @@ def roomStory():
     curses.wrapper(centertext, text, 5, szin)
     os.system("cls")
     kiir("story2")
-    fightSystem(opponents[2], True)
+    fightSystem(opponents[2])
     kiir("story3")
     room23()
 
@@ -1078,7 +1061,7 @@ def room23():
                 room26()
         else:
             kiir("23noMission")
-            fightSystem(opponents[7], False)
+            fightSystem(opponents[7])
             quests["kapuKulcs"] = True
             quests["deadGergo"] = True
             room26()
@@ -1234,7 +1217,7 @@ def room31():
     global szobaid
     szobaid = 31
     kiir(31.1)
-    fightSystem(opponents[3], False)
+    fightSystem(opponents[3])
     quests["auto"] = True
     kiir(31.2)
     room23()
@@ -1336,6 +1319,8 @@ def save(): #jatekos.buyPoints elmenteni
     f.close()
 
 def load():
+    global elerhetoFegyverek
+    elerhetoFegyverek = []
     f = open("save.txt", "r", encoding = "UTF-8")
     global jatekos
     jatekos = karakter
@@ -1353,7 +1338,7 @@ def load():
             quests[quest[0]] = True
         else:
             quests[quest[0]] = False
-    for i in range(0,len(roomFirst.keys())-1):
+    for i in range(0,len(roomFirst.keys())):
         room =  f.readline().strip().split(':')
         try:
             if room[1] == 'True':
