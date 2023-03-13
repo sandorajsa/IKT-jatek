@@ -31,14 +31,14 @@ roomFirst = {
     4: True,
     6: True,
     9: True,
-    -9: True,
+    49: True,
     10: True,
     12: True,
     13: True,
     15: True,
     16: True,
     18: True,
-    -18: True,
+    58: True,
     19: True,
     20: True,
     23: True,
@@ -212,8 +212,7 @@ def gamestart(): #kilepes
     commands = ["Outback","Új játék", "Folytatás", "Tekintsd meg a weboldalunkat","Kilépés"]
     choice = curses.wrapper(menu, commands)
     if choice == commands[1]:
-        global roomFirst
-        roomFirst = {1: True,3: True,4: True,9: True,10: True,13: True,15: True,16: True,18: True,19: True,20: True,23: True,24: True,26: True,27: True,30: True}
+        roomFirst = {1: True,3: True,4: True,6: True,9: True,49: True,10: True,12: True,13: True,15: True,16: True,18: True,58: True,19: True,20: True,23: True,24: True,26: True,27: True,30: True}
         global quests
         quests = {"gyogyszer": False,"segitseg": True,"gyerekek": False,"epuletKulcs": False,"varosKulcs": False,"letra": False,"kapuKulcs": False,"segitseg2": True,"mission": False,"auto": False,"deadGergo": False}
         newgame()
@@ -577,7 +576,7 @@ def room6():
     os.system("cls")
     commands = ["Körülnézve látod, hogy a bolt raktárában vagy.", "Körülnézek", "Menekülök tovább"]
     choice = curses.wrapper(menu, commands)
-    if choice == commands[1] and roomFirst[szobaid]:
+    if choice == commands[1]:
         text = ["Kutakodás közben az egyik polc alatt észreveszel valamit. Kihúzod és jobban megnézed."]
         curses.wrapper(centertext, text, 5)
         os.system("cls")
@@ -661,11 +660,11 @@ def room9():
                     jatekos.buyPoints += 5000
                     kiir("9.3")
                     os.system("cls")
-                    if roomFirst[-9]:
+                    if roomFirst[49]:
                         elerhetoFegyverek.append(fegyverek[3])
                         text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[3].Nev} (Használhatóság: {fegyverek[3].Hasznalhato}, Sebzés: {fegyverek[3].Dmg})"]
                         curses.wrapper(centertext, text, 5)
-                        roomFirst[-9] = False
+                        roomFirst[49] = False
                     quests["varosKulcs"] = True
                     os.system("cls")
                     text = ["Elteszed a kulcsot is, bár nem tudod mit nyithat..."]
@@ -893,9 +892,9 @@ def room18():
             if fegyverek[6] not in elerhetoFegyverek:
                 text = ["A lépcső romjai között figyelmes leszel valamire."]
                 os.system("cls")
-                if roomFirst[-18]:
+                if roomFirst[58]:
                     elerhetoFegyverek.append(fegyverek[6])
-                    roomFirst[-18] = False
+                    roomFirst[58] = False
                 text = [f"Gratulálok, ezennel feloldottad a következő fegyvert: {fegyverek[6].Nev} (Használhatóság: {fegyverek[6].Hasznalhato}, Sebzés: {fegyverek[6].Dmg})"]
                 curses.wrapper(centertext, text, 5)
                 os.system("cls")
@@ -1297,8 +1296,9 @@ def save(): #jatekos.buyPoints elmenteni
     f.write("\n")
     for key, value in quests.items():
         f.write(f"{str(key)}:{str(value)}\n")
-    for key, value in roomFirst.items():
-        f.write(f"{str(key)}:{str(value)}\n")
+        print(key, value)
+    for keys, value in roomFirst.items():
+        f.write(f"{str(keys)}:{str(value)}\n")
     f.write(str(jatekos.buyPoints))
     f.write("\n")
     f.write(str(jatekos.maxHp))
@@ -1335,7 +1335,7 @@ def load():
             quests[quest[0]] = True
         else:
             quests[quest[0]] = False
-    for i in range(0,len(roomFirst.keys())):
+    for i in range(0,len(roomFirst.keys())-1):
         room =  f.readline().strip().split(':')
         try:
             if room[1] == 'True':
