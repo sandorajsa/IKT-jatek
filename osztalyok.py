@@ -27,3 +27,4 @@ class Fegyver:
         self.Nev = adatok[0]
         self.Hasznalhato = int(adatok[1])
         self.Dmg = int(adatok[2])
+        self.maxHasznal = int(adatok[3])

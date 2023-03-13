@@ -1,10 +1,10 @@
-fegyverneve;hasznalhatosag;dmg
-Fegyver;5;5
-Kés;9999999999;12
-Rozsdás feszítővas;5;10
-9mm pisztoly;12;15
-Íj;10;13
-Vadászpuska;7;20
-Sörétes puska;6;45
-Kutya;9999999999;19
-Gépfegyver;6;30
+fegyverneve;hasznalhatosag;dmg;maxhaszn
+Fegyver;5;5;5
+Kés;9999999999;12;9999999999
+Rozsdás feszítővas;5;10;5
+9mm pisztoly;12;15;12
+Íj;10;13;10
+Vadászpuska;7;20;7
+Sörétes puska;6;45;6
+Kutya;9999999999;19;9999999999
+Gépfegyver;6;30;6

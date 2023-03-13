@@ -454,6 +454,7 @@ def weaponBuy():
                         jatekos.buyPoints -= 1000
                         for fegyer in fegyverek:
                             if elhasznaltFegyverek[i-1].Nev == fegyer.Nev:
+                                fegyver.Hasznalhato = fegyver.maxHasznal
                                 elerhetoFegyverek.append(fegyer)
                         elhasznaltFegyverek.pop(i-1)
                         text = ["Sikeres vásárlás."]

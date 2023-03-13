@@ -1,11 +1,11 @@
-asd
-70
+ajsa
+90
 5
-startRoom
+25
+Kés+9999999998+12;Íj+10+13;Vadászpuska+7+20;Rozsdás feszítővas+5+10;
 
-
-0
-0
+3500
+1
 gyogyszer:
 segitseg:
 gyerekek:
@@ -17,7 +17,7 @@ segitseg2:
 mission:
 auto:
 deadGergo:
-1:True
+1:False
 3:
 4:
 9:
@@ -32,4 +32,4 @@ deadGergo:
 24:
 26:
 27:
-30:0
+30:500100
